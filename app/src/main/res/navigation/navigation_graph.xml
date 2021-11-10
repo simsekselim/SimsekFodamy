@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/fragmentSplash">
+
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.mobillium.simsekfodamy.presentation.loginflow.login.FragmentLogin"
+        android:label="FragmentLogin" >
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentRegister"
+            app:destination="@id/fragmentRegister" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_fragmentForgetPassword"
+            app:destination="@id/fragmentForgetPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegister"
+        android:name="com.mobillium.simsekfodamy.presentation.loginflow.register.FragmentRegister"
+        android:label="FragmentRegister" >
+        <action
+            android:id="@+id/action_fragmentRegister_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentIntro"
+        android:name="com.mobillium.simsekfodamy.presentation.loginflow.intro.FragmentIntro"
+        android:label="FragmentIntro" >
+        <action
+            android:id="@+id/action_fragmentIntro_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSplash"
+        android:name="com.mobillium.simsekfodamy.presentation.loginflow.splash.FragmentSplash"
+        android:label="FragmentSplash">
+        <action
+            android:id="@+id/action_fragmentSplash_to_fragmentIntro"
+            app:destination="@id/fragmentIntro" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentForgetPassword"
+        android:name="com.mobillium.simsekfodamy.presentation.loginflow.forgetpassword.FragmentForgetPassword"
+        android:label="FragmentForgetPassword" />
+</navigation>
