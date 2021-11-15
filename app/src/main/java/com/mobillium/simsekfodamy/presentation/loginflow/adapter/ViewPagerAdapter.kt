@@ -1,4 +1,4 @@
-package com.mobillium.simsekfodamy.presentation.loginflow.intro
+package com.mobillium.simsekfodamy.presentation.loginflow.adapter
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,25 +1,21 @@
 package com.mobillium.simsekfodamy.presentation.loginflow.intro
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.Drawable
-import android.icu.text.CaseMap
 import android.os.Bundle
-import android.os.ParcelFileDescriptor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.mobillium.simsekfodamy.R
+import com.mobillium.simsekfodamy.presentation.loginflow.adapter.ViewPagerAdapter
 
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-import java.util.*
 
 
-    private var titlesList = mutableListOf<String>()
+private var titlesList = mutableListOf<String>()
     private var descList = mutableListOf<String>()
     private var imagesList = mutableListOf<Int>()
 
