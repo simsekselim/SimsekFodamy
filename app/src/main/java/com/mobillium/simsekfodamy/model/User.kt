@@ -1,6 +1,4 @@
-package com.mobillium.simsekfodamy.domain.model
-
-
+package com.mobillium.simsekfodamy.model
 
 data class User(
     val birthday: Any,

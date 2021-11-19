@@ -1,4 +1,4 @@
-package com.mobillium.simsekfodamy.domain.model
+package com.mobillium.simsekfodamy.model
 
 import com.google.gson.annotations.SerializedName
 
@@ -10,4 +10,3 @@ data class LoginRequest(
 
 ) {
 }
-

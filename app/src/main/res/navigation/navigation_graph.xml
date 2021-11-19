@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentLogin"
-        android:name="com.mobillium.simsekfodamy.presentation.loginflow.login.FragmentLogin"
+        android:name="com.mobillium.simsekfodamy.presentation.loginflow.login.LoginFragment"
         android:label="FragmentLogin" >
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentRegister"
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
-        android:name="com.mobillium.simsekfodamy.presentation.loginflow.register.FragmentRegister"
+        android:name="com.mobillium.simsekfodamy.presentation.loginflow.register.RegisterFragment"
         android:label="FragmentRegister" >
         <action
             android:id="@+id/action_fragmentRegister_to_fragmentLogin"
