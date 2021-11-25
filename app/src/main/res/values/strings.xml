@@ -6,6 +6,6 @@
     <string name="GoAhead">İlerle</string>
 
     //Home Page
-    <string name="editor_choose">Editörün Seçimi</string>
+    <string name="editor_choose">Editör Seçimi</string>
     <string name="last_add">Son Eklenenler</string>
 </resources>

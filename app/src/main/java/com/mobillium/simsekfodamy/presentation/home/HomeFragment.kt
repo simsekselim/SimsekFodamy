@@ -20,23 +20,8 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>(
 ) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val editor = binding.editorChoose
-        val add = binding.lastAdd
-        binding.editorLine.isVisible = false
-        binding.addLine.isVisible = false
+        val tabLayout = binding.tabLayout
 
-        editor.setOnClickListener(){
-            editor.setTextColor(Color.RED)
-            binding.editorLine.isVisible = true
-            add.setTextColor(Color.BLACK)
-            binding.addLine.isVisible = false
-        }
 
-        add.setOnClickListener(){
-            add.setTextColor(Color.RED)
-            binding.addLine.isVisible = true
-            editor.setTextColor(Color.BLACK)
-            binding.editorLine.isVisible = false
-        }
     }
 }
