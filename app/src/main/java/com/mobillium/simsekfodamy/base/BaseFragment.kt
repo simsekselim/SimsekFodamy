@@ -36,6 +36,8 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
 
     }
 
+
+
 }
 
 

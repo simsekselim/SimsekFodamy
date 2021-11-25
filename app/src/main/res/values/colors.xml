@@ -11,4 +11,5 @@
     <color name="colorAccent">#232323</color>
     <color name="red">#EC381C</color>
     <color name="opacRed">#4DEC381C</color>
+    <color name="line">#DEE2E6</color>
 </resources>

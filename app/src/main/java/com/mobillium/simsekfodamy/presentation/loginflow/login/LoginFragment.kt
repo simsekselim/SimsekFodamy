@@ -25,7 +25,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
         viewModel.navigateMain.observe(viewLifecycleOwner, {
-            val navigateMain = LoginFragmentDirections.actionFragmentLoginToFragmentForgetPassword()
+            val navigateMain = LoginFragmentDirections.actionFragmentLoginToMainFragment()
             findNavController().navigate(navigateMain)
         })
 

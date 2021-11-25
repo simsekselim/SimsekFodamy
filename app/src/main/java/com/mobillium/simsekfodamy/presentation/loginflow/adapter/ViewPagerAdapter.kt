@@ -9,9 +9,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.mobillium.simsekfodamy.R
 
-class ViewPagerAdapter(val title : List<String>,
-                       val details : List<String>,
-                       val images: List<Int>) : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
+class ViewPagerAdapter(
+    val title: MutableList<String>,
+    val details: List<String>,
+    val images: List<Int>) : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
     inner class Pager2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -49,7 +50,7 @@ class ViewPagerAdapter(val title : List<String>,
 
     override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
 
-        holder.itemTitle.text = title[position]
+        holder.itemTitle.text = title[position].toString()
         holder.itemDetails.text = details[position]
         holder.itemImage.setImageResource(images[position])
 

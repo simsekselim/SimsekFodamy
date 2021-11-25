@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentForgetPassword"
             app:destination="@id/fragmentForgetPassword" />
+        <action
+            android:id="@+id/action_fragmentLogin_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
@@ -44,4 +47,8 @@
         android:id="@+id/fragmentForgetPassword"
         android:name="com.mobillium.simsekfodamy.presentation.loginflow.forgetpassword.FragmentForgetPassword"
         android:label="FragmentForgetPassword" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.main.MainFragment"
+        android:label="MainFragment" />
 </navigation>

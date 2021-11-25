@@ -16,63 +16,68 @@ import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
 
 private var titlesList = mutableListOf<String>()
-    private var descList = mutableListOf<String>()
-    private var imagesList = mutableListOf<Int>()
-
+private var descList = mutableListOf<String>()
+private var imagesList = mutableListOf<Int>()
 
 
 class FragmentIntro : Fragment() {
 
-    var swipe : Button? = null
+    var swipe: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_into,container,false)
+        return inflater.inflate(R.layout.fragment_intro, container, false)
     }
 
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fun addToList(title: String,description: String, image: Int){
+        fun addToList(title: String, description: String, image: Int) {
             titlesList.add(title)
             descList.add(description)
             imagesList.add(image)
 
         }
 
-        val cancel : Button = view.findViewById(R.id.cancel)
+        val cancel: Button = view.findViewById(R.id.cancel)
         cancel.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.fragmentLogin)
 
         }
 
 
-        fun postToList(){
+        fun postToList() {
 
 
-                addToList("Welcome to Fodamy Network! ",
-                    "Fodamy is the best place to find your favourite recipes in all around the world. "
-                    ,R.drawable.intro1)
-                addToList("Finding recipes were not that easy. ",
-                    "Fodamy is the best place to find your favourite recipes in all around the world.  ",
-                    R.drawable.intro2)
-                addToList("Add new recipe. ",
-                    "Fodamy is the best place to find your favourite recipes in all around the world.  ",
-                    R.drawable.intro3)
-                addToList("Share recipe with others. ",
-                    "Fodamy is the best place to find your favourite recipes in all around the world.  ",
-                    R.drawable.intro4)
-
-
-
+            addToList(
+                "Welcome to Fodamy Network! ",
+                "Fodamy is the best place to find your favourite recipes in all around the world. ",
+                R.drawable.intro1
+            )
+            addToList(
+                "Finding recipes were not that easy. ",
+                "Fodamy is the best place to find your favourite recipes in all around the world.  ",
+                R.drawable.intro2
+            )
+            addToList(
+                "Add new recipe. ",
+                "Fodamy is the best place to find your favourite recipes in all around the world.  ",
+                R.drawable.intro3
+            )
+            addToList(
+                "Share recipe with others. ",
+                "Fodamy is the best place to find your favourite recipes in all around the world.  ",
+                R.drawable.intro4
+            )
 
 
         }
@@ -84,36 +89,33 @@ class FragmentIntro : Fragment() {
 
         //Indicator
 
-        val indicator : SpringDotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.indicator)
+        val indicator: SpringDotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.indicator)
         indicator.setViewPager2(view_pager2)
 
 
 
 
-       view_pager2.registerOnPageChangeCallback(object:ViewPager2.OnPageChangeCallback(){
-           override
-           fun onPageSelected(position: Int) {
-               super.onPageSelected(position)
-               if(position == imagesList.size - 1){
+        view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override
+            fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position == imagesList.size - 1) {
 
-                   swipe = view.findViewById(R.id.swipe)
-                   swipe?.text = getString(R.string.Start)
-                   swipe?.setOnClickListener {
-                       Navigation.findNavController(it).navigate(R.id.fragmentLogin)
-                   }
-
-
-               }
-
-               else{
-
-                   swipe?.text = getString(R.string.GoAhead)
+                    swipe = view.findViewById(R.id.swipe)
+                    swipe?.text = getString(R.string.Start)
+                    swipe?.setOnClickListener {
+                        Navigation.findNavController(it).navigate(R.id.fragmentLogin)
+                    }
 
 
+                } else {
 
-               }
-           }
-       })
+                    swipe?.text = getString(R.string.GoAhead)
+
+
+                }
+            }
+        })
 
 
 
@@ -133,18 +135,12 @@ class FragmentIntro : Fragment() {
             }
 
 
-
         }
 
-
-
-
-
-
-
-        }
 
     }
+
+}
 
 
 
