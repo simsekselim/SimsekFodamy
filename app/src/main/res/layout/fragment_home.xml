@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mobillium.simsekfodamy.presentation.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_editor_filter"
+        app:layout_constraintStart_toEndOf="@+id/button_editor_filter"
+        tools:context=".presentation.home.HomeFragment">
+
+
+        <Button
+            android:id="@+id/editor_choose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/editor_choose"
+            android:textColor="@color/red"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/last_add" />
+
+        <View
+            android:id="@+id/editor_line"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:background="@color/red"
+            app:layout_constraintEnd_toEndOf="@+id/editor_choose"
+            app:layout_constraintStart_toStartOf="@+id/editor_choose"
+            app:layout_constraintTop_toBottomOf="@+id/editor_choose" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/line"
+            app:layout_constraintBottom_toBottomOf="@+id/editor_choose"
+            app:layout_constraintEnd_toStartOf="@id/last_add"
+            app:layout_constraintStart_toEndOf="@id/editor_choose"
+            app:layout_constraintTop_toTopOf="@id/editor_choose" />
+
+        <View
+            android:id="@+id/add_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:background="@color/red"
+            app:layout_constraintEnd_toEndOf="@+id/last_add"
+            app:layout_constraintStart_toStartOf="@+id/last_add"
+            app:layout_constraintTop_toBottomOf="@+id/last_add" />
+
+
+        <Button
+            android:id="@+id/last_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="@string/last_add"
+            android:textColor="@color/red"
+            app:layout_constraintLeft_toRightOf="@+id/editor_choose"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="409dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/last_add"
+            tools:layout_editor_absoluteX="1dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
