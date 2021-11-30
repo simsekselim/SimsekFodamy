@@ -12,7 +12,7 @@ data class User(
     val following_count: Int,
     val gender: Any,
     val id: Int,
-    val image: Any,
+    val image: Image,
     val instagram_url: Any,
     val is_banned: Int,
     val is_following: Boolean,

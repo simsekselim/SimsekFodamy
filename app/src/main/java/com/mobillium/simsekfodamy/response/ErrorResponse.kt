@@ -1,4 +1,4 @@
-package com.mobillium.simsekfodamy.utils
+package com.mobillium.simsekfodamy.response
 
 import android.os.Parcel
 import android.os.Parcelable

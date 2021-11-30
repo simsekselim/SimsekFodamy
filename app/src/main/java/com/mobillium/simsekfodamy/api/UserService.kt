@@ -1,6 +1,6 @@
 package com.mobillium.simsekfodamy.api
 
-import com.mobillium.simsekfodamy.model.LoginResponse
+import com.mobillium.simsekfodamy.response.LoginResponse
 import com.mobillium.simsekfodamy.utils.Constants
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

@@ -1,4 +1,4 @@
-package com.mobillium.simsekfodamy.model
+package com.mobillium.simsekfodamy.response
 
 import com.google.gson.annotations.SerializedName
 import com.mobillium.simsekfodamy.model.User

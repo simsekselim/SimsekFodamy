@@ -8,4 +8,6 @@
     //Home Page
     <string name="editor_choose">Editör Seçimi</string>
     <string name="last_add">Son Eklenenler</string>
+    <string name="user_info">%1$d Tarif %2$d Takipçi</string>
+    <string name="recipe_info">%1$d Yorum %2$d Beğenme</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.mobillium.simsekfodamy.di
 
 import android.content.Context
+import com.mobillium.simsekfodamy.api.RecipeService
 import com.mobillium.simsekfodamy.api.UserService
 import com.mobillium.simsekfodamy.utils.Constants
 import dagger.Module
@@ -58,6 +59,10 @@ class ApplicationModule {
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserService(retrofit: Retrofit): RecipeService = retrofit.create(RecipeService::class.java)
 
 
 
