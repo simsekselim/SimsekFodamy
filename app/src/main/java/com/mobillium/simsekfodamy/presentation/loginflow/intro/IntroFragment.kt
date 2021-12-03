@@ -11,22 +11,15 @@ import androidx.navigation.Navigation
 import androidx.viewpager2.widget.ViewPager2
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.presentation.loginflow.adapter.ViewPagerAdapter
-
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
-
-
 private var titlesList = mutableListOf<String>()
 private var descList = mutableListOf<String>()
 private var imagesList = mutableListOf<Int>()
 
-
 class FragmentIntro : Fragment() {
-
     var swipe: Button? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -40,24 +33,21 @@ class FragmentIntro : Fragment() {
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        fun addToList(title: String, description: String, image: Int) {
+        fun addToList(
+            title: String,
+            description: String,
+            image: Int
+        ) {
             titlesList.add(title)
             descList.add(description)
             imagesList.add(image)
-
         }
 
         val cancel: Button = view.findViewById(R.id.cancel)
         cancel.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.fragmentLogin)
-
         }
-
-
         fun postToList() {
-
-
             addToList(
                 "Welcome to Fodamy Network! ",
                 "Fodamy is the best place to find your favourite recipes in all around the world. ",
@@ -78,69 +68,37 @@ class FragmentIntro : Fragment() {
                 "Fodamy is the best place to find your favourite recipes in all around the world.  ",
                 R.drawable.intro4
             )
-
-
         }
         postToList()
-
         val view_pager2 = view.findViewById<ViewPager2>(R.id.view_pager2)
         view_pager2.adapter = ViewPagerAdapter(titlesList, descList, imagesList)
         view_pager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
         //Indicator
-
         val indicator: SpringDotsIndicator = view.findViewById<SpringDotsIndicator>(R.id.indicator)
         indicator.setViewPager2(view_pager2)
-
-
-
-
         view_pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override
             fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 if (position == imagesList.size - 1) {
-
                     swipe = view.findViewById(R.id.swipe)
                     swipe?.text = getString(R.string.Start)
-                    swipe?.setOnClickListener {
-                        Navigation.findNavController(it).navigate(R.id.fragmentLogin)
-                    }
-
-
                 } else {
-
                     swipe?.text = getString(R.string.GoAhead)
-
-
                 }
             }
         })
-
-
-
-
-
-
-
-
-
         swipe = view.findViewById(R.id.swipe)
         swipe?.setOnClickListener {
-
-            view_pager2.apply {
-                beginFakeDrag()
-                fakeDragBy(-1000f)
-                endFakeDrag()
-            }
-
-
+            if (view_pager2.currentItem == imagesList.lastIndex) {
+                Navigation.findNavController(it).navigate(R.id.fragmentLogin)
+            } else {
+                view_pager2.setCurrentItem(view_pager2.currentItem + 1, true)
+            }            /*  view_pager2.apply {
+                  beginFakeDrag()
+                  fakeDragBy(-1000f)
+                  endFakeDrag()
+              }             */
         }
-
-
     }
-
 }
-
-
-

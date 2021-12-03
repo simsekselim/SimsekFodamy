@@ -1,4 +1,4 @@
-package com.mobillium.simsekfodamy.presentation.home
+package com.mobillium.simsekfodamy.presentation.homeflow.home
 
 
 import android.os.Bundle
@@ -6,13 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentHomeBinding
 import com.mobillium.simsekfodamy.model.Recipe
-import com.mobillium.simsekfodamy.presentation.home.adapter.RecipeAdapter
+import com.mobillium.simsekfodamy.presentation.homeflow.adapter.HomePagerAdapter
+import com.mobillium.simsekfodamy.presentation.homeflow.editor.EditorViewModel
+import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
+import com.mobillium.simsekfodamy.presentation.homeflow.last.LastViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,35 +41,93 @@ class HomeFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
-        binding.pager.adapter = pagerAdapter
-        TabLayoutMediator(binding.layout, binding.pager) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.editor_choose)
-                1 -> getString(R.string.last_add)
-                else -> getString(R.string.editor_choose)
+         val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
+         binding.pager.adapter = pagerAdapter
+       TabLayoutMediator(binding.layout, binding.pager) { tab, position ->
+           binding.toolbar.ivBack.isVisible = false
+           binding.toolbar.tvBack.isVisible = false
+             when (position) {
+                 0 -> {
+                     tab.text = getString(R.string.editor_choose)
+
+                 }
+                 1 -> {
+                    tab.text = getText(R.string.last_add)
+
+                 }
+                 else -> {
+                     tab.text = getString(R.string.editor_choose)
+                 }
+
+
+                 }
+
+             }.attach()
+
+         }
+
+
+
+
+
+
+        /*  binding.layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab?.position == 0) {
+                    viewModel.filterData(EDITOR_CHOICE)
+                } else {
+                    viewModel.filterData(LAST_ADDED)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
 
             }
-        }.attach()
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+        })
+
+    }
+
+     */
 
 
+
+    override fun onItemClick(recipe: Recipe) {
+
+    }
+}
+/*
 
         val adapter = RecipeAdapter(this)
 
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+
         binding.apply {
-            recyclerRecipes.layoutManager = LinearLayoutManager(requireContext())
+            recyclerRecipes.layoutManager = linearLayoutManager
             recyclerRecipes.setHasFixedSize(false)
             recyclerRecipes.adapter = adapter
 
 
-
         }
+        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver(){
+            override fun onItemRangeChanged(positionStart: Int, itemCount: Int) {
+                    binding.recyclerRecipes.smoothScrollToPosition(positionStart)
 
+            }
+
+        })
         viewModel.recipes.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
+
         }
 
-
+        adapter.addLoadStateListener { loadState ->
+            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
+        }
 
 
     }
@@ -72,6 +137,8 @@ class HomeFragment :
     }
 
 }
+
+ */
 
 
 /*

@@ -16,8 +16,8 @@ class LoginViewModel
 constructor(private val repository: UserRepository) : BaseViewModel() {
 
 
-    val username = MutableLiveData("")
-    val password = MutableLiveData("")
+    val username = MutableLiveData("salihaga")
+    val password = MutableLiveData("fodamy48+")
     val navigateMain = ActionLiveData()
 
     fun onClickLogin() = viewModelScope.launch {

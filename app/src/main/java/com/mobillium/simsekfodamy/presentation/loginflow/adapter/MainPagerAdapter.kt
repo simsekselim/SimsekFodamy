@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.mobillium.simsekfodamy.presentation.favorites.FavoritesFragment
-import com.mobillium.simsekfodamy.presentation.home.HomeFragment
+import com.mobillium.simsekfodamy.presentation.homeflow.home.HomeFragment
 import com.mobillium.simsekfodamy.presentation.profile.ProfileFragment
 
 class MainPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :

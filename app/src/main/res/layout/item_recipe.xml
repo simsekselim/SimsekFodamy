@@ -7,18 +7,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/margin_normal">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <View
+            android:id="@+id/seperator"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_normal"
+            android:background="@color/line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profile_picture"
             android:layout_width="@dimen/profile_pictures_size"
             android:layout_height="@dimen/profile_pictures_size"
+            android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginEnd="@dimen/margin_normal"
             android:src="@drawable/profile"
             app:layout_constraintEnd_toStartOf="@id/barrier_profile_picture"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/seperator" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier_profile_picture"
@@ -31,6 +40,7 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tv_description"
             app:layout_constraintStart_toEndOf="@id/barrier_profile_picture"
             app:layout_constraintTop_toTopOf="@id/iv_profile_picture"
@@ -80,7 +90,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/recipe_img_size"
             android:layout_marginTop="@dimen/margin_small"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@color/line"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintHorizontal_bias="0"
@@ -104,13 +114,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:paddingBottom="@dimen/margin_normal"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
             app:layout_constraintTop_toBottomOf="@id/iv_recipe"
             tools:text="0 Yorum 0 Beğeni" />
-
-
 
 
         <androidx.constraintlayout.widget.Guideline

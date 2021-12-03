@@ -4,6 +4,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Start">Başla!</string>
     <string name="GoAhead">İlerle</string>
+    <string name="back">Geri</string>
 
     //Home Page
     <string name="editor_choose">Editör Seçimi</string>

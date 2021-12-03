@@ -1,4 +1,4 @@
-package com.mobillium.simsekfodamy.presentation.home.adapter
+package com.mobillium.simsekfodamy.presentation.homeflow.home.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -56,8 +56,9 @@ class RecipeAdapter(private val listener: OnItemClickListener) :
                         .load(recipe.user.image.url)
                         .placeholder(R.drawable.user)
                         .into(ivProfilePicture)
+
                 else
-                    ivProfilePicture.setImageResource(R.drawable.indicator)
+                    ivProfilePicture.setImageResource(R.drawable.profile)
 
                 tvTitle.text = recipe.title
                 tvSubtitle.text = recipe.category.name
