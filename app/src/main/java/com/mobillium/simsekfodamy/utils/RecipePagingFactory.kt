@@ -10,10 +10,12 @@ import java.io.IOException
 class RecipePagingFactory(
     private val api: RecipeService,
     private val key: String,
+    private val categoryId: Int
 ) : PagingSource<Int, Recipe>() {
     companion object {
         const val STARTING_PAGE_INDEX = 1
         const val GET_LAST = "GET_LAST"
+        const val GET_CATEGORY_RECIPES = "GET_CATEGORY_RECIPES"
         const val GET_EDITOR_CHOICE = "GET_EDITOR_CHOICE"
     }
 
@@ -28,7 +30,9 @@ class RecipePagingFactory(
                     GET_EDITOR_CHOICE -> {
                         api.getEditorChoiceRecipes(position)
                     }
-
+                    GET_CATEGORY_RECIPES -> {
+                        api.getCategoryRecipes(categoryId, position)
+                    }
                     else -> {
                         api.getLastAddedRecipes(position)
                     }

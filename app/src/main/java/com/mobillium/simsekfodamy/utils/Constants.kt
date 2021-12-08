@@ -8,6 +8,9 @@ object Constants {
     const val RECIPE = "recipe/{recipe_id}"
     const val LAST_ADD = "recipe/"
     const val EDITOR_CHOOSE = "editor-choices"
+    const val CATEGORY = "category/{category_id}/recipe"
+    const val CATEGORY_RECIPES = "category-recipes"
+
 
 
 }

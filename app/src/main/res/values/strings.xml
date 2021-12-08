@@ -11,4 +11,10 @@
     <string name="last_add">Son Eklenenler</string>
     <string name="user_info">%1$d Tarif %2$d Takipçi</string>
     <string name="recipe_info">%1$d Yorum %2$d Beğenme</string>
+
+    //Profile Page
+    <string name="liked">Beğenme</string>
+    <string name="follower">Takipçi</string>
+    <string name="follow">Takip Edilen</string>
+    <string name="login">Profili Görmek İçin Giriş Yap</string>
 </resources>

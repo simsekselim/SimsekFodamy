@@ -14,6 +14,7 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/custom_toolbar.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/divider.xml" value="0.3491847826086957" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/forgetpassword_fragment.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_category.xml" value="0.26721014492753625" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_editor.xml" value="0.2857789855072464" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_favorites.xml" value="0.18697916666666667" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_forgetpassword.xml" value="0.36666666666666664" />
@@ -27,6 +28,9 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_splash.xml" value="0.338768115942029" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/intro_fragment.xml" value="0.5" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category_recipe.xml" value="0.26132246376811596" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category_recipes.xml" value="0.26721014492753625" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_home.xml" value="0.36277173913043476" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_page.xml" value="0.24139492753623187" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_recipe.xml" value="0.3491847826086957" />

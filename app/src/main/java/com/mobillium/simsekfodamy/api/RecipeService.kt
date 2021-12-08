@@ -27,6 +27,17 @@ interface RecipeService {
         @Query("page") page: Int
     ): BaseResponse<List<Recipe>>
 
+    @GET(Constants.CATEGORY_RECIPES)
+    suspend fun getRecipeCategories(
+        @Query("page") page: Int
+    ): BaseResponse<List<Category>>
+
+    @GET(Constants.CATEGORY)
+    suspend fun getCategoryRecipes(
+        @Path("category_id") categoryId: Int,
+        @Query("page") page: Int
+    ): BaseResponse<List<Recipe>>
+
 
 
 }

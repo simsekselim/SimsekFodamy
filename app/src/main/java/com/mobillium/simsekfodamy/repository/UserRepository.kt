@@ -15,6 +15,7 @@ interface UserRepository {
     suspend fun login(username: String, password: String): Result<String>
     suspend fun register(username: String, email: String, password: String): Result<String>
 
+
 }
 
 @Singleton
