@@ -14,4 +14,6 @@
     <color name="line">#DEE2E6</color>
     <color name="recycler_view_background">#F1F2F3</color>
     <color name="blue">#0bcae4</color>
+    <color name="warning">#FFCE00</color>
+    <color name="send_button">#ADB5BD</color>
 </resources>

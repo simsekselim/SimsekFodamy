@@ -16,14 +16,14 @@
     tools:context=".presentation.favorites.FavoritesFragment">
 
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_categories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Favorites Fragment"
-            android:gravity="center"
+            android:layout_height="0dp"
+            android:background="@color/recycler_view_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="43dp" />
+            tools:listitem="@layout/item_category" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
