@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,7 @@ import com.mobillium.simsekfodamy.databinding.FragmentHomeBinding
 import com.mobillium.simsekfodamy.databinding.FragmentLastBinding
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.homeflow.editor.EditorViewModel
+import com.mobillium.simsekfodamy.presentation.homeflow.home.HomeFragmentDirections
 import com.mobillium.simsekfodamy.presentation.homeflow.home.HomeViewModel
 import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,8 +31,7 @@ class LastFragment :
     BaseFragment<LastViewModel, FragmentLastBinding>(
         R.layout.fragment_last,
         LastViewModel::class.java
-    ),
-    RecipeAdapter.OnItemClickListener {
+    ) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +44,12 @@ class LastFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    val adapter = RecipeAdapter(this)
+    val adapter = RecipeAdapter()
+        adapter.onChildItemClicked = {
+
+            findNavController().navigate(R.id.recipeDetailFragment, bundleOf("recipeId" to it.id))
+
+        }
 
     val linearLayoutManager = LinearLayoutManager(requireContext())
 
@@ -67,9 +74,7 @@ class LastFragment :
 
 }
 
-override fun onItemClick(recipe: Recipe) {
 
-}
 
 }
 

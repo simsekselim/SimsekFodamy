@@ -16,6 +16,9 @@ import com.squareup.picasso.Picasso
 class CategoryAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<Category, CategoryAdapter.CategoryViewHolder>(CATEGORY_COMPARATOR) {
 
+    var onChildItemClicked: ((Recipe) -> Unit)? = null
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val binding =
             ItemCategoryBinding

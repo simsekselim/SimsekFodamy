@@ -17,4 +17,6 @@
     <color name="warning">#FFCE00</color>
     <color name="send_button">#ADB5BD</color>
     <color name="gray">#6C757D</color>
+    <color name="seperator">#F1F2F3</color>
+    <color name="cinder">#212529</color>
 </resources>

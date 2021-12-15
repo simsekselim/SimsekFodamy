@@ -39,5 +39,15 @@ interface RecipeService {
     ): BaseResponse<List<Recipe>>
 
 
+    @GET("recipe/{recipe_id}")
+    suspend fun getRecipeById(
+        @Path("recipe_id") recipeId: Int
+    ): Recipe
+
+    @GET("recipe/{recipe_id}/comment")
+    suspend fun getRecipeComments(
+        @Path("recipe_id") recipeId: Int,
+        @Query("page") page: Int
+    ): BaseResponse<List<Comment>>
 
 }

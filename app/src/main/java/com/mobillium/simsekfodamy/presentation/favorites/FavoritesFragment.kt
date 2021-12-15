@@ -3,7 +3,9 @@ package com.mobillium.simsekfodamy.presentation.favorites
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
@@ -32,6 +34,7 @@ class FavoritesFragment() :
 
         val adapter = CategoryAdapter(this)
 
+
         val linearLayoutManager = LinearLayoutManager(requireContext())
 
 
@@ -43,6 +46,7 @@ class FavoritesFragment() :
 
 
         }
+
 
         viewModel.categories.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)

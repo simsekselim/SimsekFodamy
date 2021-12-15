@@ -1,64 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    android:background="@color/white">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/image_user"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        tools:src="@drawable/profile"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/image_user"
-        app:layout_constraintTop_toTopOf="@id/image_user"
-        tools:text="alicank" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_user_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:textColor="@color/gray"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@id/image_user"
-        app:layout_constraintTop_toBottomOf="@id/text_user_name"
-        tools:text="3 Tarif 0 Takipçi" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_comment_difference"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/gray"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@id/image_user"
-        app:layout_constraintTop_toBottomOf="@id/image_user"
-        tools:text="3 dakika önce" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/text_comment_body"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_comment_difference"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        android:layout_marginBottom="16dp"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_user"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/image_user"
+            app:layout_constraintTop_toTopOf="@id/image_user"
+            android:text="alicank" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_user_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/gray"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/image_user"
+            app:layout_constraintTop_toBottomOf="@id/text_user_name"
+            android:text="3 Tarif 0 Takipçi" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_comment_difference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/image_user"
+            app:layout_constraintTop_toBottomOf="@id/image_user"
+            android:text="3 dakika önce" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_comment_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_comment_difference"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

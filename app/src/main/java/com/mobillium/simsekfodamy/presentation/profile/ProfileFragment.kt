@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentProfileBinding
-import com.mobillium.simsekfodamy.utils.textSpanColor
+
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.log

@@ -51,4 +51,30 @@
         android:id="@+id/mainFragment"
         android:name="com.mobillium.simsekfodamy.presentation.main.MainFragment"
         android:label="MainFragment" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.homeflow.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipeDetailFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.detail.RecipeDetailFragment"
+        android:label="RecipeDetailFragment" >
+        <argument android:name="recipeId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/commentsFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.comment.CommentsFragment"
+        android:label="CommentsFragment" >
+        <argument
+            android:name="commentId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

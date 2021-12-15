@@ -5,9 +5,11 @@
     tools:context=".ui.recipe.detail.RecipeDetailFragment">
 
     <data>
-
         <variable
-            name="viewModel"
+            name="recipe"
+            type="com.mobillium.simsekfodamy.model.Recipe" />
+        <variable
+            name="vm"
             type="com.mobillium.simsekfodamy.presentation.detail.RecipeDetailViewModel" />
     </data>
 
@@ -16,9 +18,11 @@
         android:layout_height="match_parent">
 
 
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:paddingBottom="57dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -36,6 +40,7 @@
                         android:id="@+id/image_recipe"
                         android:layout_width="match_parent"
                         android:layout_height="375dp"
+                        app:imageLoader="@{recipe.images.get(0).url}"
                         android:scaleType="fitXY"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -70,7 +75,9 @@
                         android:id="@+id/text_recipe_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{recipe.title}"
                         android:layout_margin="8dp"
+                        android:fontFamily="@font/nunito_bold"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +89,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
+                        android:text="@{recipe.category.name}"
+                        android:fontFamily="@font/nunito_semibold"
                         android:textColor="@color/line"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +104,7 @@
                         android:layout_margin="16dp"
                         android:textColor="@color/line"
                         android:textSize="16sp"
+                        android:text="@{recipe.difference}"
                         app:layout_constraintBottom_toBottomOf="@id/view_bottom_line_recipe_name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -135,7 +145,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
-                            android:textColor="@color/black"
+                            app:commentCount="@{recipe.comment_count}"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:textColor="@color/line"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -182,6 +194,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
                             android:textColor="@color/line"
+                            app:likeCount="@{recipe.like_count}"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -203,7 +216,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/users"
+                        android:src="@drawable/profile"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -213,6 +226,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:text="@{recipe.user.name}"
+                        android:fontFamily="@font/nunito_bold"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@id/image_user"
@@ -224,6 +239,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        app:recipeCount="@{recipe.user.recipe_count}"
+                        app:followerCount="@{recipe.user.following_count}"
+                        android:fontFamily="@font/nunito_semibold"
                         android:textColor="@color/line"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@id/image_user"
@@ -238,7 +256,7 @@
                         android:background="@drawable/button"
                         android:paddingStart="32dp"
                         android:paddingEnd="32dp"
-                        android:text="Takip Et"
+                        android:text="@string/follow_user"
                         android:textAllCaps="false"
                         android:textColor="@color/red"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -257,7 +275,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="32dp"
-                        android:text="Malzemeler"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/ingredients"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_ingredients"
@@ -267,7 +286,7 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image_ingredients_frame"
                         android:layout_width="32dp"
-                        android:layout_height="2dp"
+                        android:layout_height="32dp"
                         android:layout_marginEnd="16dp"
                         android:src="@color/white"
                         app:civ_border_color="@color/line"
@@ -292,6 +311,7 @@
                         android:id="@+id/text_ingredients_person_number"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{recipe.number_of_person.text}"
                         app:layout_constraintEnd_toEndOf="@id/image_ingredients_frame"
                         app:layout_constraintStart_toStartOf="@id/image_ingredients_frame"
                         app:layout_constraintTop_toBottomOf="@id/image_ingredients_frame"
@@ -310,15 +330,12 @@
                         android:id="@+id/text_ingredients_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@{recipe.ingredients}"
                         android:padding="32dp"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        app:layout_constraintTop_toBottomOf="@id/view_bottom_line_ingredients"
-                        tools:text="8 su bardağı su
-1 silme yemek kaşığı tuz
-250 gram makarna(yarım paket)
-3 yemek kaşığı sıvı yağ
-Makarna süzgeci" />
+                        app:layout_constraintTop_toBottomOf="@id/view_bottom_line_ingredients" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -333,7 +350,8 @@ Makarna süzgeci" />
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="32dp"
-                        android:text="Yapılış"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/directions"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_directions"
@@ -368,6 +386,7 @@ Makarna süzgeci" />
                         android:id="@+id/text_directions_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@{recipe.time_of_recipe.text}"
                         app:layout_constraintEnd_toEndOf="@id/image_directions_frame"
                         app:layout_constraintStart_toStartOf="@id/image_directions_frame"
                         app:layout_constraintTop_toBottomOf="@id/image_directions_frame"
@@ -386,14 +405,12 @@ Makarna süzgeci" />
                         android:id="@+id/text_directions_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_bold"
                         android:padding="32dp"
+                        android:text="@{recipe.directions}"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        app:layout_constraintTop_toBottomOf="@id/view_bottom_line_directions"
-                        tools:text="Öncelikle tencereye 8 bardak soğuk suyu ekleyin. Kaynayan suyun içerisine tuzu ve sıvı
-yağı ekleyerek kaynaya kadar kapağı kapalı bir şekilde bekleyin.
-
-Afiyet olsun…" />
+                        app:layout_constraintTop_toBottomOf="@id/view_bottom_line_directions" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -408,7 +425,8 @@ Afiyet olsun…" />
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="32dp"
-                        android:text="Yorumlar"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/comments"
                         android:textColor="@color/black"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_comments"
@@ -436,7 +454,7 @@ Afiyet olsun…" />
                     android:layout_margin="16dp"
                     android:backgroundTint="@color/red"
                     android:padding="16dp"
-                    android:text="Yorum Ekle"
+                    android:text="@string/add_comment"
                     android:textAllCaps="false"
                     android:textSize="22sp" />
             </LinearLayout>

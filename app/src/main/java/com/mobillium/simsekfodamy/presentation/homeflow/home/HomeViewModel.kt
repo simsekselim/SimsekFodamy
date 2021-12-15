@@ -7,6 +7,7 @@ import androidx.paging.cachedIn
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.repository.RecipeRepository
+import com.mobillium.simsekfodamy.utils.ActionLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -24,6 +25,8 @@ constructor(
         const val LAST_ADDED = "LAST_ADDED"
         const val EDITOR_CHOICE = "EDITOR_CHOICE"
     }
+
+    val navigateMain = ActionLiveData()
 
 
 

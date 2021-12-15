@@ -11,8 +11,10 @@ import com.mobillium.simsekfodamy.databinding.ItemRecipeBinding
 import com.mobillium.simsekfodamy.model.Recipe
 import com.squareup.picasso.Picasso
 
-class RecipeAdapter(private val listener: OnItemClickListener) :
+class RecipeAdapter() :
     PagingDataAdapter<Recipe, RecipeAdapter.RecipeViewHolder>(RECIPE_COMPARATOR) {
+
+    var onChildItemClicked: ((Recipe) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val binding = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -35,7 +37,7 @@ class RecipeAdapter(private val listener: OnItemClickListener) :
                 if (pos != RecyclerView.NO_POSITION) {
                     val item = getItem(pos)
                     if (item != null) {
-                        listener.onItemClick(item)
+                        onChildItemClicked?.invoke(item)
                     }
                 }
             }

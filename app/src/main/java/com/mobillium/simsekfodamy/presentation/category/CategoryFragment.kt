@@ -3,8 +3,10 @@ package com.mobillium.simsekfodamy.presentation.category
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
@@ -27,7 +29,7 @@ class CategoryFragment() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = RecipeAdapter(this)
+        val adapter = RecipeAdapter()
 
         val linearLayoutManager = LinearLayoutManager(requireContext())
 

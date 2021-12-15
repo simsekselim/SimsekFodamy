@@ -6,9 +6,11 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.mobillium.simsekfodamy.api.RecipeService
 import com.mobillium.simsekfodamy.model.Category
+import com.mobillium.simsekfodamy.model.Comment
 import com.mobillium.simsekfodamy.utils.Result
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.utils.CategoryPagingFactory
+import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.RecipePagingFactory
 import dagger.Binds
 import dagger.Module
@@ -16,6 +18,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
+import java.lang.IndexOutOfBoundsException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,6 +28,8 @@ interface RecipeRepository {
     fun getEditorChoiceRecipes(): Flow<PagingData<Recipe>>
     fun getRecipeCategories(): Flow<PagingData<Category>>
     fun getCategoryRecipes(categoryId: Int): Flow<PagingData<Recipe>>
+    suspend fun getRecipeByID(recipeId: Int): Result<Recipe>
+    fun getRecipeComments(recipeId: Int): Flow<PagingData<Comment>>
 
 }
 
@@ -52,7 +57,7 @@ class DefaultRecipeRepository @Inject constructor(
                 RecipePagingFactory.GET_LAST,
                 0
 
-                )
+            )
         }
     ).flow
 
@@ -68,7 +73,7 @@ class DefaultRecipeRepository @Inject constructor(
                 RecipePagingFactory.GET_EDITOR_CHOICE,
                 0
 
-                )
+            )
         }
     ).flow
 
@@ -100,6 +105,33 @@ class DefaultRecipeRepository @Inject constructor(
         }
     ).flow
 
+    override suspend fun getRecipeByID(recipeId: Int): Result<Recipe> {
+        return try {
+            val result =
+                recipeService.getRecipeById(
+                    recipeId = recipeId
+                )
+
+            Result.Success(result)
+        } catch (exception: Exception) {
+            Result.Error(exception)
+        }
+    }
+
+
+    override fun getRecipeComments(recipeId: Int) = Pager(
+        config = PagingConfig(
+            pageSize = 24,
+            maxSize = 100,
+            enablePlaceholders = false
+        ),
+        pagingSourceFactory = {
+            CommentPagingFactory(
+                recipeService,
+                recipeId = recipeId
+            )
+        }
+    ).flow
 }
 
 @Module

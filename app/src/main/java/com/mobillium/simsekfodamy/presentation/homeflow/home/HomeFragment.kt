@@ -27,8 +27,7 @@ class HomeFragment :
     BaseFragment<HomeViewModel, FragmentHomeBinding>(
         R.layout.fragment_home,
         HomeViewModel::class.java
-    ),
-    RecipeAdapter.OnItemClickListener {
+    ) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,7 +63,13 @@ class HomeFragment :
 
              }.attach()
 
+
+
          }
+
+
+
+
 
 
 
@@ -96,9 +101,7 @@ class HomeFragment :
 
 
 
-    override fun onItemClick(recipe: Recipe) {
 
-    }
 }
 /*
 
