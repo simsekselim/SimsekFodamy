@@ -16,4 +16,5 @@
     <color name="blue">#0bcae4</color>
     <color name="warning">#FFCE00</color>
     <color name="send_button">#ADB5BD</color>
+    <color name="gray">#6C757D</color>
 </resources>

@@ -3,6 +3,8 @@ package com.mobillium.simsekfodamy.presentation.favorites
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
@@ -45,6 +47,10 @@ class FavoritesFragment() :
         viewModel.categories.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
 
+        }
+
+        adapter.addLoadStateListener { loadState ->
+            binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
         }
 
 

@@ -16,5 +16,8 @@
     <string name="liked">Beğenme</string>
     <string name="follower">Takipçi</string>
     <string name="follow">Takip Edilen</string>
-    <string name="login">Profili Görmek İçin Giriş Yap</string>
+    <string name="login">Giriş Yap</string>
+    <string name="login_see">Profili Görmek İçin Giriş Yap</string>
+
+
 </resources>

@@ -46,6 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_normal"
@@ -83,6 +84,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/liked"
@@ -108,6 +110,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_follower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/follower"
@@ -133,13 +136,14 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_followed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/follow"
                         android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/follow"
+                        android:id="@+id/followed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
@@ -159,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_large"
             android:clickable="true"
-            android:text="@string/login"
+            android:text="@string/login_see"
             android:textColor="@color/red"
             android:textSize="@dimen/margin_normal"
             app:layout_constraintEnd_toEndOf="parent"
