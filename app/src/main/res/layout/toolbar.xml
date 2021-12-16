@@ -30,6 +30,7 @@
                 android:id="@+id/iv_back"
                 android:layout_width="@dimen/margin_normal"
                 android:layout_height="@dimen/margin_normal"
+                android:clickable="true"
                 android:src="@drawable/back"
                 app:tint="@color/white" />
 
@@ -46,6 +47,7 @@
                 android:id="@+id/iv_logout"
                 android:layout_width="@dimen/margin_normal"
                 android:layout_height="@dimen/margin_normal"
+                android:clickable="true"
                 android:layout_gravity="end"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/logout"

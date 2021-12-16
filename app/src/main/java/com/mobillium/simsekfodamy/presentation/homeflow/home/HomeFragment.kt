@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ import com.mobillium.simsekfodamy.presentation.homeflow.adapter.HomePagerAdapter
 import com.mobillium.simsekfodamy.presentation.homeflow.editor.EditorViewModel
 import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import com.mobillium.simsekfodamy.presentation.homeflow.last.LastViewModel
+import com.mobillium.simsekfodamy.presentation.loginflow.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,8 +45,10 @@ class HomeFragment :
          val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
          binding.pager.adapter = pagerAdapter
        TabLayoutMediator(binding.layout, binding.pager) { tab, position ->
-           binding.toolbar.ivBack.isVisible = false
-           binding.toolbar.tvBack.isVisible = false
+   //        binding.toolbar.ivBack.isVisible = false
+  //         binding.toolbar.tvBack.isVisible = false
+
+
              when (position) {
                  0 -> {
                      tab.text = getString(R.string.editor_choose)
@@ -62,6 +66,14 @@ class HomeFragment :
                  }
 
              }.attach()
+
+//        binding.toolbar.ivLogout.setOnClickListener {
+//            viewModel.logout()
+//        }
+//        viewModel.navigateLogin.observe(viewLifecycleOwner, {
+//            val navigateLogin = HomeFragmentDirections.actionHomeFragmentToFragmentLogin()
+//            findNavController().navigate(navigateLogin)
+//        })
 
 
 

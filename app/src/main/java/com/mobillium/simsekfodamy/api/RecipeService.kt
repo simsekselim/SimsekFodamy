@@ -50,4 +50,20 @@ interface RecipeService {
         @Query("page") page: Int
     ): BaseResponse<List<Comment>>
 
+    @POST("recipe/{recipe_id}/comment")
+    suspend fun sendComment(
+        @Path("recipe_id") recipeId: Int,
+        @Query("text") text: String
+    ): Comment
+
+    @POST("recipe/{recipe_id}/like")
+    suspend fun likeRecipe(
+        @Path("recipe_id") recipeId: Int
+    ): BaseResponse<Any>
+
+    @DELETE("recipe/{recipe_id}/like")
+    suspend fun dislikeRecipe(
+        @Path("recipe_id") recipeId: Int
+    ): BaseResponse<Any>
+
 }

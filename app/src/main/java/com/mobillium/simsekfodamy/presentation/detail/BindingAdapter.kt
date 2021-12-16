@@ -18,6 +18,7 @@ fun setImageLoader(iv: ImageView, url: String?) {
 fun setProfileLoader(iv: ImageView, url: String?) {
     Picasso.get()
         .load(url)
+        .placeholder(R.drawable.profile)
         .into(iv)
 }
 

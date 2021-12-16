@@ -4,6 +4,7 @@ import android.content.Context
 import com.mobillium.simsekfodamy.api.RecipeService
 import com.mobillium.simsekfodamy.api.UserService
 import com.mobillium.simsekfodamy.utils.Constants
+import com.mobillium.simsekfodamy.utils.PreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,23 +25,18 @@ class ApplicationModule {
     fun provideBaseUrl() = Constants.BASE_URL
 
 
-
-
     @Provides
     @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
 
-
     @Provides
     @Singleton
-    fun provideOkhttpClient() : OkHttpClient {
+    fun provideOkhttpClient(): OkHttpClient {
         val log = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         return OkHttpClient.Builder().addInterceptor(log).build()
     }
-
-
 
 
     @Provides
@@ -53,22 +49,21 @@ class ApplicationModule {
             .build()
 
 
-
+    @Provides
+    @Singleton
+    fun providePreferencesManager(@ApplicationContext context: Context): PreferencesManager =
+        PreferencesManager(context)
 
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
+    fun provideApiService(retrofit: Retrofit): UserService =
+        retrofit.create(UserService::class.java)
 
     @Provides
     @Singleton
-    fun provideUserService(retrofit: Retrofit): RecipeService = retrofit.create(RecipeService::class.java)
-
-
-
-
-
-
+    fun provideUserService(retrofit: Retrofit): RecipeService =
+        retrofit.create(RecipeService::class.java)
 
 
 }

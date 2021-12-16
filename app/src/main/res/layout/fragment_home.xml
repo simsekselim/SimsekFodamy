@@ -17,14 +17,7 @@
         app:layout_constraintStart_toEndOf="@+id/button_editor_filter"
         tools:context=".presentation.homeflow.home.HomeFragment">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
         <com.google.android.material.tabs.TabLayout
@@ -34,7 +27,7 @@
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
             app:tabIndicator="@drawable/indicator"
             app:tabIndicatorColor="@color/red"
             app:tabSelectedTextColor="@color/red">

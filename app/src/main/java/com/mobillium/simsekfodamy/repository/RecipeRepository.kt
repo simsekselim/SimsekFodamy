@@ -3,12 +3,12 @@ package com.mobillium.simsekfodamy.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.liveData
 import com.mobillium.simsekfodamy.api.RecipeService
 import com.mobillium.simsekfodamy.model.Category
 import com.mobillium.simsekfodamy.model.Comment
 import com.mobillium.simsekfodamy.utils.Result
 import com.mobillium.simsekfodamy.model.Recipe
+import com.mobillium.simsekfodamy.response.BaseResponse
 import com.mobillium.simsekfodamy.utils.CategoryPagingFactory
 import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.RecipePagingFactory
@@ -18,7 +18,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
-import java.lang.IndexOutOfBoundsException
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -30,6 +29,10 @@ interface RecipeRepository {
     fun getCategoryRecipes(categoryId: Int): Flow<PagingData<Recipe>>
     suspend fun getRecipeByID(recipeId: Int): Result<Recipe>
     fun getRecipeComments(recipeId: Int): Flow<PagingData<Comment>>
+    suspend fun getFirstComment(recipeId: Int): Result<Comment>
+    suspend fun sendComment(recipeId: Int, text: String): Result<Comment>
+    suspend fun likeRecipe(recipeId: Int): Result<BaseResponse<Any>>
+    suspend fun dislikeRecipe(recipeId: Int): Result<BaseResponse<Any>>
 
 }
 
@@ -118,6 +121,20 @@ class DefaultRecipeRepository @Inject constructor(
         }
     }
 
+    override suspend fun getFirstComment(recipeId: Int): Result<Comment> {
+        return try {
+            val result =
+                recipeService.getRecipeComments(
+                    recipeId = recipeId,
+                    page = 1
+                ).data[0]
+
+            Result.Success(result)
+        } catch (exception: Exception) {
+            Result.Error(exception)
+        }
+    }
+
 
     override fun getRecipeComments(recipeId: Int) = Pager(
         config = PagingConfig(
@@ -128,11 +145,36 @@ class DefaultRecipeRepository @Inject constructor(
         pagingSourceFactory = {
             CommentPagingFactory(
                 recipeService,
-                recipeId = recipeId
+                recipeId
             )
         }
     ).flow
+
+    override suspend fun sendComment(recipeId: Int, text: String): Result<Comment> {
+        return try {
+            Result.Success(recipeService.sendComment(recipeId, text))
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
+    }
+
+    override suspend fun likeRecipe(recipeId: Int): Result<BaseResponse<Any>> {
+        return try {
+            Result.Success(recipeService.likeRecipe(recipeId))
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
+    }
+
+    override suspend fun dislikeRecipe(recipeId: Int): Result<BaseResponse<Any>> {
+        return try {
+            Result.Success(recipeService.dislikeRecipe(recipeId))
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
+    }
 }
+
 
 @Module
 @InstallIn(SingletonComponent::class)

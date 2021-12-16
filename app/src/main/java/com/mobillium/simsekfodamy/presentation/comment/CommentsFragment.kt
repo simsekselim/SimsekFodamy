@@ -7,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
-import com.mobillium.simsekfodamy.databinding.FragmentCategoryBinding
 import com.mobillium.simsekfodamy.databinding.FragmentCommentsBinding
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.category.CategoryViewModel
@@ -25,6 +24,7 @@ class CommentsFragment() :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
 
         val adapter = CommentsAdapter()
 

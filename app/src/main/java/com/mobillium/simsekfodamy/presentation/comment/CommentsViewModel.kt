@@ -20,26 +20,33 @@ class CommentsViewModel @Inject constructor(
     stateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-    val commentText = MutableLiveData("")
-    private val recipeId = stateHandle.get<Int>("commentId") ?: 0
-    val comments: MutableLiveData<PagingData<Comment>> = MutableLiveData()
+
+    private val recipeId = stateHandle.get<Int>("recipeCommentId") ?: 0
+    private val commentsFlow = repository.getRecipeComments(recipeId).cachedIn(viewModelScope)
+    val comments = commentsFlow.asLiveData()
+
+
+
+
+
+
 
 
 //    init {
-//      commentRecipe()
-//     }
-
-//     fun commentRecipe() {
-//         viewModelScope.launch {
-
-
-//             repository.getRecipeComments(recipeId).cachedIn(viewModelScope)collect {
+//        commentRecipe()
+//    }
+//
+//    fun commentRecipe() {
+//        viewModelScope.launch {
+//
+//
+//            repository.getRecipeComments(recipeId).cachedIn(viewModelScope) collect {
 //                comments.value = it
-//      }
-
-
-//   }
-
-
-//   }
+//            }
+//
+//
+//        }
+//
+//
+//    }
 }

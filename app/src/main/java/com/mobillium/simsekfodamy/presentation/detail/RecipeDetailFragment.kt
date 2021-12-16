@@ -24,14 +24,22 @@ class RecipeDetailFragment() :
         binding.lifecycleOwner = this
 
 
-            viewModel.recipe.observe(viewLifecycleOwner,{
-                binding.recipe = it
+            viewModel.recipe.observe(viewLifecycleOwner,{ recipe ->
+                binding.recipe = recipe
+                binding.buttonAddComment.setOnClickListener {
+
+                    findNavController().navigate(R.id.commentsFragment, bundleOf("recipeCommentId" to recipe.id))
+                }
 
             })
 
-        binding.buttonAddComment.setOnClickListener {
-            findNavController().navigate(R.id.commentsFragment, bundleOf("commentId" to it.id))
-        }
+        viewModel.comment.observe(viewLifecycleOwner,{ comment ->
+            binding.previewCommit.comment = comment
+
+
+
+        })
+
 
 
     }
