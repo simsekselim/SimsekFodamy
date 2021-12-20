@@ -65,6 +65,8 @@ class FavoritesFragment() :
 
 
     override fun onSeeAllClick(category: Category) {
+      findNavController().navigate(R.id.seeAllClickFragment)
+
 
     }
 

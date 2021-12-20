@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view_pager2"
         app:layout_constraintTop_toTopOf="@+id/view_pager2" />
 
-    "
+
 
     <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
         android:id="@+id/indicator"

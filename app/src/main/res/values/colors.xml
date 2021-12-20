@@ -19,4 +19,6 @@
     <color name="gray">#6C757D</color>
     <color name="seperator">#F1F2F3</color>
     <color name="cinder">#212529</color>
+    <color name="dark">#212529</color>
+    <color name="indicator">#707070</color>
 </resources>

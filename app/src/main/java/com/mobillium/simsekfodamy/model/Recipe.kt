@@ -1,5 +1,9 @@
 package com.mobillium.simsekfodamy.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Recipe(
     val category: Category,
     val comment_count: Int,
@@ -22,6 +26,5 @@ data class Recipe(
     val title: String,
     val user: User,
     val view_count: Int,
-    val youtube_image: Any,
     val youtube_url: String
-)
+) : Parcelable

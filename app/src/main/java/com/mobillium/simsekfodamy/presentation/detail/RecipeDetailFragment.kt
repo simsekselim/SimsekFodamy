@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentRecipeDetailBinding
+import com.mobillium.simsekfodamy.model.ImageList
+import com.mobillium.simsekfodamy.model.Recipe
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,23 +26,29 @@ class RecipeDetailFragment() :
         binding.lifecycleOwner = this
 
 
-            viewModel.recipe.observe(viewLifecycleOwner,{ recipe ->
-                binding.recipe = recipe
-                binding.buttonAddComment.setOnClickListener {
+        viewModel.recipe.observe(viewLifecycleOwner, { recipe ->
+            binding.recipe = recipe
+            binding.buttonAddComment.setOnClickListener {
 
-                    findNavController().navigate(R.id.commentsFragment, bundleOf("recipeCommentId" to recipe.id))
-                }
+                findNavController().navigate(
+                    R.id.commentsFragment,
+                    bundleOf("recipeCommentId" to recipe.id)
+                )
+            }
 
-            })
+        })
 
-        viewModel.comment.observe(viewLifecycleOwner,{ comment ->
+        viewModel.comment.observe(viewLifecycleOwner, { comment ->
             binding.previewCommit.comment = comment
-
 
 
         })
 
+        binding.imageRecipe.setOnClickListener {
+            findNavController().navigate(R.id.imageSliderFragment, bundleOf("image" to ImageList(viewModel?.recipe?.value?.images!!)))
+        }
 
 
     }
 }
+

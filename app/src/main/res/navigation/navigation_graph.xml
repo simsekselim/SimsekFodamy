@@ -75,6 +75,12 @@
         <action
             android:id="@+id/action_recipeDetailFragment_to_commentsFragment"
             app:destination="@id/commentsFragment" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_imageSliderFragment"
+            app:destination="@id/imageSliderFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentsFragment"
@@ -83,5 +89,41 @@
         <argument
             android:name="recipeCommentId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_commentsFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/imageSliderFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.images.ImageSliderFragment"
+        android:label="ImageSliderFragment" >
+        <argument
+            android:name="image"
+            app:argType="com.mobillium.simsekfodamy.model.ImageList" />
+        <action
+            android:id="@+id/action_imageSliderFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lastFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.homeflow.last.LastFragment"
+        android:label="LastFragment" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.category.CategoryFragment"
+        android:label="CategoryFragment" >
+        <action
+            android:id="@+id/action_categoryFragment_to_lastFragment"
+            app:destination="@id/lastFragment" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_categoryFragment_to_seeAllClickFragment"
+            app:destination="@id/seeAllClickFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/seeAllClickFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.all.SeeAllClickFragment"
+        android:label="SeeAllClickFragment" />
 </navigation>
