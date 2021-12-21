@@ -31,7 +31,7 @@ constructor(
         viewModelScope.launch {
 
 
-            recipeRepository.getEditorChoiceRecipes().collect {
+            recipeRepository.getEditorChoiceRecipes().cachedIn(viewModelScope).collect {
                 recipes.value = it
             }
 

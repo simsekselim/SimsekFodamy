@@ -22,8 +22,7 @@ class CategoryFragment() :
     BaseFragment<CategoryViewModel, FragmentCategoryBinding>(
         R.layout.fragment_category,
         CategoryViewModel::class.java
-    ),
-    RecipeAdapter.OnItemClickListener {
+    ) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,14 +46,18 @@ class CategoryFragment() :
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
 
         }
+        adapter.onChildItemClicked = {
+            findNavController().navigate(R.id.recipeDetailFragment, bundleOf("recipeId" to it.id))
 
 
+        }
 
 
+        binding.toolbar.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
-    override fun onItemClick(recipe: Recipe) {
 
-    }
 
 }

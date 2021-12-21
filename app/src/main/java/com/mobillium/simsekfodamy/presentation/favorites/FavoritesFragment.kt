@@ -65,12 +65,13 @@ class FavoritesFragment() :
 
 
     override fun onSeeAllClick(category: Category) {
-      findNavController().navigate(R.id.seeAllClickFragment)
+      findNavController().navigate(R.id.categoryFragment, bundleOf("categoryId" to category.id ))
 
 
     }
 
     override fun onRecipeClick(recipe: Recipe) {
+        findNavController().navigate(R.id.recipeDetailFragment, bundleOf("recipeId" to recipe.id))
 
     }
 

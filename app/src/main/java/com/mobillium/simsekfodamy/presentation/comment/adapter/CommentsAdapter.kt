@@ -18,7 +18,7 @@ class CommentsAdapter :
         return CommentViewHolder(binding)
     }
 
-    var onChildItemClicked: ((Recipe) -> Unit)? = null
+    var onChildItemClicked: ((Comment) -> Unit)? = null
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val currentItem = getItem(position)
@@ -27,10 +27,11 @@ class CommentsAdapter :
         }
     }
 
-    class CommentViewHolder(private val binding: ItemCommentBinding) :
+    inner class CommentViewHolder(private val binding: ItemCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: Comment) {
             binding.comment = comment
+            onChildItemClicked?.invoke(comment)
 //            binding.apply {
 //                textUserName.text = comment.user.username
 //                textUserInfo.text =

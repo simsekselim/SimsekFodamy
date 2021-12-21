@@ -105,25 +105,31 @@
             app:destination="@id/recipeDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/lastFragment"
-        android:name="com.mobillium.simsekfodamy.presentation.homeflow.last.LastFragment"
-        android:label="LastFragment" />
-    <fragment
         android:id="@+id/categoryFragment"
         android:name="com.mobillium.simsekfodamy.presentation.category.CategoryFragment"
         android:label="CategoryFragment" >
-        <action
-            android:id="@+id/action_categoryFragment_to_lastFragment"
-            app:destination="@id/lastFragment" />
         <argument
             android:name="categoryId"
             app:argType="integer" />
         <action
-            android:id="@+id/action_categoryFragment_to_seeAllClickFragment"
-            app:destination="@id/seeAllClickFragment" />
+            android:id="@+id/action_categoryFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/seeAllClickFragment"
-        android:name="com.mobillium.simsekfodamy.presentation.all.SeeAllClickFragment"
-        android:label="SeeAllClickFragment" />
+        android:id="@+id/favoritesFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.favorites.FavoritesFragment"
+        android:label="FavoritesFragment" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+    </fragment>
 </navigation>

@@ -2,6 +2,7 @@ package com.mobillium.simsekfodamy.presentation.comment
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.category.CategoryViewModel
 import com.mobillium.simsekfodamy.presentation.comment.adapter.CommentsAdapter
 import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
+import com.mobillium.simsekfodamy.utils.showIme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +32,9 @@ class CommentsFragment() :
 
 
         val linearLayoutManager = LinearLayoutManager(requireContext())
+
+        (activity as AppCompatActivity).showIme()
+        binding.comment.requestFocus()
 
 
 

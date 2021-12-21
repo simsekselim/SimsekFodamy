@@ -15,8 +15,8 @@ class CategoryViewModel @Inject constructor(
     stateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-    val categoryName = stateHandle.get<String>("name")
-    private val categoryId = stateHandle.get<Int>("id") ?: 0
+
+    private val categoryId = stateHandle.get<Int>("categoryId") ?: 0
 
     private val categoryRecipesFlow =
         repository.getCategoryRecipes(categoryId).cachedIn(viewModelScope)
