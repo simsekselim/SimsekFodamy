@@ -108,19 +108,6 @@ class DefaultRecipeRepository @Inject constructor(
         }
     ).flow
 
-    override suspend fun getRecipeByID(recipeId: Int): Result<Recipe> {
-        return try {
-            val result =
-                recipeService.getRecipeById(
-                    recipeId = recipeId
-                )
-
-            Result.Success(result)
-        } catch (exception: Exception) {
-            Result.Error(exception)
-        }
-    }
-
     override suspend fun getFirstComment(recipeId: Int): Result<Comment> {
         return try {
             val result =
@@ -128,6 +115,19 @@ class DefaultRecipeRepository @Inject constructor(
                     recipeId = recipeId,
                     page = 1
                 ).data[0]
+
+            Result.Success(result)
+        } catch (exception: Exception) {
+            Result.Error(exception)
+        }
+    }
+
+    override suspend fun getRecipeByID(recipeId: Int): Result<Recipe> {
+        return try {
+            val result =
+                recipeService.getRecipeById(
+                    recipeId = recipeId
+                )
 
             Result.Success(result)
         } catch (exception: Exception) {

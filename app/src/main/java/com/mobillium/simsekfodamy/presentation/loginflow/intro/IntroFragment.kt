@@ -1,6 +1,7 @@
 package com.mobillium.simsekfodamy.presentation.loginflow.intro
 
 import android.annotation.SuppressLint
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,15 +13,29 @@ import androidx.viewpager2.widget.ViewPager2
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.presentation.loginflow.adapter.ViewPagerAdapter
 import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+import android.content.Context.MODE_PRIVATE
+import android.os.Handler
+import androidx.navigation.fragment.findNavController
+
+
 private var titlesList = mutableListOf<String>()
 private var descList = mutableListOf<String>()
 private var imagesList = mutableListOf<Int>()
+lateinit var preferences: SharedPreferences
+val pref_show_intro = "Intro"
 
 class FragmentIntro : Fragment() {
     var swipe: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        preferences = context.getSharedPreferences("Intro", MODE_PRIVATE)
+//        if (!preferences.getBoolean(pref_show_intro,true)){
+//            findNavController().navigate(R.id.fragmentLogin)
+//        }
     }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +44,7 @@ class FragmentIntro : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_intro, container, false)
     }
+
 
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,6 +96,12 @@ class FragmentIntro : Fragment() {
             override
             fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
+//                    val editor = preferences.edit()
+//                    editor.putBoolean(pref_show_intro,false)
+//                    editor.apply()
+
+
+
                 if (position == imagesList.size - 1) {
                     swipe = view.findViewById(R.id.swipe)
                     swipe?.text = getString(R.string.Start)

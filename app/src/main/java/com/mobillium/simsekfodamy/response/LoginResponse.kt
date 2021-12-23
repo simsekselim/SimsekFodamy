@@ -1,11 +1,12 @@
 package com.mobillium.simsekfodamy.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import com.mobillium.simsekfodamy.model.User
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 class LoginResponse(
-    @SerializedName("token")
     var token: String,
-    @SerializedName("user")
-    var user : User,
-)
+    var user : User
+) :Parcelable

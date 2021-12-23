@@ -15,43 +15,43 @@
 
 
 
-            <ImageView
-                android:id="@+id/iv_fodamy"
-                android:layout_width="110dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/fodamy"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="@dimen/margin_normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/iv_fodamy"
+            android:layout_width="110dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/fodamy"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/margin_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="@dimen/margin_normal"
-                android:layout_height="@dimen/margin_normal"
-                android:clickable="true"
-                android:src="@drawable/back"
-                app:tint="@color/white" />
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/margin_normal"
+            android:layout_height="@dimen/margin_normal"
+            android:clickable="true"
+            android:src="@drawable/back"
+            app:tint="@color/white" />
 
-            <TextView
-                android:id="@+id/tv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="@string/back"
-                android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/back"
+            android:textColor="@color/white" />
 
 
-            <ImageView
-                android:id="@+id/iv_logout"
-                android:layout_width="@dimen/margin_normal"
-                android:layout_height="@dimen/margin_normal"
-                android:clickable="true"
-                android:layout_gravity="end"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/logout"
-                app:tint="@color/white" />
+        <ImageView
+            android:id="@+id/iv_logout"
+            android:layout_width="@dimen/margin_normal"
+            android:layout_height="@dimen/margin_normal"
+            android:clickable="true"
+            android:layout_gravity="end"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/logout"
+            app:tint="@color/white" />
 
 
 

@@ -1,12 +1,10 @@
 package com.mobillium.simsekfodamy.api
 
+import com.mobillium.simsekfodamy.model.User
 import com.mobillium.simsekfodamy.response.BaseResponse
 import com.mobillium.simsekfodamy.response.LoginResponse
 import com.mobillium.simsekfodamy.utils.Constants
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface UserService {
     @FormUrlEncoded
@@ -31,6 +29,21 @@ interface UserService {
 
     @POST("auth/logout")
     suspend fun logout(): BaseResponse<Any>
+
+    @GET("user/{user_id}")
+    suspend fun getUser(
+        @Path("user_id") userId: Int
+    ): User
+
+    @POST("user/{followedId}/following")
+    suspend fun followUser(
+        @Path("followedId") followedId: Int
+    ): BaseResponse<Any>
+
+    @DELETE("user/{followedId}/following")
+    suspend fun unfollowUser(
+        @Path("followedId") followedId: Int
+    ): BaseResponse<Any>
 
 
 

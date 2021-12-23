@@ -15,7 +15,9 @@
     //Profile Page
     <string name="liked">Beğenme</string>
     <string name="comment">%1$d Yorum</string>
-    <string name="like">%1$d Yorum</string>
+    <string name="like">%1$d Beğenme</string>
+    <string name="recipe_count">%1$d Beğenme</string>
+    <string name="followed_count">%1$d Beğenme</string>
     <string name="follower">Takipçi</string>
     <string name="follow">Takip Edilen</string>
     <string name="login">Giriş Yap</string>

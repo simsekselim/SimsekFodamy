@@ -1,10 +1,13 @@
 package com.mobillium.simsekfodamy.di
 
 import android.content.Context
+import com.mobillium.simsekfodamy.BuildConfig
 import com.mobillium.simsekfodamy.api.RecipeService
 import com.mobillium.simsekfodamy.api.UserService
 import com.mobillium.simsekfodamy.utils.Constants
+import com.mobillium.simsekfodamy.utils.Constants.BASE_URL
 import com.mobillium.simsekfodamy.utils.PreferencesManager
+import com.mobillium.simsekfodamy.utils.UserInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,31 +23,34 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
 
+    @AuthInterceptorOkHttpClient
     @Provides
-    @Singleton
-    fun provideBaseUrl() = Constants.BASE_URL
+    fun provideAuthInterceptorOkHttpClient(
+        interceptor: UserInterceptor
 
+    ): OkHttpClient {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        if (BuildConfig.DEBUG){
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        }else{
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
 
-    @Provides
-    @Singleton
-    fun provideLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+        }
 
-
-    @Provides
-    @Singleton
-    fun provideOkhttpClient(): OkHttpClient {
-        val log = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
-        return OkHttpClient.Builder().addInterceptor(log).build()
+        return OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .addInterceptor(loggingInterceptor)
+            .build()
     }
 
-
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl: String, client: OkHttpClient): Retrofit =
+    fun provideRetrofit(
+        @AuthInterceptorOkHttpClient okHttpClient: OkHttpClient
+    ): Retrofit =
         Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(client)
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

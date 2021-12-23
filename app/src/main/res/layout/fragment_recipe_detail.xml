@@ -5,17 +5,20 @@
     tools:context=".ui.recipe.detail.RecipeDetailFragment">
 
     <data>
+
         <variable
             name="recipe"
             type="com.mobillium.simsekfodamy.model.Recipe" />
+
         <variable
-            name="vm"
+            name="viewModel"
             type="com.mobillium.simsekfodamy.presentation.detail.RecipeDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
 
 
@@ -31,6 +34,8 @@
                 android:background="@color/recycler_view_background"
                 android:orientation="vertical">
 
+
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -39,8 +44,8 @@
                         android:id="@+id/image_recipe"
                         android:layout_width="match_parent"
                         android:layout_height="375dp"
-                        app:imageLoader="@{recipe.images.get(0).url}"
                         android:scaleType="fitXY"
+                        app:imageLoader="@{recipe.images.get(0).url}"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
@@ -74,9 +79,9 @@
                         android:id="@+id/text_recipe_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{recipe.title}"
                         android:layout_margin="8dp"
                         android:fontFamily="@font/nunito_bold"
+                        android:text="@{recipe.title}"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -88,8 +93,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="@{recipe.category.name}"
                         android:fontFamily="@font/nunito_semibold"
+                        android:text="@{recipe.category.name}"
                         android:textColor="@color/line"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -101,9 +106,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
+                        android:text="@{recipe.difference}"
                         android:textColor="@color/line"
                         android:textSize="16sp"
-                        android:text="@{recipe.difference}"
                         app:layout_constraintBottom_toBottomOf="@id/view_bottom_line_recipe_name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -144,10 +149,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
-                            app:commentCount="@{recipe.comment_count}"
                             android:fontFamily="@font/nunito_semibold"
                             android:textColor="@color/line"
                             android:textSize="18sp"
+                            app:commentCount="@{recipe.comment_count}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -193,12 +198,12 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
                             android:textColor="@color/line"
-                            app:likeCount="@{recipe.like_count}"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/image_like_icon"
+                            app:likeCount="@{recipe.like_count}"
                             tools:text="1 Beğenme" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -225,8 +230,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="@{recipe.user.name}"
                         android:fontFamily="@font/nunito_bold"
+                        android:text="@{recipe.user.name}"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintStart_toEndOf="@id/image_user"
@@ -238,13 +243,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        app:recipeCount="@{recipe.user.recipe_count}"
-                        app:followerCount="@{recipe.user.following_count}"
                         android:fontFamily="@font/nunito_semibold"
                         android:textColor="@color/line"
                         android:textSize="18sp"
+                        app:followerCount="@{recipe.user.followed_count}"
                         app:layout_constraintStart_toEndOf="@id/image_user"
                         app:layout_constraintTop_toBottomOf="@id/text_user_name"
+                        app:recipeCount="@{recipe.user.recipe_count}"
                         tools:text="3 Tarif 0 Takipçi" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -254,6 +259,7 @@
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/button"
                         android:paddingStart="32dp"
+                        android:onClick="@{()->viewModel.onClickFollowButton()}"
                         android:paddingEnd="32dp"
                         android:text="@string/follow_user"
                         android:textAllCaps="false"
@@ -330,8 +336,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_bold"
-                        android:text="@{recipe.ingredients}"
                         android:padding="32dp"
+                        android:text="@{recipe.ingredients}"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         app:layout_constraintTop_toBottomOf="@id/view_bottom_line_ingredients" />

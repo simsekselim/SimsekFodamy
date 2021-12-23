@@ -1,6 +1,7 @@
-package com.mobillium.simsekfodamy.repository
+    package com.mobillium.simsekfodamy.repository
 
 import com.mobillium.simsekfodamy.api.UserService
+import com.mobillium.simsekfodamy.model.User
 import com.mobillium.simsekfodamy.response.BaseResponse
 import com.mobillium.simsekfodamy.utils.PreferencesManager
 import javax.inject.Inject
@@ -11,13 +12,17 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.HttpException
 
 
-interface UserRepository {
+    interface UserRepository {
     suspend fun login(username: String, password: String): Result<String>
     suspend fun register(username: String, email: String, password: String): Result<String>
     suspend fun forgotPassword(email: String): Result<Any>
     suspend fun logout(): Result<BaseResponse<Any>>
+    suspend fun getUser(id: Int): Result<User>
+    suspend fun followUser(id: Int): Result<BaseResponse<Any>>
+    suspend fun unfollowUser(id: Int): Result<BaseResponse<Any>>
 
 
 }
@@ -82,6 +87,31 @@ class DefaultUserRepository @Inject constructor(
             Result.Error(exception)
         }
 
+    }
+
+    override suspend fun getUser(id: Int): Result<User> {
+        return try {
+            val user = service.getUser(id)
+            Result.Success(user)
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
+    }
+
+    override suspend fun followUser(id: Int): Result<BaseResponse<Any>> {
+        return try {
+            Result.Success(service.followUser(id))
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
+    }
+
+    override suspend fun unfollowUser(id: Int): Result<BaseResponse<Any>> {
+        return try {
+            Result.Success(service.unfollowUser(id))
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
     }
 
 

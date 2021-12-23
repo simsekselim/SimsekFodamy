@@ -52,6 +52,7 @@ class EditorFragment :
 
 
 
+
     binding.apply {
         recyclerRecipes.layoutManager = linearLayoutManager
         recyclerRecipes.setHasFixedSize(false)

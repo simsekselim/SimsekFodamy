@@ -3,6 +3,7 @@ package com.mobillium.simsekfodamy.presentation.main
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -32,6 +33,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>(
         binding.viewPager.adapter = adapter
         val bottomNavigationView = binding.bottomNavigationView
         val viewPager = binding.viewPager
+
 
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

@@ -3,18 +3,16 @@ package com.mobillium.simsekfodamy.presentation.comment
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentCommentsBinding
-import com.mobillium.simsekfodamy.model.Recipe
-import com.mobillium.simsekfodamy.presentation.category.CategoryViewModel
 import com.mobillium.simsekfodamy.presentation.comment.adapter.CommentsAdapter
-import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import com.mobillium.simsekfodamy.utils.showIme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class CommentsFragment() :
@@ -27,6 +25,8 @@ class CommentsFragment() :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
 
         val adapter = CommentsAdapter()
 
@@ -52,7 +52,34 @@ class CommentsFragment() :
         }
 
 
+        binding.share.setOnClickListener {
+            viewModel.sendComment()
+            requireView().clearFocus()
+        }
+
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.event.collect {
+                when (it) {
+                    CommentsViewEvent.SendCommentSuccess -> {
+                        updateAdapter()
+                        viewModel.commentText.value = ""
+                    }
+                }
+            }
+        }
     }
 
+    private fun updateAdapter() {
+        val adapter = binding.recycler.adapter as PagingDataAdapter<*, *>
+        adapter.refresh()
+    }
 
 }
+
+
+
+
+
+
+
+

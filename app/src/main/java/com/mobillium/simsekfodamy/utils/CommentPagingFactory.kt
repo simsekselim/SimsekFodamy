@@ -34,6 +34,9 @@ class CommentPagingFactory(
     }
 
     override fun getRefreshKey(state: PagingState<Int, Comment>): Int? {
-        TODO("Not yet implemented")
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
     }
 }

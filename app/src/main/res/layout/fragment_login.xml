@@ -80,8 +80,6 @@
             android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:background="@drawable/login"
-
-
             android:textColor="#fff" />
 
         <TextView
