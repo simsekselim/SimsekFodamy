@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/favorites"
+    app:startDestination="@id/favoritesFragment">
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.favorites.FavoritesFragment"
+        android:label="FavoritesFragment">
+        <action
+            android:id="@+id/action_favoritesFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <argument
+            android:name="categoryId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_favoritesFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+
+    </fragment>
+</navigation>
