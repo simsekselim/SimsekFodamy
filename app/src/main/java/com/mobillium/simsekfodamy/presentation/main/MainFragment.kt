@@ -29,34 +29,34 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = MainPagerAdapter(childFragmentManager, lifecycle)
-        binding.viewPager.adapter = adapter
-        val bottomNavigationView = binding.bottomNavigationView
-        val viewPager = binding.viewPager
-
-
-
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                bottomNavigationView.menu.getItem(position).setChecked(true)
-            }
-        })
-
-
-        bottomNavigationView.setOnNavigationItemSelectedListener() { menuItem ->
-            viewPager.setCurrentItem(
-                when (menuItem.itemId) {
-                    R.id.home -> 0
-                    R.id.favorites -> 1
-                    R.id.profile -> 2
-                    else -> throw Exception()
-
-                },
-                false
-            )
-            return@setOnNavigationItemSelectedListener true
-        }
+//        val adapter = MainPagerAdapter(childFragmentManager, lifecycle)
+//        binding.viewPager.adapter = adapter
+//        val bottomNavigationView = binding.bottomNavigationView
+//        val viewPager = binding.viewPager
+//
+//
+//
+//        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                bottomNavigationView.menu.getItem(position).setChecked(true)
+//            }
+//        })
+//
+//
+//        bottomNavigationView.setOnNavigationItemSelectedListener() { menuItem ->
+//            viewPager.setCurrentItem(
+//                when (menuItem.itemId) {
+//                    R.id.home -> 0
+//                    R.id.favorites -> 1
+//                    R.id.profile -> 2
+//                    else -> throw Exception()
+//
+//                },
+//                false
+//            )
+//            return@setOnNavigationItemSelectedListener true
+//        }
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
@@ -68,7 +68,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainBinding>(
             })
         }
         viewModel.navigateLogin.observe(viewLifecycleOwner, {
-            val navigateLogin = MainFragmentDirections.actionMainFragmentToFragmentLogin()
+            val navigateLogin = HomeFragmentDirections.actionHomeFragmentToFragmentLogin()
             findNavController().navigate(navigateLogin)
         })
 

@@ -33,6 +33,8 @@ class RecipeDetailFragment() :
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.toolbar.ivFodamy.isVisible = false
+
 
 
 
@@ -84,7 +86,10 @@ class RecipeDetailFragment() :
                             .load(recipe.images[0].url)
                             .into(imageRecipe)
 
-                    imageEditorChoiceIcon.isVisible = recipe.is_editor_choice
+
+                    binding.toolbar.tvFodamy.text = recipe.title
+
+                        imageEditorChoiceIcon.isVisible = recipe.is_editor_choice
                     imageEditorChoiceIconBackground.isVisible = recipe.is_editor_choice
                     textRecipeName.text = recipe.title
                     textRecipeCategory.text = recipe.category.name

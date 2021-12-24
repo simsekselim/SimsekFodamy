@@ -47,7 +47,7 @@ class CategoryFragment() :
 
         }
         adapter.onChildItemClicked = {
-            findNavController().navigate(R.id.recipeDetailFragment, bundleOf("recipeId" to it.id))
+            findNavController().navigate(CategoryFragmentDirections.actionCategoryFragmentToRecipeDetailFragment(it.id))
 
 
         }

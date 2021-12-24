@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
+
     app:startDestination="@id/fragmentSplash">
 
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.mobillium.simsekfodamy.presentation.loginflow.login.LoginFragment"
-        android:label="FragmentLogin" >
+        android:label="FragmentLogin">
         <action
             android:id="@+id/action_fragmentLogin_to_fragmentRegister"
             app:destination="@id/fragmentRegister" />
@@ -16,13 +17,16 @@
             android:id="@+id/action_fragmentLogin_to_fragmentForgetPassword"
             app:destination="@id/fragmentForgetPassword" />
         <action
-            android:id="@+id/action_fragmentLogin_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            android:id="@+id/action_fragmentLogin_to_home"
+            app:destination="@id/home"
+            app:popUpTo="@id/navigation_graph"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@navigation/profile"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
         android:name="com.mobillium.simsekfodamy.presentation.loginflow.register.RegisterFragment"
-        android:label="FragmentRegister" >
+        android:label="FragmentRegister">
         <action
             android:id="@+id/action_fragmentRegister_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />
@@ -30,10 +34,12 @@
     <fragment
         android:id="@+id/fragmentIntro"
         android:name="com.mobillium.simsekfodamy.presentation.loginflow.intro.FragmentIntro"
-        android:label="FragmentIntro" >
+        android:label="FragmentIntro">
         <action
             android:id="@+id/action_fragmentIntro_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
+            app:destination="@id/fragmentLogin"
+            app:popUpTo="@id/fragmentLogin"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/fragmentSplash"
@@ -41,51 +47,36 @@
         android:label="FragmentSplash">
         <action
             android:id="@+id/action_fragmentSplash_to_fragmentIntro"
-            app:destination="@id/fragmentIntro" />
+            app:destination="@id/fragmentIntro"
+            app:popUpTo="@id/navigation_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentForgetPassword"
         android:name="com.mobillium.simsekfodamy.presentation.loginflow.forgetpassword.FragmentForgetPassword"
         android:label="FragmentForgetPassword" />
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.mobillium.simsekfodamy.presentation.main.MainFragment"
-        android:label="MainFragment" >
-        <action
-            android:id="@+id/action_mainFragment_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
-    </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.mobillium.simsekfodamy.presentation.homeflow.home.HomeFragment"
-        android:label="HomeFragment" >
-        <action
-            android:id="@+id/action_homeFragment_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_fragmentLogin"
-            app:destination="@id/fragmentLogin" />
-    </fragment>
+    <include app:graph="@navigation/home" />
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="com.mobillium.simsekfodamy.presentation.detail.RecipeDetailFragment"
-        android:label="RecipeDetailFragment" >
-        <argument android:name="recipeId"
+        android:label="RecipeDetailFragment">
+        <argument
+            android:name="recipeId"
             app:argType="integer" />
         <action
             android:id="@+id/action_recipeDetailFragment_to_commentsFragment"
             app:destination="@id/commentsFragment" />
         <action
-            android:id="@+id/action_recipeDetailFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
             android:id="@+id/action_recipeDetailFragment_to_imageSliderFragment"
             app:destination="@id/imageSliderFragment" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentsFragment"
         android:name="com.mobillium.simsekfodamy.presentation.comment.CommentsFragment"
-        android:label="CommentsFragment" >
+        android:label="CommentsFragment">
         <argument
             android:name="recipeCommentId"
             app:argType="integer" />
@@ -96,7 +87,7 @@
     <fragment
         android:id="@+id/imageSliderFragment"
         android:name="com.mobillium.simsekfodamy.presentation.images.ImageSliderFragment"
-        android:label="ImageSliderFragment" >
+        android:label="ImageSliderFragment">
         <argument
             android:name="image"
             app:argType="com.mobillium.simsekfodamy.model.ImageList" />
@@ -107,7 +98,7 @@
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.mobillium.simsekfodamy.presentation.category.CategoryFragment"
-        android:label="CategoryFragment" >
+        android:label="CategoryFragment">
         <argument
             android:name="categoryId"
             app:argType="integer" />
@@ -118,18 +109,6 @@
             android:id="@+id/action_categoryFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/favoritesFragment"
-        android:name="com.mobillium.simsekfodamy.presentation.favorites.FavoritesFragment"
-        android:label="FavoritesFragment" >
-        <action
-            android:id="@+id/action_favoritesFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
-        <argument
-            android:name="categoryId"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_favoritesFragment_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment" />
-    </fragment>
+    <include app:graph="@navigation/favorites"/>
+    <include app:graph="@navigation/profile"/>
 </navigation>

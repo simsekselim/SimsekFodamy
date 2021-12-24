@@ -18,6 +18,8 @@
         tools:context=".presentation.profile.ProfileFragment">
 
 
+
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -25,25 +27,38 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.6" />
 
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/red"
+            android:background="@color/blue"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile"
             android:layout_width="@dimen/profile"
             android:layout_height="@dimen/profile"
-            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_normal"
             android:src="@drawable/profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/user_name"

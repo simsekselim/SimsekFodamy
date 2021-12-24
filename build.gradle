@@ -10,7 +10,7 @@ buildscript {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
 
         //Navigation
-        def nav_version = "2.3.5"
+        def nav_version = "2.4.0-rc01"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
 
