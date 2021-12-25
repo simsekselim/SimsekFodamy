@@ -49,18 +49,23 @@ constructor(
 
         }
     }
-
-
-
-
-
-
-
-
-
+    suspend fun getToken() = preferences.token
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

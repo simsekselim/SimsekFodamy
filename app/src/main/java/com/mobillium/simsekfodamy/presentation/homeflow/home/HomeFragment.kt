@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
@@ -23,6 +24,7 @@ import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapt
 import com.mobillium.simsekfodamy.presentation.homeflow.last.LastViewModel
 import com.mobillium.simsekfodamy.presentation.loginflow.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment :
@@ -75,7 +77,19 @@ class HomeFragment :
 //            findNavController().navigate(navigateLogin)
 //        })
 
-
+        binding.toolbar.ivLogout.setOnClickListener {
+            viewModel.logout()
+        }
+        lifecycleScope.launch{
+            viewModel.getToken().asLiveData().observe(viewLifecycleOwner,{
+                // Change the Icon
+                //Show the message
+            })
+        }
+        viewModel.navigateLogin.observe(viewLifecycleOwner, {
+            val navigateLogin = HomeFragmentDirections.actionHomeFragmentToFragmentLogin()
+            findNavController().navigate(navigateLogin)
+        })
 
          }
 

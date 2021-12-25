@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.fragmentLogin -> bottomNavigationView.isVisible = false
                     R.id.fragmentRegister -> bottomNavigationView.isVisible = false
                     R.id.fragmentForgetPassword -> bottomNavigationView.isVisible = false
-
+                    R.id.commentsFragment -> bottomNavigationView.isVisible = false
+                    R.id.imageSliderFragment-> bottomNavigationView.isVisible = false
 
                     else -> {bottomNavigationView.isVisible = true}
                 }

@@ -18,13 +18,19 @@ import javax.inject.Inject
 class PreferencesManager @Inject constructor(val context: Context) {
     companion object {
         val Context.dataStore: DataStore<Preferences> by preferencesDataStore("fodamyApp")
-            val userToken = stringPreferencesKey("token")
+        val userToken = stringPreferencesKey("token")
     }
 
     suspend fun isLogin(): Boolean = getToken().isNotBlank()
     val token: Flow<String> = context.dataStore.data.map { preference ->
         preference[userToken] ?: ""
 
+    }
+
+
+    suspend fun isFirst(): String {
+        //first operator to get a single value and stop collection from the flow.
+        return context.dataStore.data.map { it[userToken] ?: "" }.first()
     }
 
     suspend fun saveToken(token: String) {
