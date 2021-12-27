@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
@@ -44,30 +45,30 @@ class HomeFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-         val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
-         binding.pager.adapter = pagerAdapter
-       TabLayoutMediator(binding.layout, binding.pager) { tab, position ->
-   //        binding.toolbar.ivBack.isVisible = false
-  //         binding.toolbar.tvBack.isVisible = false
+        val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
+        binding.pager.adapter = pagerAdapter
+        TabLayoutMediator(binding.layout, binding.pager) { tab, position ->
+            binding.toolbar.ivBack.isVisible = false
+            binding.toolbar.tvBack.isVisible = false
 
 
-             when (position) {
-                 0 -> {
-                     tab.text = getString(R.string.editor_choose)
+            when (position) {
+                0 -> {
+                    tab.text = getString(R.string.editor_choose)
 
-                 }
-                 1 -> {
+                }
+                1 -> {
                     tab.text = getText(R.string.last_add)
 
-                 }
-                 else -> {
-                     tab.text = getString(R.string.editor_choose)
-                 }
+                }
+                else -> {
+                    tab.text = getString(R.string.editor_choose)
+                }
 
 
-                 }
+            }
 
-             }.attach()
+        }.attach()
 
 //        binding.toolbar.ivLogout.setOnClickListener {
 //            viewModel.logout()
@@ -79,9 +80,10 @@ class HomeFragment :
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
+            Toast.makeText(context,"Çıkış Yapıldı", Toast.LENGTH_LONG).show()
         }
-        lifecycleScope.launch{
-            viewModel.getToken().asLiveData().observe(viewLifecycleOwner,{
+        lifecycleScope.launch {
+            viewModel.getToken().asLiveData().observe(viewLifecycleOwner, {
                 // Change the Icon
                 //Show the message
             })
@@ -91,41 +93,31 @@ class HomeFragment :
             findNavController().navigate(navigateLogin)
         })
 
-         }
-
-
-
-
-
-
-
-
-
-
-        /*  binding.layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                if (tab?.position == 0) {
-                    viewModel.filterData(EDITOR_CHOICE)
-                } else {
-                    viewModel.filterData(LAST_ADDED)
-                }
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-
-        })
-
     }
 
-     */
 
+    /*  binding.layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        override fun onTabSelected(tab: TabLayout.Tab?) {
+            if (tab?.position == 0) {
+                viewModel.filterData(EDITOR_CHOICE)
+            } else {
+                viewModel.filterData(LAST_ADDED)
+            }
+        }
 
+        override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+        }
+
+        override fun onTabReselected(tab: TabLayout.Tab?) {
+
+        }
+
+    })
+
+}
+
+ */
 
 
 }

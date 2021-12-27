@@ -13,7 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel
 @Inject
-constructor(private val repository: UserRepository) : BaseViewModel() {
+constructor(
+    private val repository: UserRepository
+) : BaseViewModel() {
 
 
     val username = MutableLiveData("salihaga")
@@ -21,7 +23,10 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
     val navigateMain = ActionLiveData()
 
     fun onClickLogin() = viewModelScope.launch {
+        if (username.value.isNullOrBlank() || password.value.isNullOrBlank()) {
 
+            return@launch
+        }
         when (
             val response =
                 repository.login(username.value.toString(), password.value.toString())

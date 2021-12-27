@@ -8,5 +8,9 @@
         android:name="com.mobillium.simsekfodamy.presentation.profile.ProfileFragment"
         android:label="ProfileFragment">
 
+        <action
+            android:id="@+id/action_profileFragment_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+
     </fragment>
 </navigation>

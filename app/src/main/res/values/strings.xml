@@ -5,14 +5,11 @@
     <string name="Start">Başla!</string>
     <string name="GoAhead">İlerle</string>
     <string name="back">Geri</string>
-
-    //Home Page
     <string name="editor_choose">Editör Seçimi</string>
     <string name="last_add">Son Eklenenler</string>
     <string name="user_info">%1$d Tarif %2$d Takipçi</string>
     <string name="recipe_info">%1$d Yorum %2$d Beğenme</string>
-
-    //Profile Page
+    <string name="logout">Çıkış Yapıldı</string>
     <string name="liked">Beğenme</string>
     <string name="comment">%1$d Yorum</string>
     <string name="like">%1$d Beğenme</string>
@@ -22,47 +19,7 @@
     <string name="follow">Takip Edilen</string>
     <string name="login">Giriş Yap</string>
     <string name="login_see">Profili Görmek İçin Giriş Yap</string>
-
-
-    <!--    WalkThrough-->
-    <!--    titles-->
-    <string-array name="walkthrough_title_list">
-        <item name="first_slide_title">Welcom to Fodamy Network!</item>
-        <item name="second_slide_title">Finding recipes were not that easy.</item>
-        <item name="third_slide_title">Add new recipe.</item>
-        <item name="fourth_slide_title">Share recipes with others.</item>
-    </string-array>
-
-    <!--    texts-->
-    <string-array name="walkthrough_description_list">
-        <item name="first_slide_text">Fodamy is the best place to find your favorite recipes in all around the word.</item>
-        <item name="second_slide_text">Fodamy is the best place to find your favorite recipes in all around the word.</item>
-        <item name="third_slide_text">Fodamy is the best place to find your favorite recipes in all around the word.</item>
-        <item name="fourth_slide_text">Fodamy is the best place to find your favorite recipes in all around the word.</item>
-    </string-array>
-
-    <!--button-->
-    <string name="go_next_page">İlerle</string>
-    <string name="start">Başla</string>
-
-    <string name="email_address">E-mail Adresi</string>
-    <string name="password">Şifre</string>
-    <string name="forgot_password_question">Şifrenizi mi unuttunuz?</string>
-    <!--    WalkThrough-->
-
-    <!--    AuthTexts-->
-    <string name="no_account_register">Hesabın mı yok? Üye Ol</string>
-    <string name="have_account_login">Hesabın mı var? Giriş Yap</string>
-    <string name="register">Üye Ol</string>
-    <string name="username">Kullanıcı Adı</string>
-    <string name="reset_password">Şifre Sıfırlama</string>
-    <string name="reset">Sıfırla</string>
-    <string name="fill_request_fields">Please fill in the required fields.</string>
-    <string name="email_format_error">Please enter a valid email address.</string>
-    <string name="last_added">son eklenenler</string>
-
     <string name="see_all">Tümünü Gör</string>
-    <string name="reset_password_response">Şifre sıfırlama bağlantısı E-Mail adresinize gönderildi</string>
     <string name="follow_user">Takip Et</string>
     <string name="ingredients">Malzemeler</string>
     <string name="directions">Yapılışı</string>
@@ -71,11 +28,8 @@
     <string name="count_like">%1$d Beğenme</string>
     <string name="add_comment">Yorum Ekle</string>
     <string name="no_comments">Yorum yok</string>
-    <string name="login_warning">Giriş yapmanız gereklidir</string>
-    <string name="cancel">Vazgeç</string>
     <string name="type_something">Bir şey yaz...</string>
     <string name="liking">Beğenme</string>
-
     <string name="followed">Takip edilen</string>
     <string name="following">Takip Ediliyor</string>
     <string name="show_profile_go_login">Profili görüntülemek için giriş yap</string>

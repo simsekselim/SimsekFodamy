@@ -49,12 +49,13 @@ class RecipeDetailViewModel @Inject constructor(
             val response = recipeRepository.getRecipeByID(recipeId)
             when (response) {
                 is Result.Success -> {
-                    _recipeDetailViewEvent.send(RecipeDetailViewEvent.RecipeFetched(response.response))
+
+                    _recipeDetailViewEvent.send(RecipeDetailViewEvent.RecipeGot(response.response))
                     recipe.value = response.response
 
                 }
                 is Result.Error -> {
-
+                    navigate.call()
                     println("Error")
 
                 }

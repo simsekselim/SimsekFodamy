@@ -34,7 +34,17 @@ class RecipeDetailFragment() :
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.toolbar.ivFodamy.isVisible = false
+        binding.toolbar.ivLogout.setImageResource(R.drawable.share)
+        binding.toolbar.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.toolbar.tvBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
+        viewModel.navigate.observe(viewLifecycleOwner,{
+            findNavController().navigate(R.id.loginWarningDialog)
+        })
 
 
 
@@ -78,74 +88,32 @@ class RecipeDetailFragment() :
 
     private fun setRecipeDataToUI(recipe : Recipe) {
         binding.apply {
+            toolbar.tvFodamy.text = recipe.title
+            imageLikeIcon.imageTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    if (recipe.is_liked) R.color.red else R.color.dark
+                )
+            )
+            buttonUserFollow.text =
+                if (recipe.user.is_following) getString(R.string.following)
+                else getString(R.string.follow_user)
 
-                if (recipe != null) {
-
-                    if (recipe.images != null) // || recipe.images[0] != null
-                        Picasso.get()
-                            .load(recipe.images[0].url)
-                            .into(imageRecipe)
-
-
-                    binding.toolbar.tvFodamy.text = recipe.title
-
-                        imageEditorChoiceIcon.isVisible = recipe.is_editor_choice
-                    imageEditorChoiceIconBackground.isVisible = recipe.is_editor_choice
-                    textRecipeName.text = recipe.title
-                    textRecipeCategory.text = recipe.category.name
-                    textRecipeDifference.text = recipe.difference
-                    textCommentCount.text =
-                        String.format(getString(R.string.count_comment), recipe.comment_count)
-
-                    textLikeCount.text =
-                        String.format(getString(R.string.count_like), recipe.like_count)
-
-                    textUserName.text = recipe.user.username
-                    textUserInfo.text = String.format(
-                        getString(R.string.recipe_info),
-                        recipe.user.recipe_count,
-                        recipe.user.followed_count
-                    )
-
-                    if (recipe.user.image != null)
-                        Picasso.get()
-                            .load(recipe.user.image.url)
-                            .into(imageUser)
-                    else
-                        imageUser.setImageResource(R.drawable.profile)
-                    textIngredientsPersonNumber.text = recipe.number_of_person.text
-                    textIngredientsData.text = recipe.ingredients
-                    textDirectionsTime.text = recipe.time_of_recipe.text
-                    textDirectionsData.text = recipe.directions
-                    imageLikeIcon.imageTintList = ColorStateList.valueOf(
+            buttonUserFollow.backgroundTintList =
+                if (recipe.user.is_following)
+                    ColorStateList.valueOf(
                         ContextCompat.getColor(
                             requireContext(),
-                            if (recipe.is_liked) R.color.red else R.color.dark
+                            R.color.red
                         )
-                    )
-                    buttonUserFollow.text =
-                        if (recipe.user.is_following) getString(R.string.following)
-                        else getString(R.string.follow_user)
+                    ) else null
 
-                    buttonUserFollow.backgroundTintList =
-                        if (recipe.user.is_following)
-                            ColorStateList.valueOf(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color.red
-                                )
-                            ) else null
-
-                    buttonUserFollow.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            if (recipe.user.is_following) R.color.white else R.color.red
-                        )
-                    )
-                    imageRecipe.setOnClickListener {
-                        findNavController().navigate(R.id.imageSliderFragment)
-                    }
-                }
+            buttonUserFollow.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    if (recipe.user.is_following) R.color.white else R.color.red
+                )
+            )
 
         }
     }
@@ -171,14 +139,14 @@ class RecipeDetailFragment() :
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.event.collect {
                 when (it) {
-                    is RecipeDetailViewEvent.FetchFirstComment -> {
+                    is RecipeDetailViewEvent.FirstComment -> {
                         if (it.comment != null) {
                             setFirstComment(it.comment)
                         } else {
                             setFirstComment(null)
                         }
                     }
-                    is RecipeDetailViewEvent.RecipeFetched -> {
+                    is RecipeDetailViewEvent.RecipeGot -> {
                         setRecipeDataToUI(it.recipe)
                     }
                 }

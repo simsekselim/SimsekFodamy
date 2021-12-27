@@ -41,6 +41,8 @@ class DefaultUserRepository @Inject constructor(
 
                 )
             preferences.saveToken(result.token)
+            preferences.user(result.user.id)
+            preferences.isFirst()
             Result.Success("")
         } catch (exception: Exception) {
             Result.Error(exception)

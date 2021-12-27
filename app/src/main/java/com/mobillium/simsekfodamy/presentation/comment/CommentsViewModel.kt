@@ -9,6 +9,7 @@ import androidx.paging.cachedIn
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.handleHttpException
 import com.mobillium.simsekfodamy.repository.RecipeRepository
+import com.mobillium.simsekfodamy.utils.ActionLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import com.mobillium.simsekfodamy.utils.Result
 import kotlinx.coroutines.channels.Channel
@@ -24,6 +25,7 @@ class CommentsViewModel @Inject constructor(
 
     private val _eventChannel = Channel<CommentsViewEvent>()
     val event = _eventChannel.receiveAsFlow()
+    val navigate = ActionLiveData()
 
     val commentText = MutableLiveData("")
 
@@ -40,6 +42,9 @@ class CommentsViewModel @Inject constructor(
             }
             is Result.Error -> {
                 println(response.exception.handleHttpException())
+                navigate.call()
+
+
 
             }
         }

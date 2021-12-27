@@ -3,16 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:backgroundTint="@color/black"
         android:background="@android:drawable/ic_menu_close_clear_cancel"
         app:layout_constraintEnd_toEndOf="@+id/view_pager2"
         app:layout_constraintTop_toTopOf="@+id/view_pager2" />
-
 
 
     <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
@@ -20,16 +23,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         app:dotsColor="@color/red"
-        app:dotsStrokeColor="@color/opacRed"
         app:dotsSize="16dp"
         app:dotsSpacing="6dp"
+        app:dotsStrokeColor="@color/opacRed"
         app:dotsStrokeWidth="2dp"
-        app:stiffness="300"
+        app:layout_constraintBottom_toTopOf="@+id/swipe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager2"
         app:progressMode="true"
+        app:stiffness="300"
 
         tools:ignore="MissingConstraints" />
 
@@ -37,7 +41,6 @@
         android:id="@+id/view_pager2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         android:layout_marginBottom="46dp"
         app:layout_constraintBottom_toTopOf="@+id/swipe"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,13 +50,11 @@
 
     <Button
         android:id="@+id/swipe"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginBottom="100dp"
-        android:background="@color/red"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/primary_button"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

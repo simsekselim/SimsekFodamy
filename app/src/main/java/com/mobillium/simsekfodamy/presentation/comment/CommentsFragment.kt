@@ -3,7 +3,9 @@ package com.mobillium.simsekfodamy.presentation.comment
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
@@ -26,8 +28,19 @@ class CommentsFragment() :
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.toolbar.ivFodamy.isVisible = false
+        binding.toolbar.ivLogout.isVisible = false
+        binding.toolbar.tvFodamy.text = "Yorumlar"
+        binding.toolbar.ivBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.toolbar.tvBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
-
+        viewModel.navigate.observe(viewLifecycleOwner,{
+            findNavController().navigate(R.id.loginWarningDialog)
+        })
         val adapter = CommentsAdapter()
 
 

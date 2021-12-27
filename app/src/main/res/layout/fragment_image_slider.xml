@@ -12,8 +12,8 @@
 
         <ImageButton
             android:id="@+id/button_exit"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:layout_margin="16dp"
             android:background="@android:color/transparent"
             android:scaleType="center"
@@ -37,10 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            app:dotsColor="@color/black"
+            app:dotsColor="@color/white"
             app:dotsSize="16dp"
             app:dotsSpacing="6dp"
-            app:dotsStrokeColor="@color/black"
+            app:dotsStrokeColor="@color/white"
             app:dotsStrokeWidth="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

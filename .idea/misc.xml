@@ -8,6 +8,7 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/cross.xml" value="0.5703125" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/dot.xml" value="0.21770833333333334" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/ellipse.xml" value="0.5185185185185185" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/fodamy.xml" value="0.34375" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/fork.xml" value="0.512962962962963" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/ic_comment.xml" value="0.5615384615384615" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5185185185185185" />
@@ -15,6 +16,8 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/indicator.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/item_category_recipe.xml" value="0.512962962962963" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/item_page.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/next.xml" value="0.34375" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/password.xml" value="0.34375" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/profile.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/rectangle.xml" value="0.21770833333333334" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/send.xml" value="0.5185185185185185" />
@@ -34,9 +37,9 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_image_slider.xml" value="0.5072463768115942" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_into.xml" value="0.19427083333333334" />
-        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_intro.xml" value="0.2015625" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_intro.xml" value="0.33" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_last.xml" value="0.2857789855072464" />
-        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_login.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_login.xml" value="0.48459167950693377" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_main.xml" value="0.5" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_profile.xml" value="0.18253968253968253" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_recipe_detail.xml" value="0.2695035460992908" />
@@ -44,7 +47,7 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_see_all_click.xml" value="0.4732789855072464" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_splash.xml" value="0.338768115942029" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/intro_fragment.xml" value="0.5" />
-        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category.xml" value="0.33" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category_recipe.xml" value="0.67" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category_recipes.xml" value="0.26721014492753625" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_comment.xml" value="0.4230072463768116" />

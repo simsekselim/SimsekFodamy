@@ -1,13 +1,16 @@
 package com.mobillium.simsekfodamy.presentation.favorites
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.lottie.animation.content.Content
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentCategoryBinding
@@ -16,8 +19,10 @@ import com.mobillium.simsekfodamy.model.Category
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.category.CategoryViewModel
 import com.mobillium.simsekfodamy.presentation.favorites.adapter.CategoryAdapter
+import com.mobillium.simsekfodamy.presentation.homeflow.home.HomeFragmentDirections
 import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import hilt_aggregated_deps._dagger_hilt_android_internal_modules_ApplicationContextModule
 
 
 @AndroidEntryPoint
@@ -31,6 +36,8 @@ class FavoritesFragment() :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.toolbar.ivBack.isVisible = false
+        binding.toolbar.tvBack.isVisible = false
 
         val adapter = CategoryAdapter(this)
 
@@ -57,15 +64,22 @@ class FavoritesFragment() :
             binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
         }
 
+        binding.toolbar.ivLogout.setOnClickListener {
+            viewModel.logout()
+            Toast.makeText(context,"Çıkış Yapıldı",Toast.LENGTH_LONG).show()
+        }
 
+        viewModel.navigateLogin.observe(viewLifecycleOwner, {
+            val navigateLogin = FavoritesFragmentDirections.actionFavoritesFragmentToFragmentLogin()
+            findNavController().navigate(navigateLogin)
+        })
 
 
     }
 
 
-
     override fun onSeeAllClick(category: Category) {
-      findNavController().navigate(R.id.categoryFragment, bundleOf("categoryId" to category.id ))
+        findNavController().navigate(R.id.categoryFragment, bundleOf("categoryId" to category.id))
 
 
     }

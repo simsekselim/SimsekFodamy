@@ -88,6 +88,9 @@
         <action
             android:id="@+id/action_commentsFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
+        <action
+            android:id="@+id/action_commentsFragment_to_loginWarningDialog"
+            app:destination="@id/loginWarningDialog" />
     </fragment>
     <fragment
         android:id="@+id/imageSliderFragment"
@@ -116,4 +119,8 @@
     </fragment>
     <include app:graph="@navigation/favorites"/>
     <include app:graph="@navigation/profile"/>
+    <fragment
+        android:id="@+id/loginWarningDialog"
+        android:name="com.mobillium.simsekfodamy.presentation.dialog.LoginWarningDialog"
+        android:label="LoginWarningDialog" />
 </navigation>

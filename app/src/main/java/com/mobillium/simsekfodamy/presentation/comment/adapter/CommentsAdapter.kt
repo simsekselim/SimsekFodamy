@@ -32,23 +32,7 @@ class CommentsAdapter :
         fun bind(comment: Comment) {
             binding.comment = comment
             onChildItemClicked?.invoke(comment)
-//            binding.apply {
-//                textUserName.text = comment.user.username
-//                textUserInfo.text =
-//                    String.format(
-//                        binding.root.context.getString(R.string.user_info),
-//                        comment.user.recipe_count,
-//                        comment.user.followed_count
-//                    )
-//                if (comment.user.image != null)
-//                    Picasso.get()
-//                        .load(comment.user.image.url)
-//                        .into(imageUser)
-//                else
-//                    imageUser.setImageResource(R.drawable.profile)
-//                textCommentBody.text = comment.text
-//                textCommentDifference.text = comment.difference
-//            }
+
         }
     }
 
