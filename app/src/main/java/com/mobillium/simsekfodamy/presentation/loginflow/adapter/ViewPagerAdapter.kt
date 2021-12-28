@@ -12,7 +12,8 @@ import com.mobillium.simsekfodamy.R
 class ViewPagerAdapter(
     val title: MutableList<String>,
     val details: List<String>,
-    val images: List<Int>) : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
+    val images: List<Int>
+) : RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
     inner class Pager2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -20,32 +21,21 @@ class ViewPagerAdapter(
         val itemDetails: TextView = itemView.findViewById(R.id.tvAbout)
         val itemImage: ImageView = itemView.findViewById(R.id.tvImage)
 
-
         init {
-            itemImage.setOnClickListener { v : View ->
+            itemImage.setOnClickListener { v: View ->
 
                 val position = adapterPosition
-                Toast.makeText(itemView.context,"You Clicked On Item ${position + 1}",Toast.LENGTH_LONG).show()
-
-
+                Toast.makeText(itemView.context, "You Clicked On Item ${position + 1}", Toast.LENGTH_LONG).show()
             }
-
-
         }
-
-
-
     }
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): Pager2ViewHolder {
 
-        return Pager2ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_page,parent,false))
-
-
+        return Pager2ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_page, parent, false))
     }
 
     override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
@@ -53,17 +43,10 @@ class ViewPagerAdapter(
         holder.itemTitle.text = title[position].toString()
         holder.itemDetails.text = details[position]
         holder.itemImage.setImageResource(images[position])
-
-
-
-
     }
 
     override fun getItemCount(): Int {
 
         return title.size
-
     }
-
-
 }

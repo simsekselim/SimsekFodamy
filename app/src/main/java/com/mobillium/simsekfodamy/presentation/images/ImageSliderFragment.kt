@@ -2,11 +2,8 @@ package com.mobillium.simsekfodamy.presentation.images
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentImageSliderBinding
@@ -22,12 +19,11 @@ class ImageSliderFragment() :
         ImageSliderViewModel::class.java
     ) {
 
-    private val args : ImageSliderFragmentArgs by navArgs()
-
+    private val args: ImageSliderFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val images : ImageList = args.image
+        val images: ImageList = args.image
         val populatedImages = mutableListOf<Image>()
         if (images.images.size == 1) {
             val image = images.images[0]
@@ -40,14 +36,8 @@ class ImageSliderFragment() :
         binding.viewPagerImages.adapter = imageAdapter
         binding.indicator.setViewPager2(binding.viewPagerImages)
 
-
         binding.buttonExit.setOnClickListener {
             findNavController().popBackStack()
         }
-
-
-
-
-
     }
 }

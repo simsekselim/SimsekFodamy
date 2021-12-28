@@ -4,17 +4,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.mobillium.simsekfodamy.presentation.favorites.FavoritesFragment
 import com.mobillium.simsekfodamy.presentation.homeflow.editor.EditorFragment
-import com.mobillium.simsekfodamy.presentation.homeflow.home.HomeFragment
 import com.mobillium.simsekfodamy.presentation.homeflow.last.LastFragment
-import com.mobillium.simsekfodamy.presentation.profile.ProfileFragment
 
 class HomePagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount() = 2
-
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
@@ -28,7 +24,4 @@ class HomePagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
             else -> Fragment()
         }
     }
-
-
-
 }

@@ -22,7 +22,6 @@ constructor(
 
     val navigateLogin = ActionLiveData()
 
-
     fun logout() {
 
         viewModelScope.launch {
@@ -32,17 +31,11 @@ constructor(
 
                     is Result.Error -> println("Error")
                 }
-
             } else {
                 navigateLogin.call()
-
             }
-
         }
     }
 
-   suspend fun getToken() = preferences.token
-
-
-
+    suspend fun getToken() = preferences.token
 }

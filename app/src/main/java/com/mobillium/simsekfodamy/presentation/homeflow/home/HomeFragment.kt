@@ -1,6 +1,5 @@
 package com.mobillium.simsekfodamy.presentation.homeflow.home
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,20 +9,11 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentHomeBinding
-import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.homeflow.adapter.HomePagerAdapter
-import com.mobillium.simsekfodamy.presentation.homeflow.editor.EditorViewModel
-import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
-import com.mobillium.simsekfodamy.presentation.homeflow.last.LastViewModel
-import com.mobillium.simsekfodamy.presentation.loginflow.login.LoginFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -51,23 +41,17 @@ class HomeFragment :
             binding.toolbar.ivBack.isVisible = false
             binding.toolbar.tvBack.isVisible = false
 
-
             when (position) {
                 0 -> {
                     tab.text = getString(R.string.editor_choose)
-
                 }
                 1 -> {
                     tab.text = getText(R.string.last_add)
-
                 }
                 else -> {
                     tab.text = getString(R.string.editor_choose)
                 }
-
-
             }
-
         }.attach()
 
 //        binding.toolbar.ivLogout.setOnClickListener {
@@ -80,21 +64,19 @@ class HomeFragment :
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
-            Toast.makeText(context,"Çıkış Yapıldı", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Çıkış Yapıldı", Toast.LENGTH_LONG).show()
         }
         lifecycleScope.launch {
             viewModel.getToken().asLiveData().observe(viewLifecycleOwner, {
                 // Change the Icon
-                //Show the message
+                // Show the message
             })
         }
         viewModel.navigateLogin.observe(viewLifecycleOwner, {
             val navigateLogin = HomeFragmentDirections.actionHomeFragmentToFragmentLogin()
             findNavController().navigate(navigateLogin)
         })
-
     }
-
 
     /*  binding.layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
         override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -118,8 +100,6 @@ class HomeFragment :
 }
 
  */
-
-
 }
 /*
 
@@ -160,7 +140,6 @@ class HomeFragment :
 }
 
  */
-
 
 /*
 
@@ -238,5 +217,3 @@ class HomeFragment :
 }
 
  */
-
-

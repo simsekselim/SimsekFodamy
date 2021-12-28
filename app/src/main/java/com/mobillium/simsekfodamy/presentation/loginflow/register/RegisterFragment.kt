@@ -14,10 +14,6 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
     RegisterViewModel::class.java
 ) {
 
-
-
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
@@ -26,14 +22,34 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
             findNavController().navigate(navigateLogin)
         })
 
-        binding.register.setOnClickListener {
-            viewModel.onClickRegister()
+        binding.apply {
+            register.setOnClickListener {
+                viewModel?.onClickRegister()
+
+                if (userName.text.toString().isNullOrBlank()) {
+                    userName.setError("Please enter username")
+                    userName.requestFocus()
+                    userName.isEnabled = true
+                }
+                if (userMail.text.toString().isNullOrBlank()) {
+                    userMail.setError("Please enter mail")
+                    userMail.requestFocus()
+                    userMail.isEnabled = true
+                }
+                if (userPassword.text.toString().length < 6) {
+                    userPassword.setError("Password minimum contain 6 character")
+                    userPassword.requestFocus()
+                    userPassword.isEnabled = true
+                }
+                if (userPassword.text.toString().equals("")) {
+                    userPassword.setError("Please enter password")
+                    userPassword.requestFocus()
+                }
+            }
         }
 
         binding.login.setOnClickListener {
             findNavController().navigate(R.id.fragmentLogin)
         }
-
-
     }
 }

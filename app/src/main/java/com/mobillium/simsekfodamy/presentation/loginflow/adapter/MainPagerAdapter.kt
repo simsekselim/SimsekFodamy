@@ -13,7 +13,6 @@ class MainPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
     override fun getItemCount() = 3
 
-
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> {
@@ -28,7 +27,4 @@ class MainPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
             else -> Fragment()
         }
     }
-
-
-
 }

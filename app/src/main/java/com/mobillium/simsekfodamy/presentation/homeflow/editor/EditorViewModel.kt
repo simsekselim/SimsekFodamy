@@ -20,7 +20,6 @@ constructor(
 
 ) : BaseViewModel() {
 
-
     val recipes = MutableLiveData<PagingData<Recipe>>()
 
     init {
@@ -30,16 +29,9 @@ constructor(
     fun editorData() {
         viewModelScope.launch {
 
-
             recipeRepository.getEditorChoiceRecipes().cachedIn(viewModelScope).collect {
                 recipes.value = it
             }
-
-
         }
-
-
     }
 }
-
-

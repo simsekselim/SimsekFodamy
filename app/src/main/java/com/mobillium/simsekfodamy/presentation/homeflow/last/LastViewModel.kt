@@ -20,9 +20,7 @@ constructor(
 
 ) : BaseViewModel() {
 
-
     val recipes = MutableLiveData<PagingData<Recipe>>()
-
 
     init {
         lastData()
@@ -31,20 +29,9 @@ constructor(
     fun lastData() {
         viewModelScope.launch {
 
-
             recipeRepository.getLastAddedRecipes().cachedIn(viewModelScope).collect {
                 recipes.value = it
             }
-
-
         }
-
-
     }
-
 }
-
-
-
-
-

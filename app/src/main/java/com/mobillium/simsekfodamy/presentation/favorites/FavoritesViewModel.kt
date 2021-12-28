@@ -9,9 +9,7 @@ import com.mobillium.simsekfodamy.repository.UserRepository
 import com.mobillium.simsekfodamy.utils.ActionLiveData
 import com.mobillium.simsekfodamy.utils.PreferencesManager
 import com.mobillium.simsekfodamy.utils.Result
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,15 +33,11 @@ class FavoritesViewModel @Inject constructor(
                 when (user.logout()) {
                     is Result.Success -> println("Logged Out")
 
-
                     is Result.Error -> println("Error")
                 }
-
             } else {
                 navigateLogin.call()
-
             }
-
         }
     }
 }

@@ -34,7 +34,5 @@ class CategoryPagingFactory(
 
     override fun getRefreshKey(state: PagingState<Int, Category>): Int? {
         TODO("Not yet implemented")
-
     }
 }
-

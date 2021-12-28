@@ -15,12 +15,9 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(
     LoginViewModel::class.java
 ) {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,40 +33,23 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(
             findNavController().navigate(R.id.fragmentRegister)
         }
 
-
         binding.forget.setOnClickListener {
             findNavController().navigate(R.id.fragmentForgetPassword)
         }
 
 
 
-
-
-        binding.login.setOnClickListener {
-
-            if (viewModel.username.value.isNullOrBlank()){
+            if (viewModel.username.value.isNullOrBlank()) {
                 binding.error.isVisible = true
                 binding.errorMessage.isVisible = true
                 binding.errorMessage.text = "Kullanıcı adı alanı boş bırakılamaz."
-            }else if (viewModel.password.value.isNullOrBlank()){
+            } else if (viewModel.password.value.isNullOrBlank()) {
                 binding.error.isVisible = true
                 binding.errorMessage.isVisible = true
                 binding.errorMessage.text = "Şifre alanı boş bırakılamaz."
 
-            }
-
 
             viewModel.onClickLogin()
-
-
         }
-
-
     }
-
-
-
-
 }
-
-

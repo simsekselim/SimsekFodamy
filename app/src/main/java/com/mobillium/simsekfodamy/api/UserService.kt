@@ -44,8 +44,4 @@ interface UserService {
     suspend fun unfollowUser(
         @Path("followedId") followedId: Int
     ): BaseResponse<Any>
-
-
-
-
 }

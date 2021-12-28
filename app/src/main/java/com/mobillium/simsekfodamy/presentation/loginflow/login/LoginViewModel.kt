@@ -17,7 +17,6 @@ constructor(
     private val repository: UserRepository
 ) : BaseViewModel() {
 
-
     val username = MutableLiveData("salihaga")
     val password = MutableLiveData("fodamy48+")
     val navigateMain = ActionLiveData()
@@ -33,28 +32,14 @@ constructor(
         ) {
             is Result.Success -> {
 
+
                 println("Success")
                 navigateMain.call()
-
-
             }
             is Result.Error -> {
 
                 println("Failure")
             }
         }
-
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-

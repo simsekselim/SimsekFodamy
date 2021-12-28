@@ -78,7 +78,6 @@ class RecipeAdapter() :
 
                 ivMadal.visibility =
                     if (recipe.is_editor_choice) View.VISIBLE else View.GONE
-
             }
         }
     }

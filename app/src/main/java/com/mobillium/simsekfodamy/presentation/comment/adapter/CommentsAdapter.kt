@@ -5,11 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.databinding.ItemCommentBinding
 import com.mobillium.simsekfodamy.model.Comment
-import com.mobillium.simsekfodamy.model.Recipe
-import com.squareup.picasso.Picasso
 
 class CommentsAdapter :
     PagingDataAdapter<Comment, CommentsAdapter.CommentViewHolder>(COMMENT_COMPARATOR) {
@@ -32,7 +29,6 @@ class CommentsAdapter :
         fun bind(comment: Comment) {
             binding.comment = comment
             onChildItemClicked?.invoke(comment)
-
         }
     }
 

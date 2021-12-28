@@ -12,14 +12,13 @@ import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
 import com.mobillium.simsekfodamy.utils.ActionLiveData
 import com.mobillium.simsekfodamy.utils.PreferencesManager
+import com.mobillium.simsekfodamy.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
-import com.mobillium.simsekfodamy.utils.Result
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
-
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class RecipeDetailViewModel @Inject constructor(
@@ -37,14 +36,12 @@ class RecipeDetailViewModel @Inject constructor(
     private val _recipeDetailViewEvent = Channel<RecipeDetailViewEvent>()
     val event = _recipeDetailViewEvent.receiveAsFlow()
 
-
     init {
         getRecipeById()
         getFirstComment()
     }
 
     fun getRecipeById() {
-
         viewModelScope.launch {
             val response = recipeRepository.getRecipeByID(recipeId)
             when (response) {
@@ -52,19 +49,13 @@ class RecipeDetailViewModel @Inject constructor(
 
                     _recipeDetailViewEvent.send(RecipeDetailViewEvent.RecipeGot(response.response))
                     recipe.value = response.response
-
                 }
                 is Result.Error -> {
                     navigate.call()
                     println("Error")
-
                 }
             }
-
-
         }
-
-
     }
 
     fun getFirstComment() {
@@ -75,37 +66,25 @@ class RecipeDetailViewModel @Inject constructor(
                 is Result.Success -> {
 
                     comment.value = response.response
-
                 }
                 is Result.Error -> {
 
                     println("Error")
-
                 }
             }
-
-
         }
-
-
     }
 
     fun onClickFollowButton() {
         viewModelScope.launch {
-            if(recipe.value == null){
+            if (recipe.value == null) {
+            } else {
 
-            }else{
-
-                    if (recipe.value?.user?.is_following!!)
-                        unfollowUser(recipe?.value?.user?.id!!)
-                    else
-                        followUser(recipe?.value?.user?.id!!)
-
-
-
-
+                if (recipe.value?.user?.is_following!!)
+                    unfollowUser(recipe?.value?.user?.id!!)
+                else
+                    followUser(recipe?.value?.user?.id!!)
             }
-
         }
     }
 
@@ -115,13 +94,9 @@ class RecipeDetailViewModel @Inject constructor(
                 navigate.call()
             } else {
                 navigate.call()
-
             }
         }
     }
-
-
-
 
     fun onClickLike() = viewModelScope.launch {
         if (preferences.token.first().isBlank())
@@ -183,6 +158,4 @@ class RecipeDetailViewModel @Inject constructor(
             }
         }
     }
-
-
 }

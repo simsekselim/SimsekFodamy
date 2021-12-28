@@ -6,12 +6,12 @@ import androidx.paging.PagingData
 import com.mobillium.simsekfodamy.api.RecipeService
 import com.mobillium.simsekfodamy.model.Category
 import com.mobillium.simsekfodamy.model.Comment
-import com.mobillium.simsekfodamy.utils.Result
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.response.BaseResponse
 import com.mobillium.simsekfodamy.utils.CategoryPagingFactory
 import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.RecipePagingFactory
+import com.mobillium.simsekfodamy.utils.Result
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -33,7 +33,6 @@ interface RecipeRepository {
     suspend fun sendComment(recipeId: Int, text: String): Result<Comment>
     suspend fun likeRecipe(recipeId: Int): Result<BaseResponse<Any>>
     suspend fun dislikeRecipe(recipeId: Int): Result<BaseResponse<Any>>
-
 }
 
 @Singleton
@@ -135,7 +134,6 @@ class DefaultRecipeRepository @Inject constructor(
         }
     }
 
-
     override fun getRecipeComments(recipeId: Int) = Pager(
         config = PagingConfig(
             pageSize = 24,
@@ -175,12 +173,9 @@ class DefaultRecipeRepository @Inject constructor(
     }
 }
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 interface RecipeModules {
     @Binds
     fun provideRecipeRepository(repository: DefaultRecipeRepository): RecipeRepository
 }
-
-

@@ -1,6 +1,5 @@
 package com.mobillium.simsekfodamy.presentation.detail
 
-import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -32,8 +31,7 @@ fun setLikeCount(tv: TextView, likeCount: Int) {
     tv.text = tv.context.resources.getString(R.string.like, likeCount)
 }
 
-
-@BindingAdapter(value = ["app:recipeCount","app:followerCount"], requireAll = false)
+@BindingAdapter(value = ["app:recipeCount", "app:followerCount"], requireAll = false)
 fun setRecipeCount(tv: TextView, recipeCount: Int, followerCount: Int) {
     tv.text = tv.context.resources.getString(R.string.user_info, recipeCount, followerCount)
 }

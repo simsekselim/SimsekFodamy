@@ -9,7 +9,7 @@ import com.mobillium.simsekfodamy.databinding.DialogLoginWarningBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginWarningDialog : BaseFragment<LoginWarningDialogViewModel,DialogLoginWarningBinding>(
+class LoginWarningDialog : BaseFragment<LoginWarningDialogViewModel, DialogLoginWarningBinding>(
     R.layout.dialog_login_warning,
     LoginWarningDialogViewModel::class.java
 ) {
@@ -22,6 +22,5 @@ class LoginWarningDialog : BaseFragment<LoginWarningDialogViewModel,DialogLoginW
         binding.cancel.setOnClickListener {
             findNavController().navigate(R.id.home)
         }
-
     }
 }

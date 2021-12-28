@@ -15,7 +15,6 @@ class RegisterViewModel
 @Inject
 constructor(private val repository: UserRepository) : BaseViewModel() {
 
-
     val username = MutableLiveData("")
     val password = MutableLiveData("")
     val email = MutableLiveData("")
@@ -25,22 +24,17 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
 
         when (
             val response =
-                repository.register(username.value.toString(),email.value.toString(), password.value.toString())
+                repository.register(username.value.toString(), email.value.toString(), password.value.toString())
         ) {
             is Result.Success -> {
 
                 println("Success")
                 navigateLogin.call()
-
-
             }
             is Result.Error -> {
 
                 println("Failure")
             }
         }
-
     }
-
-
 }

@@ -1,6 +1,5 @@
 package com.mobillium.simsekfodamy.presentation.detail
 
-
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
@@ -15,7 +14,6 @@ import com.mobillium.simsekfodamy.databinding.FragmentRecipeDetailBinding
 import com.mobillium.simsekfodamy.model.Comment
 import com.mobillium.simsekfodamy.model.ImageList
 import com.mobillium.simsekfodamy.model.Recipe
-import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -23,11 +21,10 @@ import kotlinx.coroutines.flow.collect
 @AndroidEntryPoint
 class RecipeDetailFragment() :
     BaseFragment<RecipeDetailViewModel, FragmentRecipeDetailBinding>
-        (
+    (
         R.layout.fragment_recipe_detail,
         RecipeDetailViewModel::class.java
     ) {
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,17 +39,14 @@ class RecipeDetailFragment() :
             findNavController().popBackStack()
         }
 
-        viewModel.navigate.observe(viewLifecycleOwner,{
+        viewModel.navigate.observe(viewLifecycleOwner, {
             findNavController().navigate(R.id.loginWarningDialog)
         })
-
-
-
 
         viewModel.recipe.observe(viewLifecycleOwner, { recipe ->
             binding.recipe = recipe
             binding.buttonAddComment.setOnClickListener {
-            setRecipeDataToUI(recipe)
+                setRecipeDataToUI(recipe)
                 findNavController().navigate(
                     R.id.commentsFragment,
                     bundleOf("recipeCommentId" to recipe.id)
@@ -68,25 +62,19 @@ class RecipeDetailFragment() :
             binding.imageRecipe.setOnClickListener {
                 findNavController().navigate(R.id.imageSliderFragment, bundleOf("image" to ImageList(viewModel?.recipe?.value?.images!!)))
             }
-
         })
 
         viewModel.comment.observe(viewLifecycleOwner, { comment ->
             binding.previewCommit.comment = comment
-
-
         })
-
-
 
         viewModel.getRecipeById()
         setListeners()
         viewModel.getFirstComment()
         eventHandler()
-
     }
 
-    private fun setRecipeDataToUI(recipe : Recipe) {
+    private fun setRecipeDataToUI(recipe: Recipe) {
         binding.apply {
             toolbar.tvFodamy.text = recipe.title
             imageLikeIcon.imageTintList = ColorStateList.valueOf(
@@ -114,7 +102,6 @@ class RecipeDetailFragment() :
                     if (recipe.user.is_following) R.color.white else R.color.red
                 )
             )
-
         }
     }
 
@@ -154,7 +141,6 @@ class RecipeDetailFragment() :
         }
     }
 
-
     private fun setFirstComment(comment: Comment?) {
         if (comment != null) {
 
@@ -180,8 +166,3 @@ class RecipeDetailFragment() :
         }
     }
 }
-
-
-
-
-

@@ -53,5 +53,4 @@ class RecipePagingFactory(
     override fun getRefreshKey(state: PagingState<Int, Recipe>): Int? {
         TODO("Not yet implemented")
     }
-
 }

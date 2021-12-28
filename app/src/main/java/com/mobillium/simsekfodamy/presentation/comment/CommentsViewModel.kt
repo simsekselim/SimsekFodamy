@@ -1,6 +1,5 @@
 package com.mobillium.simsekfodamy.presentation.comment
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.asLiveData
@@ -10,8 +9,9 @@ import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.handleHttpException
 import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.utils.ActionLiveData
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.mobillium.simsekfodamy.utils.PreferencesManager
 import com.mobillium.simsekfodamy.utils.Result
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -20,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CommentsViewModel @Inject constructor(
     private val repository: RecipeRepository,
+    val preferences: PreferencesManager,
     stateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
@@ -34,25 +35,20 @@ class CommentsViewModel @Inject constructor(
     val comments = commentsFlow.asLiveData()
 
     fun sendComment() = viewModelScope.launch {
-
-
-        when (val response = repository.sendComment(recipeId, commentText.value.toString())) {
-            is Result.Success -> {
-                _eventChannel.send(CommentsViewEvent.SendCommentSuccess)
-            }
-            is Result.Error -> {
-                println(response.exception.handleHttpException())
-                navigate.call()
-
-
-
+        if (preferences.getToken().isNullOrBlank()) {
+            navigate.call()
+        } else {
+            when (val response = repository.sendComment(recipeId, commentText.value.toString())) {
+                is Result.Success -> {
+                    _eventChannel.send(CommentsViewEvent.SendCommentSuccess)
+                }
+                is Result.Error -> {
+                    println(response.exception.handleHttpException())
+                }
             }
         }
-
-
     }
 }
-
 
 //    init {
 //        commentRecipe()
@@ -71,4 +67,3 @@ class CommentsViewModel @Inject constructor(
 //
 //
 //    }
-

@@ -23,7 +23,6 @@ class CommentsFragment() :
         CommentsViewModel::class.java
     ) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
@@ -38,32 +37,25 @@ class CommentsFragment() :
             findNavController().popBackStack()
         }
 
-        viewModel.navigate.observe(viewLifecycleOwner,{
+        viewModel.navigate.observe(viewLifecycleOwner, {
             findNavController().navigate(R.id.loginWarningDialog)
         })
         val adapter = CommentsAdapter()
-
 
         val linearLayoutManager = LinearLayoutManager(requireContext())
 
         (activity as AppCompatActivity).showIme()
         binding.comment.requestFocus()
 
-
-
         binding.apply {
             recycler.layoutManager = linearLayoutManager
             recycler.setHasFixedSize(false)
             recycler.adapter = adapter
-
-
         }
 
         viewModel.comments.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
-
         }
-
 
         binding.share.setOnClickListener {
             viewModel.sendComment()
@@ -86,13 +78,4 @@ class CommentsFragment() :
         val adapter = binding.recycler.adapter as PagingDataAdapter<*, *>
         adapter.refresh()
     }
-
 }
-
-
-
-
-
-
-
-
