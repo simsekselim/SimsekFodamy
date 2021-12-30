@@ -1,6 +1,5 @@
 package com.mobillium.simsekfodamy.utils
 
-
 import android.util.Log
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

@@ -7,7 +7,6 @@ import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.handleHttpException
 import com.mobillium.simsekfodamy.model.Comment
 import com.mobillium.simsekfodamy.model.Recipe
-import com.mobillium.simsekfodamy.presentation.loginflow.intro.preferences
 import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
 import com.mobillium.simsekfodamy.utils.ActionLiveData

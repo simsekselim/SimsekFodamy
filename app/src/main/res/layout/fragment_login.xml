@@ -3,8 +3,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.login.LoginFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".ui.login.LoginFragment">
 
     <data>
 
@@ -16,28 +16,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <View
-            android:id="@+id/error"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:background="@color/red"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/error_message"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
 
         <TextView
@@ -99,18 +78,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:enabled="@{viewModel.validation}"
                 android:layout_weight="1"
+                android:onClick="@{()->viewModel.onClickLogin()}"
                 android:background="@drawable/primary_button"
-                android:text="Giriş Yap"
-                android:textSize="16sp"
                 android:fontFamily="@font/nunito_bold"
+                android:text="Giriş Yap"
                 android:textAllCaps="false"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/forget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.toForget()}"
                 android:layout_gravity="end"
                 android:clickable="true"
                 android:padding="10dp"
@@ -133,7 +115,6 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:text="Hesabın mı yok?"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -144,6 +125,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->viewModel.toRegister()}"
                 android:text="Üye Ol"
                 android:textColor="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"

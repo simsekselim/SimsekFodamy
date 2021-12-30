@@ -1,17 +1,14 @@
 package com.mobillium.simsekfodamy.base
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
-
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel : ViewModel() {
 
     val baseEvent = SingleLiveEvent<BaseViewEvent>()
-
 
     fun navigate(directions: NavDirections) = viewModelScope.launch {
         baseEvent.postValue(BaseViewEvent.NavigateTo(directions))
@@ -23,10 +20,7 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
-    fun showDialog() = viewModelScope.launch {
-        baseEvent.postValue(BaseViewEvent.ShowLoading(true))
+    fun showMessage(message: String) = viewModelScope.launch {
+        baseEvent.postValue(BaseViewEvent.ShowMessage(message))
     }
-
 }
-
-

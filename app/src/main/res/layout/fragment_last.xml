@@ -5,6 +5,9 @@
     android:background="@color/secondWhite">
 
     <data>
+        <variable
+            name="recipe"
+            type="com.mobillium.simsekfodamy.model.Recipe" />
 
         <variable
             name="viewModel"
