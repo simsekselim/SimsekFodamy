@@ -10,4 +10,6 @@ object Constants {
     const val EDITOR_CHOOSE = "editor-choices"
     const val CATEGORY = "category/{category_id}/recipe"
     const val CATEGORY_RECIPES = "category-recipes"
+
+    const val FILL_REQUIRED_FIELDS = "Lütfen boşlukları doldurunuz."
 }

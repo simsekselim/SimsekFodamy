@@ -59,7 +59,11 @@
     <fragment
         android:id="@+id/fragmentForgetPassword"
         android:name="com.mobillium.simsekfodamy.presentation.loginflow.forgetpassword.FragmentForgetPassword"
-        android:label="FragmentForgetPassword" />
+        android:label="FragmentForgetPassword" >
+        <action
+            android:id="@+id/action_fragmentForgetPassword_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
     <include app:graph="@navigation/home" />
     <fragment
         android:id="@+id/recipeDetailFragment"

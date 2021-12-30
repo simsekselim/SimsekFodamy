@@ -7,4 +7,12 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel
 @Inject
-constructor() : BaseViewModel()
+constructor() : BaseViewModel() {
+    fun toIntro() {
+        navigate(FragmentSplashDirections.actionFragmentSplashToFragmentIntro())
+    }
+
+    fun toHome() {
+        navigate(FragmentSplashDirections.actionFragmentSplashToHome())
+    }
+}

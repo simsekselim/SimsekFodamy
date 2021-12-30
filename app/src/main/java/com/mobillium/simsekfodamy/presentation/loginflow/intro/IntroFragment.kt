@@ -1,11 +1,8 @@
 package com.mobillium.simsekfodamy.presentation.loginflow.intro
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -18,26 +15,9 @@ import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 private var titlesList = mutableListOf<String>()
 private var descList = mutableListOf<String>()
 private var imagesList = mutableListOf<Int>()
-lateinit var preferences: SharedPreferences
-val pref_show_intro = "Intro"
 
 class FragmentIntro : Fragment() {
     var swipe: Button? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        preferences = context.getSharedPreferences("Intro", MODE_PRIVATE)
-//        if (!preferences.getBoolean(pref_show_intro,true)){
-//            findNavController().navigate(R.id.fragmentLogin)
-//        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_intro, container, false)
-    }
 
     @SuppressLint("ResourceAsColor")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,9 +69,6 @@ class FragmentIntro : Fragment() {
             override
             fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-//                    val editor = preferences.edit()
-//                    editor.putBoolean(pref_show_intro,false)
-//                    editor.apply()
 
                 if (position == imagesList.size - 1) {
                     swipe = view.findViewById(R.id.swipe)
@@ -107,11 +84,7 @@ class FragmentIntro : Fragment() {
                 Navigation.findNavController(it).navigate(R.id.fragmentLogin)
             } else {
                 view_pager2.setCurrentItem(view_pager2.currentItem + 1, true)
-            } /*  view_pager2.apply {
-                  beginFakeDrag()
-                  fakeDragBy(-1000f)
-                  endFakeDrag()
-              }             */
+            }
         }
     }
 }

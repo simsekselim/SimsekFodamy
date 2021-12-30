@@ -5,6 +5,5 @@ import androidx.navigation.NavDirections
 sealed class BaseViewEvent {
     data class NavigateTo(val directions: NavDirections) : BaseViewEvent()
     object NavigateBack : BaseViewEvent()
-    data class ShowLoading(val isShow: Boolean) : BaseViewEvent()
-
+    data class ShowMessage(val message: String) : BaseViewEvent()
 }

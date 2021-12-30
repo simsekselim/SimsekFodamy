@@ -1,4 +1,4 @@
- 
+
 package com.mobillium.simsekfodamy.repository
 
 import com.mobillium.simsekfodamy.api.UserService
