@@ -26,18 +26,11 @@ class RecipeDetailFragment() :
         RecipeDetailViewModel::class.java
     ) {
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.setImageResource(R.drawable.share)
-        binding.toolbar.ivBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-        binding.toolbar.tvBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         viewModel.navigate.observe(viewLifecycleOwner, {
             findNavController().navigate(R.id.loginWarningDialog)

@@ -1,6 +1,8 @@
 package com.mobillium.simsekfodamy.utils
 
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -10,7 +12,6 @@ import javax.inject.Singleton
 @Singleton
 class UserInterceptor @Inject constructor(
     private val preferences: PreferencesManager,
-    private val applicationScope: CoroutineScope
 ) : Interceptor {
     private var token: String? = null
 
@@ -26,7 +27,7 @@ class UserInterceptor @Inject constructor(
         private const val ADD_TOKEN = "X-Fodamy-Token"
     }
 
-    private fun setToken() = applicationScope.launch {
+    private fun setToken() = CoroutineScope(SupervisorJob() + Dispatchers.IO).launch {
         token = preferences.getToken()
     }
 }

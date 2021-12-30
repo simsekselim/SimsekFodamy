@@ -33,7 +33,9 @@ constructor(
 
             recipeRepository.getEditorChoiceRecipes().cachedIn(viewModelScope).collect {
                 recipes.value = it
+
             }
+
         }
     }
     fun editor(recipeId: Int) {

@@ -19,9 +19,9 @@
         <action
             android:id="@+id/action_fragmentLogin_to_home"
             app:destination="@id/home"
+            app:popEnterAnim="@navigation/profile"
             app:popUpTo="@id/navigation_graph"
-            app:popUpToInclusive="true"
-            app:popEnterAnim="@navigation/profile"/>
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentRegister"
@@ -54,12 +54,12 @@
             android:id="@+id/action_fragmentSplash_to_home"
             app:destination="@id/home"
             app:popUpTo="@id/navigation_graph"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragmentForgetPassword"
         android:name="com.mobillium.simsekfodamy.presentation.loginflow.forgetpassword.FragmentForgetPassword"
-        android:label="FragmentForgetPassword" >
+        android:label="FragmentForgetPassword">
         <action
             android:id="@+id/action_fragmentForgetPassword_to_fragmentLogin"
             app:destination="@id/fragmentLogin" />
@@ -121,8 +121,8 @@
             android:id="@+id/action_categoryFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />
     </fragment>
-    <include app:graph="@navigation/favorites"/>
-    <include app:graph="@navigation/profile"/>
+    <include app:graph="@navigation/favorites" />
+    <include app:graph="@navigation/profile" />
     <fragment
         android:id="@+id/loginWarningDialog"
         android:name="com.mobillium.simsekfodamy.presentation.dialog.LoginWarningDialog"
