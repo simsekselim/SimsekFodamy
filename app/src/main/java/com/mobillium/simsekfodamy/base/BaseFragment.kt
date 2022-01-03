@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.BR
+import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.utils.snackbar
 
 abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(
@@ -28,11 +30,13 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
 
      */
 
+
     protected lateinit var viewModel: TViewModel
     protected lateinit var binding: TBinding
 
-    // loading dialog
-    private var dialog: Dialog? = null
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(viewModelType)
@@ -43,6 +47,9 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.viewModel, viewModel)
@@ -64,6 +71,7 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
                 snackbar(event.message)
             is BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
+
         }
     }
 }

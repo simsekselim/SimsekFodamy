@@ -17,15 +17,14 @@ class EditorFragment :
     BaseFragment<EditorViewModel, FragmentEditorBinding>(
         R.layout.fragment_editor,
         EditorViewModel::class.java
-    ),
-    RecipeAdapter.OnItemClickListener {
+    ) {
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = RecipeAdapter()
         adapter.onChildItemClicked = {
-
             viewModel.editor(it.id)
         }
 
@@ -46,6 +45,5 @@ class EditorFragment :
         }
     }
 
-    override fun onItemClick(recipe: Recipe) {
-    }
+
 }

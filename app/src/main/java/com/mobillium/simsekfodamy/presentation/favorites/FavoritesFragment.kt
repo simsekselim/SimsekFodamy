@@ -24,6 +24,7 @@ class FavoritesFragment() :
     ),
     CategoryAdapter.OnItemClickListener {
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.ivBack.isVisible = false

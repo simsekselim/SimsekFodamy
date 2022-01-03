@@ -54,19 +54,19 @@
             android:id="@+id/profile_pic"
             android:layout_width="@dimen/profile"
             android:layout_height="@dimen/profile"
-            app:profileLoader="@{profile.image.url}"
             android:layout_marginTop="@dimen/margin_normal"
             android:src="@drawable/profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:profileLoader="@{profile.image.url}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{profile.username}"
             android:layout_marginTop="@dimen/margin_normal"
+            android:text="@{profile.username}"
             android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -139,8 +139,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:textColor="@color/red"
                         android:text="@{Integer.toString(profile.followed_count)}"
+                        android:textColor="@color/red"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="100" />
@@ -166,8 +166,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:textColor="@color/red"
                         android:text="@{Integer.toString(profile.following_count)}"
+                        android:textColor="@color/red"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         tools:text="100" />

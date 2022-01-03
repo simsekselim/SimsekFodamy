@@ -33,6 +33,7 @@ class HomeFragment :
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
@@ -64,7 +65,7 @@ class HomeFragment :
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
-            Toast.makeText(context, "Çıkış Yapıldı", Toast.LENGTH_LONG).show()
+
         }
         lifecycleScope.launch {
             viewModel.getToken().asLiveData().observe(viewLifecycleOwner, {

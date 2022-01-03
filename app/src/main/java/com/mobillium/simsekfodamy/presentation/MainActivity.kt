@@ -41,14 +41,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onBackPressed() {
-//        if (navController.currentBackStackEntry?.destination?.id == R.id.homeFragment &&
-//            navController.previousBackStackEntry?.destination?.id == R.id.fragmentSplash ||
-//            navController.previousBackStackEntry?.destination?.id == R.id.fragmentLogin
-//        ) {
-//
-//            finish()
-//        }
-//        super.onBackPressed()
-//    }
+
 }

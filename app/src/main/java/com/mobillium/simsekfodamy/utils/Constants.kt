@@ -12,4 +12,5 @@ object Constants {
     const val CATEGORY_RECIPES = "category-recipes"
 
     const val FILL_REQUIRED_FIELDS = "Lütfen boşlukları doldurunuz."
+    const val LOGGED_OUT ="Çıkış Yapıldı"
 }

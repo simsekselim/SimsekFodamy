@@ -1,145 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/seperator"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/margin_normal"
-            android:background="@color/secondWhite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_profile_picture"
-            android:layout_width="@dimen/profile_pictures_size"
-            android:layout_height="@dimen/profile_pictures_size"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:layout_marginEnd="@dimen/margin_normal"
-            android:src="@drawable/profile"
-            app:layout_constraintEnd_toStartOf="@id/barrier_profile_picture"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/seperator" />
+            <View
+                android:id="@+id/seperator"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/margin_normal"
+                android:background="@color/secondWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier_profile_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="start"
-            app:constraint_referenced_ids="tv_username,tv_description" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_profile_picture"
+                android:layout_width="@dimen/profile_pictures_size"
+                android:layout_height="@dimen/profile_pictures_size"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:src="@drawable/profile"
+                app:layout_constraintEnd_toStartOf="@id/barrier_profile_picture"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/seperator" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/tv_description"
-            app:layout_constraintStart_toEndOf="@id/barrier_profile_picture"
-            app:layout_constraintTop_toTopOf="@id/iv_profile_picture"
-            tools:text="TestUser" />
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_profile_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="start"
+                app:constraint_referenced_ids="tv_username,tv_description" />
 
-        <View
-            android:id="@+id/divider_header"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:background="@color/line"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_profile_picture" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tv_description"
+                app:layout_constraintStart_toEndOf="@id/barrier_profile_picture"
+                app:layout_constraintTop_toTopOf="@id/iv_profile_picture"
+                tools:text="TestUser" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/iv_profile_picture"
-            app:layout_constraintStart_toEndOf="@id/barrier_profile_picture"
-            app:layout_constraintTop_toBottomOf="@id/tv_username"
-            tools:text="3 Tarif 0 Takipçi" />
+            <View
+                android:id="@+id/divider_header"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:background="@color/line"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_profile_picture" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/margin_normal"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/divider_header"
-            tools:text="Makarna Tarifi" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/iv_profile_picture"
+                app:layout_constraintStart_toEndOf="@id/barrier_profile_picture"
+                app:layout_constraintTop_toBottomOf="@id/tv_username"
+                tools:text="3 Tarif 0 Takipçi" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_subtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:text="Hamur İşi" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/margin_normal"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/divider_header"
+                tools:text="Makarna Tarifi" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_recipe"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/recipe_img_size"
-            android:layout_marginTop="@dimen/margin_small"
-            android:scaleType="centerCrop"
-            android:src="@color/line"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
-            tools:text="Hamur İşi" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="Hamur İşi" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_madal"
-            android:layout_width="@dimen/madal_size"
-            android:layout_height="@dimen/madal_size"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:layout_marginEnd="@dimen/margin_normal"
-            android:src="@drawable/editors"
-            app:layout_constraintEnd_toEndOf="@id/iv_recipe"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintTop_toTopOf="@id/iv_recipe" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_recipe"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/recipe_img_size"
+                android:layout_marginTop="@dimen/margin_small"
+                android:scaleType="centerCrop"
+                android:src="@color/line"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
+                tools:text="Hamur İşi" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/recipe_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:paddingBottom="@dimen/margin_normal"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
-            app:layout_constraintTop_toBottomOf="@id/iv_recipe"
-            tools:text="0 Yorum 0 Beğeni" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_madal"
+                android:layout_width="@dimen/madal_size"
+                android:layout_height="@dimen/madal_size"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:src="@drawable/editors"
+                app:layout_constraintEnd_toEndOf="@id/iv_recipe"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintTop_toTopOf="@id/iv_recipe" />
 
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/recipe_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:paddingBottom="@dimen/margin_normal"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="@id/guideline_start"
+                app:layout_constraintTop_toBottomOf="@id/iv_recipe"
+                tools:text="0 Yorum 0 Beğeni" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
 
-</androidx.cardview.widget.CardView>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

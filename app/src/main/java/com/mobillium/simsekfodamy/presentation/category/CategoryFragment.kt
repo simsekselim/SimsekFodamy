@@ -17,6 +17,7 @@ class CategoryFragment() :
         CategoryViewModel::class.java
     ) {
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -37,8 +38,6 @@ class CategoryFragment() :
             findNavController().navigate(CategoryFragmentDirections.actionCategoryFragmentToRecipeDetailFragment(it.id))
         }
 
-        binding.toolbar.ivBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+
     }
 }

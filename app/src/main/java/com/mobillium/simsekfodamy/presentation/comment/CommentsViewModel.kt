@@ -36,7 +36,7 @@ class CommentsViewModel @Inject constructor(
 
     fun sendComment() = viewModelScope.launch {
         if (preferences.getToken().isNullOrBlank()) {
-            navigate.call()
+            navigate(CommentsFragmentDirections.actionCommentsFragmentToLoginWarningDialog())
         } else {
             when (val response = repository.sendComment(recipeId, commentText.value.toString())) {
                 is Result.Success -> {

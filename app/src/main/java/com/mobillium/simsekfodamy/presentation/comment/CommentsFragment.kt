@@ -23,23 +23,15 @@ class CommentsFragment() :
         CommentsViewModel::class.java
     ) {
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = "Yorumlar"
-        binding.toolbar.ivBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-        binding.toolbar.tvBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
-        viewModel.navigate.observe(viewLifecycleOwner, {
-            findNavController().navigate(R.id.loginWarningDialog)
-        })
+
         val adapter = CommentsAdapter()
 
         val linearLayoutManager = LinearLayoutManager(requireContext())

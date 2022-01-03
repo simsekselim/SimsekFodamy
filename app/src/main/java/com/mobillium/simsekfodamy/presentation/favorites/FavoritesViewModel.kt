@@ -7,6 +7,8 @@ import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
 import com.mobillium.simsekfodamy.utils.ActionLiveData
+import com.mobillium.simsekfodamy.utils.Constants
+import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
 import com.mobillium.simsekfodamy.utils.PreferencesManager
 import com.mobillium.simsekfodamy.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,7 +33,7 @@ class FavoritesViewModel @Inject constructor(
         viewModelScope.launch {
             if (preferences.isLogin()) {
                 when (user.logout()) {
-                    is Result.Success -> println("Logged Out")
+                    is Result.Success -> showMessage(LOGGED_OUT)
 
                     is Result.Error -> println("Error")
                 }

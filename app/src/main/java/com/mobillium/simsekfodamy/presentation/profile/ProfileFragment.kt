@@ -16,6 +16,7 @@ class ProfileFragment :
         R.layout.fragment_profile,
         ProfileViewModel::class.java
     ) {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
@@ -30,7 +31,6 @@ class ProfileFragment :
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
-            Toast.makeText(context, "Çıkış Yapıldı", Toast.LENGTH_LONG).show()
         }
 
         viewModel.navigateLogin.observe(viewLifecycleOwner, {
