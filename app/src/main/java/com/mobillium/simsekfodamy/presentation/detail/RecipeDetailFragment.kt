@@ -78,6 +78,7 @@ class RecipeDetailFragment() :
             )
             buttonUserFollow.text =
                 if (recipe.user.is_following) getString(R.string.following)
+
                 else getString(R.string.follow_user)
 
             buttonUserFollow.backgroundTintList =

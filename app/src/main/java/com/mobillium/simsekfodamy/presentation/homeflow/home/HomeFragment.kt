@@ -65,7 +65,7 @@ class HomeFragment :
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
-            Toast.makeText(context, "Çıkış Yapıldı", Toast.LENGTH_LONG).show()
+
         }
         lifecycleScope.launch {
             viewModel.getToken().asLiveData().observe(viewLifecycleOwner, {

@@ -81,6 +81,9 @@
         <action
             android:id="@+id/action_recipeDetailFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_bottomSheetFragment"
+            app:destination="@id/bottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/commentsFragment"
@@ -127,4 +130,9 @@
         android:id="@+id/loginWarningDialog"
         android:name="com.mobillium.simsekfodamy.presentation.dialog.LoginWarningDialog"
         android:label="LoginWarningDialog" />
+    <dialog
+        android:id="@+id/bottomSheetFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.bottom.BottomSheetFragment"
+        android:label="fragment_bottom_sheet"
+        tools:layout="@layout/fragment_bottom_sheet" />
 </navigation>

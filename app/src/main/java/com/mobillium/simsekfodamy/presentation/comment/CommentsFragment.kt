@@ -30,10 +30,6 @@ class CommentsFragment() :
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = "Yorumlar"
-        binding.toolbar.ivBack.setOnClickListener {
-            viewModel.popBackStack()
-        }
-
 
 
         val adapter = CommentsAdapter()

@@ -38,8 +38,6 @@ class CategoryFragment() :
             findNavController().navigate(CategoryFragmentDirections.actionCategoryFragmentToRecipeDetailFragment(it.id))
         }
 
-        binding.toolbar.ivBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+
     }
 }

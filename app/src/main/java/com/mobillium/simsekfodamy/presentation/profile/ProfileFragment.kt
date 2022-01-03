@@ -31,7 +31,6 @@ class ProfileFragment :
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
-            Toast.makeText(context, "Çıkış Yapıldı", Toast.LENGTH_LONG).show()
         }
 
         viewModel.navigateLogin.observe(viewLifecycleOwner, {

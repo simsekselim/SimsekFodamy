@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+
         <variable
             name="baseViewModel"
             type="com.mobillium.simsekfodamy.base.BaseViewModel" />
@@ -30,13 +32,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:src="@drawable/fodamy"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:src="@drawable/fodamy"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -47,22 +49,22 @@
             android:clickable="true"
             android:onClick="@{()->baseViewModel.popBackStack()}"
             android:src="@drawable/back"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:tint="@color/white" />
 
         <TextView
             android:id="@+id/tv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:onClick="@{()->baseViewModel.popBackStack()}"
+            android:padding="5dp"
             android:text="@string/back"
             android:textColor="@color/white"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_back" />
+            app:layout_constraintStart_toEndOf="@id/iv_back"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageView
@@ -73,9 +75,9 @@
             android:layout_marginRight="20dp"
             android:clickable="true"
             android:src="@drawable/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:tint="@color/white" />
 
 
