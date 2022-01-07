@@ -37,7 +37,7 @@ class ImageSliderFragment() :
         binding.indicator.setViewPager2(binding.viewPagerImages)
 
         binding.buttonExit.setOnClickListener {
-            findNavController().popBackStack()
+            viewModel.exit()
         }
     }
 }

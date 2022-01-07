@@ -34,6 +34,11 @@
     <string name="followed">Takip edilen</string>
     <string name="following">Takip Ediliyor</string>
     <string name="show_profile_go_login">Profili görüntülemek için giriş yap</string>
+    <string name="cancel">İptal</string>
+    <string name="unfollow">Takibi Bırak</string>
+    <string name="set">Düzenle</string>
+    <string name="delete">Sil</string>
+    <string name="save">Kaydet</string>
 
 
 </resources>

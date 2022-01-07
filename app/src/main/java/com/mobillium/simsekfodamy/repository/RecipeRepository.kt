@@ -33,6 +33,12 @@ interface RecipeRepository {
     suspend fun sendComment(recipeId: Int, text: String): Result<Comment>
     suspend fun likeRecipe(recipeId: Int): Result<BaseResponse<Any>>
     suspend fun dislikeRecipe(recipeId: Int): Result<BaseResponse<Any>>
+    suspend fun editRecipeComments(
+        recipeId: Int,
+        comment: Int,
+        text: String
+    ): Result<BaseResponse<Any>>
+    suspend fun deleteRecipeComments(recipeId: Int,comment: Int) :Result<BaseResponse<Any>>
 }
 
 @Singleton
@@ -145,6 +151,7 @@ class DefaultRecipeRepository @Inject constructor(
                 recipeService,
                 recipeId
             )
+
         }
     ).flow
 
@@ -167,6 +174,28 @@ class DefaultRecipeRepository @Inject constructor(
     override suspend fun dislikeRecipe(recipeId: Int): Result<BaseResponse<Any>> {
         return try {
             Result.Success(recipeService.dislikeRecipe(recipeId))
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
+    }
+
+    override suspend fun editRecipeComments(
+        recipeId: Int,
+        comment: Int,
+        text: String
+    ): Result<BaseResponse<Any>> {
+        return try {
+            Result.Success(recipeService.editRecipeComments(recipeId, comment, text))
+        } catch (e: HttpException) {
+            Result.Error(e)
+        }
+    }
+    override suspend fun deleteRecipeComments(
+        recipeId: Int,
+        comment: Int
+    ): Result<BaseResponse<Any>> {
+        return try {
+            Result.Success(recipeService.deleteRecipeComments(recipeId, comment))
         } catch (e: HttpException) {
             Result.Error(e)
         }

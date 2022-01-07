@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/bottom.xml" value="0.5615384615384615" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/button.xml" value="0.5074074074074074" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/comment.xml" value="0.5185185185185185" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/drawable/cross.xml" value="0.5703125" />
@@ -30,7 +31,8 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/dialog_login_warning.xml" value="0.4361413043478261" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/divider.xml" value="0.3491847826086957" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/forgetpassword_fragment.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.45652173913043476" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_bottom_comment.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.5371655104063429" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_category.xml" value="0.26721014492753625" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_comments.xml" value="0.4361413043478261" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_editor.xml" value="0.2857789855072464" />
@@ -47,6 +49,7 @@
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_recipe_detail.xml" value="0.2695035460992908" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_see_all_click.xml" value="0.4732789855072464" />
+        <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_set_comment.xml" value="0.37318840579710144" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/fragment_splash.xml" value="0.338768115942029" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/intro_fragment.xml" value="0.5" />
         <entry key="..\:/Users/m_ali/AndroidStudioProjects/SimsekFodamy/app/src/main/res/layout/item_category.xml" value="0.33" />

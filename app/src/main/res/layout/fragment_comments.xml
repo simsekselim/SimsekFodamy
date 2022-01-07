@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.mobillium.simsekfodamy.presentation.comment.CommentsViewModel" />
+            type="com.mobillium.simsekfodamy.presentation.commentflow.comment.CommentsViewModel" />
     </data>
 
 

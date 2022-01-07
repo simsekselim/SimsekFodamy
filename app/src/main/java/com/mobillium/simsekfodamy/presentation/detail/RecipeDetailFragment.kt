@@ -6,6 +6,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
+import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.R
@@ -21,7 +23,7 @@ import kotlinx.coroutines.flow.collect
 @AndroidEntryPoint
 class RecipeDetailFragment() :
     BaseFragment<RecipeDetailViewModel, FragmentRecipeDetailBinding>
-    (
+        (
         R.layout.fragment_recipe_detail,
         RecipeDetailViewModel::class.java
     ) {
@@ -31,40 +33,39 @@ class RecipeDetailFragment() :
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.setImageResource(R.drawable.share)
+        setFragmentResultListener("request_unfollow") { requestKey, bundle ->
+            if (bundle.getBoolean("unfollow", false)) {
 
-        viewModel.navigate.observe(viewLifecycleOwner, {
-            findNavController().navigate(R.id.loginWarningDialog)
-        })
+                viewModel.unfollowUser()
+
+
+            }
+        }
+
+
+
+
 
         viewModel.recipe.observe(viewLifecycleOwner, { recipe ->
             binding.recipe = recipe
-            binding.buttonAddComment.setOnClickListener {
-                setRecipeDataToUI(recipe)
-                findNavController().navigate(
-                    R.id.commentsFragment,
-                    bundleOf("recipeCommentId" to recipe.id)
-                )
-            }
-            binding.imageCommentsIcon.setOnClickListener {
-                setRecipeDataToUI(recipe)
-                findNavController().navigate(
-                    R.id.commentsFragment,
-                    bundleOf("recipeCommentId" to recipe.id)
-                )
-            }
             binding.imageRecipe.setOnClickListener {
-                findNavController().navigate(R.id.imageSliderFragment, bundleOf("image" to ImageList(viewModel?.recipe?.value?.images!!)))
+                viewModel.toImageSlider()
+
+
             }
         })
 
         viewModel.comment.observe(viewLifecycleOwner, { comment ->
             binding.previewCommit.comment = comment
+
+
         })
 
         viewModel.getRecipeById()
         setListeners()
         viewModel.getFirstComment()
         eventHandler()
+
     }
 
     private fun setRecipeDataToUI(recipe: Recipe) {
@@ -78,7 +79,6 @@ class RecipeDetailFragment() :
             )
             buttonUserFollow.text =
                 if (recipe.user.is_following) getString(R.string.following)
-
                 else getString(R.string.follow_user)
 
             buttonUserFollow.backgroundTintList =
@@ -103,6 +103,7 @@ class RecipeDetailFragment() :
         binding.apply {
             buttonUserFollow.setOnClickListener {
                 viewModel?.onClickFollowButton()
+
             }
             constraintCommentButton.setOnClickListener {
                 viewModel?.onClickAddComment()
@@ -136,27 +137,10 @@ class RecipeDetailFragment() :
     }
 
     private fun setFirstComment(comment: Comment?) {
-        if (comment != null) {
-
-            binding.previewCommit.apply {
-                textUserName.text = comment.user.username
-                textCommentDifference.text = comment.difference
-                textCommentBody.text = comment.text
-                textUserInfo.text = String.format(
-                    getString(R.string.user_info),
-                    comment.user.recipe_count,
-                    comment.user.followed_count
-                )
-                if (comment.user.image != null)
-                    Picasso.get()
-                        .load(comment.user.image.url)
-                        .into(imageUser)
-                else
-                    imageUser.setImageResource(R.drawable.profile)
-            }
-        } else {
+        if (comment == null) {
             binding.previewCommit.root.isVisible = false
             binding.textCommentsTitle.text = getString(R.string.no_comments)
+
         }
     }
 }

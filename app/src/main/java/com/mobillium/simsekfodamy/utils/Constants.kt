@@ -13,4 +13,6 @@ object Constants {
 
     const val FILL_REQUIRED_FIELDS = "Lütfen boşlukları doldurunuz."
     const val LOGGED_OUT ="Çıkış Yapıldı"
+    const val COMMENT ="YORUMLAR"
+    const val DELETED = "Silindi"
 }
