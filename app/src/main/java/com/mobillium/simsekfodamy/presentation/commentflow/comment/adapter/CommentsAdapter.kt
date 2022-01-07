@@ -1,4 +1,4 @@
-package com.mobillium.simsekfodamy.presentation.comment.adapter
+package com.mobillium.simsekfodamy.presentation.commentflow.comment.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,6 +16,7 @@ class CommentsAdapter :
     }
 
     var onChildItemClicked: ((Comment) -> Unit)? = null
+    var itemClicked: ((Comment) -> Unit)? = null
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val currentItem = getItem(position)
@@ -26,6 +27,18 @@ class CommentsAdapter :
 
     inner class CommentViewHolder(private val binding: ItemCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.textCommentBody.setOnLongClickListener {
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                    val currentItem = getItem(bindingAdapterPosition)
+                    currentItem?.let {
+                        itemClicked?.invoke(it)
+                    }
+                }
+                false
+            }
+        }
+
         fun bind(comment: Comment) {
             binding.comment = comment
             onChildItemClicked?.invoke(comment)

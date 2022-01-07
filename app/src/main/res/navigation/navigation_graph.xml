@@ -84,10 +84,13 @@
         <action
             android:id="@+id/action_recipeDetailFragment_to_bottomSheetFragment"
             app:destination="@id/bottomSheetFragment" />
+        <action
+            android:id="@+id/action_recipeDetailFragment_to_loginWarningDialog"
+            app:destination="@id/loginWarningDialog" />
     </fragment>
     <fragment
         android:id="@+id/commentsFragment"
-        android:name="com.mobillium.simsekfodamy.presentation.comment.CommentsFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.commentflow.comment.CommentsFragment"
         android:label="CommentsFragment">
         <argument
             android:name="recipeCommentId"
@@ -98,6 +101,12 @@
         <action
             android:id="@+id/action_commentsFragment_to_loginWarningDialog"
             app:destination="@id/loginWarningDialog" />
+        <action
+            android:id="@+id/action_commentsFragment_to_bottomCommentFragment"
+            app:destination="@id/bottomCommentFragment" />
+        <action
+            android:id="@+id/action_commentsFragment_to_setCommentFragment"
+            app:destination="@id/setCommentFragment" />
     </fragment>
     <fragment
         android:id="@+id/imageSliderFragment"
@@ -135,4 +144,25 @@
         android:name="com.mobillium.simsekfodamy.presentation.bottom.BottomSheetFragment"
         android:label="fragment_bottom_sheet"
         tools:layout="@layout/fragment_bottom_sheet" />
+    <fragment
+        android:id="@+id/setCommentFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.commentflow.setcomment.SetCommentFragment"
+        android:label="SetCommentFragment" >
+        <argument
+            android:name="commentId"
+            app:argType="integer" />
+        <argument
+            android:name="recipeId"
+            app:argType="integer" />
+        <argument
+            android:name="commentText"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_setCommentFragment_to_commentsFragment"
+            app:destination="@id/commentsFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/bottomCommentFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.bottom.BottomCommentFragment"
+        android:label="BottomCommentFragment" />
 </navigation>

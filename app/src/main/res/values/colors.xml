@@ -21,5 +21,9 @@
     <color name="cinder">#212529</color>
     <color name="dark">#212529</color>
     <color name="indicator">#707070</color>
-    <color name="secondWhite">#F1F2F3</color>
+    <color name="second_white">#F1F2F3</color>
+    <color name="dark_blue">#007AFF</color>
+    <color name="light_gray">#979797</color>
+    <color name="bottom">#CCEDEDED</color>
+
 </resources>

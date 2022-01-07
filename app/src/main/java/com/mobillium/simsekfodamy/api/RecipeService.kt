@@ -5,6 +5,7 @@ import com.mobillium.simsekfodamy.model.Comment
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.response.BaseResponse
 import com.mobillium.simsekfodamy.utils.Constants
+import okhttp3.Response
 import retrofit2.http.*
 
 interface RecipeService {
@@ -63,5 +64,18 @@ interface RecipeService {
     @DELETE("recipe/{recipe_id}/like")
     suspend fun dislikeRecipe(
         @Path("recipe_id") recipeId: Int
+    ): BaseResponse<Any>
+
+    @PUT("recipe/{recipe_id}/comment/{comment_id}")
+    suspend fun editRecipeComments(
+        @Path("recipe_id") recipeID: Int,
+        @Path("comment_id") commentID: Int,
+        @Query("text") text: String
+    ): BaseResponse<Any>
+
+    @DELETE("recipe/{recipe_id}/comment/{comment_id}")
+    suspend fun deleteRecipeComments(
+        @Path("recipe_id") recipeID: Int,
+        @Path("comment_id") commentID: Int
     ): BaseResponse<Any>
 }

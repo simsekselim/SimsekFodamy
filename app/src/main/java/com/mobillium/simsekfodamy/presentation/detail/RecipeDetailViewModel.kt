@@ -3,9 +3,11 @@ package com.mobillium.simsekfodamy.presentation.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.handleHttpException
 import com.mobillium.simsekfodamy.model.Comment
+import com.mobillium.simsekfodamy.model.ImageList
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
@@ -31,13 +33,29 @@ class RecipeDetailViewModel @Inject constructor(
     val recipe = MutableLiveData<Recipe>()
     val comment = MutableLiveData<Comment>()
     val recipeId: Int = state.get("recipeId") ?: 0
-    val navigate = ActionLiveData()
     private val _recipeDetailViewEvent = Channel<RecipeDetailViewEvent>()
     val event = _recipeDetailViewEvent.receiveAsFlow()
 
     init {
         getRecipeById()
         getFirstComment()
+    }
+
+    fun toComment(commentRecipeId: Int) {
+        navigate(
+            RecipeDetailFragmentDirections.actionRecipeDetailFragmentToCommentsFragment(
+                commentRecipeId
+            )
+        )
+    }
+
+    fun toImageSlider() {
+        println("toImageSlider")
+        navigate(
+            RecipeDetailFragmentDirections.actionRecipeDetailFragmentToImageSliderFragment(
+                ImageList(recipe.value?.images!!)
+            )
+        )
     }
 
     fun getRecipeById() {
@@ -50,7 +68,7 @@ class RecipeDetailViewModel @Inject constructor(
                     recipe.value = response.response
                 }
                 is Result.Error -> {
-                    navigate.call()
+                    showMessage(response.exception.handleHttpException())
                     println("Error")
                 }
             }
@@ -58,7 +76,6 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
     fun getFirstComment() {
-
         viewModelScope.launch {
             val response = recipeRepository.getFirstComment(recipeId)
             when (response) {
@@ -67,7 +84,7 @@ class RecipeDetailViewModel @Inject constructor(
                     comment.value = response.response
                 }
                 is Result.Error -> {
-
+                    _recipeDetailViewEvent.send(RecipeDetailViewEvent.FirstComment(null))
                     println("Error")
                 }
             }
@@ -76,11 +93,12 @@ class RecipeDetailViewModel @Inject constructor(
 
     fun onClickFollowButton() {
         viewModelScope.launch {
-            if (recipe.value == null) {
+            if (preferences.token.first().isBlank()) {
+                navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToLoginWarningDialog())
             } else {
 
                 if (recipe.value?.user?.is_following!!)
-                    unfollowUser(recipe?.value?.user?.id!!)
+                    navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToBottomSheetFragment())
                 else
                     followUser(recipe?.value?.user?.id!!)
             }
@@ -90,23 +108,27 @@ class RecipeDetailViewModel @Inject constructor(
     fun onClickAddComment() {
         viewModelScope.launch {
             if (preferences.token.first().isBlank()) {
-                navigate.call()
+                navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToLoginWarningDialog())
             } else {
-                navigate.call()
+                navigate(
+                    RecipeDetailFragmentDirections.actionRecipeDetailFragmentToCommentsFragment(
+                        recipe.value!!.id
+                    )
+                )
             }
         }
     }
 
     fun onClickLike() = viewModelScope.launch {
         if (preferences.token.first().isBlank())
-            navigate.call()
+            navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToLoginWarningDialog())
         else if (recipe.value!!.is_liked)
             dislikeRecipe()
         else
             likeRecipe()
     }
 
-    private fun followUser(id: Int) = viewModelScope.launch {
+    fun followUser(id: Int) = viewModelScope.launch {
         when (val response = user.followUser(id)) {
             is Result.Success -> {
                 getRecipeById()
@@ -117,10 +139,11 @@ class RecipeDetailViewModel @Inject constructor(
         }
     }
 
-    private fun unfollowUser(id: Int) = viewModelScope.launch {
-        when (val response = user.unfollowUser(id)) {
+    fun unfollowUser() = viewModelScope.launch {
+        when (val response = user.unfollowUser(recipe.value!!.user.id)) {
             is Result.Success -> {
                 getRecipeById()
+
             }
             is Result.Error -> {
                 response.exception.handleHttpException()
