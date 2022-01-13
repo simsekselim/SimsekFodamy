@@ -41,7 +41,7 @@ class EditCommentFragment() : BaseFragment<EditCommentViewModel, FragmentEditCom
         }
     }
 
-    companion object{
+    companion object {
         const val ACTION = "action"
         const val REFRESH = "refresh"
     }

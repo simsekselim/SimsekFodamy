@@ -26,7 +26,6 @@ class RecipeDetailViewModel @Inject constructor(
     state: SavedStateHandle
 ) : BaseViewModel() {
 
-
     val recipe = MutableLiveData<Recipe>()
     val comment = MutableLiveData<Comment>()
     val recipeId: Int = state.get(RECIPE_ID) ?: 0
@@ -159,6 +158,5 @@ class RecipeDetailViewModel @Inject constructor(
 
     companion object {
         const val RECIPE_ID = "recipeId"
-
     }
 }

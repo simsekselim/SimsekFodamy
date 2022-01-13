@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentCommentsBinding
@@ -52,8 +51,6 @@ class CommentsFragment() :
                 }
             }
         }
-
-
 
         (activity as AppCompatActivity).showIme()
         binding.comment.requestFocus()

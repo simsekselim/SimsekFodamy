@@ -1,13 +1,8 @@
 package com.mobillium.simsekfodamy.presentation.loginflow.intro
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -15,14 +10,11 @@ import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentIntroBinding
 import com.mobillium.simsekfodamy.presentation.loginflow.adapter.ViewPagerAdapter
-import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
 
-
-class FragmentIntro : BaseFragment<IntroViewModel,FragmentIntroBinding>(
+class FragmentIntro : BaseFragment<IntroViewModel, FragmentIntroBinding>(
     R.layout.fragment_intro,
     IntroViewModel::class.java
 ) {
-
 
     @SuppressLint(RESOURCE_AS_COLOR)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +46,7 @@ class FragmentIntro : BaseFragment<IntroViewModel,FragmentIntroBinding>(
             )
         }
         postToList()
-        val viewPager= binding.viewPager2
+        val viewPager = binding.viewPager2
         viewPager.adapter = ViewPagerAdapter(viewModel.titlesList, viewModel.descList, viewModel.imagesList)
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
 
@@ -79,7 +71,7 @@ class FragmentIntro : BaseFragment<IntroViewModel,FragmentIntroBinding>(
             }
         }
     }
-    companion object{
-        const val RESOURCE_AS_COLOR ="ResourceAsColor"
+    companion object {
+        const val RESOURCE_AS_COLOR = "ResourceAsColor"
     }
 }

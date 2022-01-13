@@ -60,5 +60,3 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
         navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
     }
 }
-
-

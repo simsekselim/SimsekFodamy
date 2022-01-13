@@ -39,5 +39,3 @@ class CategoryViewModel @Inject constructor(
         const val CATEGORY_ID = "categoryId"
     }
 }
-
-

@@ -22,7 +22,6 @@ class EditCommentViewModel @Inject constructor(
 
     val event = SingleLiveEvent<EditCommentViewEvent>()
 
-
     private val recipeId = stateHandle.get<Int>(RECIPE_ID) ?: 0
     private val commentId = stateHandle.get<Int>(COMMENT_ID) ?: 0
     private val commentText = stateHandle.get<String>(COMMENT_TEXT) ?: ""

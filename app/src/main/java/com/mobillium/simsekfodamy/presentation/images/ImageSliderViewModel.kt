@@ -19,6 +19,5 @@ class ImageSliderViewModel @Inject constructor(
     }
     companion object {
         const val IMAGES = "images"
-
     }
 }

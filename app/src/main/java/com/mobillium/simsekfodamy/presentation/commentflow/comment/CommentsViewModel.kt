@@ -88,6 +88,5 @@ class CommentsViewModel @Inject constructor(
     companion object {
         const val RECIPE_ID = "recipeId"
         const val RECIPE_COMMENT_ID = "recipeCommentId"
-
     }
 }
