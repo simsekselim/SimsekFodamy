@@ -9,8 +9,6 @@ import retrofit2.http.*
 
 interface RecipeService {
 
-
-
     @GET(Constants.RECIPE)
     suspend fun getRecipe(
         @Path("recipe_id") recipe_id: Int

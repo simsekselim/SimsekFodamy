@@ -2,10 +2,7 @@ package com.mobillium.simsekfodamy.presentation.favorites
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
@@ -49,7 +46,7 @@ class FavoritesFragment() :
     }
 
     override fun onSeeAllClick(category: Category) {
-       viewModel.seeAll(category.id)
+        viewModel.seeAll(category.id)
     }
 
     override fun onRecipeClick(recipe: Recipe) {

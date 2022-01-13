@@ -61,6 +61,5 @@ constructor(
     companion object {
         const val USERNAME = "salihaga"
         const val PASSWORD = "fodamy48+"
-
     }
 }

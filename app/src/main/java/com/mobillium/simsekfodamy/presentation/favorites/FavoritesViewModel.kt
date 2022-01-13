@@ -27,7 +27,6 @@ class FavoritesViewModel @Inject constructor(
 
     val category = MutableLiveData<PagingData<Category>>()
 
-
     init {
         getRecipeCategory()
     }
@@ -50,10 +49,10 @@ class FavoritesViewModel @Inject constructor(
         }
     }
 
-    fun seeAll(categoryId : Int){
+    fun seeAll(categoryId: Int) {
         navigate(FavoritesFragmentDirections.actionFavoritesFragmentToCategoryFragment(categoryId))
     }
-    fun onRecipeClick(recipeId :Int){
+    fun onRecipeClick(recipeId: Int) {
         navigate(FavoritesFragmentDirections.actionFavoritesFragmentToRecipeDetailFragment(recipeId))
     }
 }

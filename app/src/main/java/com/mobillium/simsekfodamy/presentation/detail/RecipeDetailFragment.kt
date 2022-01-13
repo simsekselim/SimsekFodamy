@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecipeDetailFragment() :
     BaseFragment<RecipeDetailViewModel, FragmentRecipeDetailBinding>
-        (
+    (
         R.layout.fragment_recipe_detail,
         RecipeDetailViewModel::class.java
     ) {
@@ -37,8 +37,6 @@ class RecipeDetailFragment() :
             binding.imageRecipe.setOnClickListener {
                 viewModel.toImageSlider()
             }
-
-
         })
 
         viewModel.comment.observe(viewLifecycleOwner, { comment ->
@@ -70,7 +68,7 @@ class RecipeDetailFragment() :
             binding.textCommentsTitle.text = getString(R.string.no_comments)
         }
     }
-    companion object{
+    companion object {
         const val REQUEST_UNFOLLOW = "request_unfollow"
         const val UNFOLLOW = "unfollow"
     }

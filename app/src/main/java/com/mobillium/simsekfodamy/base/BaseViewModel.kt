@@ -23,5 +23,4 @@ abstract class BaseViewModel : ViewModel() {
     fun showMessage(message: String) = viewModelScope.launch {
         baseEvent.postValue(BaseViewEvent.ShowMessage(message))
     }
-
 }

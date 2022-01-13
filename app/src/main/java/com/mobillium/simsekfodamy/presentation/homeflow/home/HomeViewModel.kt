@@ -2,7 +2,6 @@ package com.mobillium.simsekfodamy.presentation.homeflow.home
 
 import androidx.lifecycle.viewModelScope
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
 import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
 import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT_ERROR

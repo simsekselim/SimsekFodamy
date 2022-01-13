@@ -54,10 +54,9 @@ class BottomCommentFragment : BottomSheetDialogFragment() {
             delete()
         }
     }
-    companion object{
+    companion object {
         const val ACTION = "action"
         const val DELETE = "delete"
         const val SET = "set"
-
     }
 }

@@ -27,8 +27,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
 
-
-
     @Provides
     @Singleton
     fun provideAuthInterceptorOkHttpClient(
@@ -47,7 +45,6 @@ class ApplicationModule {
             .build()
     }
 
-
     @Provides
     @Singleton
     fun provideRetrofit(
@@ -59,14 +56,10 @@ class ApplicationModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-
-
     @Provides
     @Singleton
     fun providePreferencesManager(@ApplicationContext context: Context): PreferencesManager =
         PreferencesManager(context)
-
-
 
     @Provides
     @Singleton
@@ -77,8 +70,6 @@ class ApplicationModule {
     @Singleton
     fun provideUserService(retrofit: Retrofit): RecipeService =
         retrofit.create(RecipeService::class.java)
-
-
 
     @Module
     @InstallIn(SingletonComponent::class)

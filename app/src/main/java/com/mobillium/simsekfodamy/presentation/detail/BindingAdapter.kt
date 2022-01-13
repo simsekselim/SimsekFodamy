@@ -82,5 +82,3 @@ fun isFollowing(button: Button, isFollowing: Boolean) {
         button.setTextColor(ContextCompat.getColor(button.context, R.color.red))
     }
 }
-
-
