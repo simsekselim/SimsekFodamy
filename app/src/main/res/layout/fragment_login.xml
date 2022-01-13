@@ -23,9 +23,9 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Giriş Yap"
-            android:textSize="20dp"
+            android:layout_marginTop="@dimen/login_margin"
+            android:text="@string/login"
+            android:textSize="@dimen/text"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,47 +33,47 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/login_margin"
+            android:layout_marginEnd="@dimen/margin_normal"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="@dimen/padding_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3">
 
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/margin_small"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle"
-                android:drawableLeft="@drawable/user"
+                android:drawableStart="@drawable/user"
                 android:ems="10"
-                android:hint="User Name"
+                android:hint="@string/user_name"
                 android:inputType="textPersonName"
                 android:padding="16dp"
                 android:text="@={viewModel.username}" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/margin_small"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle"
-                android:drawableLeft="@drawable/password"
+                android:drawableStart="@drawable/password"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="16dp"
                 android:text="@={viewModel.password}" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,12 +83,12 @@
                 android:onClick="@{()->viewModel.onClickLogin()}"
                 android:background="@drawable/primary_button"
                 android:fontFamily="@font/nunito_bold"
-                android:text="Giriş Yap"
+                android:text="@string/login"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/forget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,7 +96,8 @@
                 android:layout_gravity="end"
                 android:clickable="true"
                 android:padding="10dp"
-                android:text="Şifrenizi mi Unuttunuz?" />
+                android:text="@string/forget_the_password"
+                android:focusable="true" />
 
 
         </LinearLayout>
@@ -111,11 +112,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hesabın mı yok?"
+                android:text="@string/have_not_acc"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -127,7 +128,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:onClick="@{()->viewModel.toRegister()}"
-                android:text="Üye Ol"
+                android:text="@string/register"
                 android:textColor="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

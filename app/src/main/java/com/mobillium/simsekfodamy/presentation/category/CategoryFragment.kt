@@ -2,8 +2,6 @@ package com.mobillium.simsekfodamy.presentation.category
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentCategoryBinding
@@ -17,27 +15,21 @@ class CategoryFragment() :
         CategoryViewModel::class.java
     ) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = RecipeAdapter()
 
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-
         binding.apply {
-            recyclerRecipes.layoutManager = linearLayoutManager
             recyclerRecipes.setHasFixedSize(false)
             recyclerRecipes.adapter = adapter
         }
 
-        viewModel.recipes.observe(viewLifecycleOwner) {
+        viewModel.category.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
         adapter.onChildItemClicked = {
-            findNavController().navigate(CategoryFragmentDirections.actionCategoryFragmentToRecipeDetailFragment(it.id))
+            viewModel.toDetail(it.id)
         }
-
-
     }
 }

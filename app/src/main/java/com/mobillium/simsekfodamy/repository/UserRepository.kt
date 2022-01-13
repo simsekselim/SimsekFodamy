@@ -6,10 +6,6 @@ import com.mobillium.simsekfodamy.model.User
 import com.mobillium.simsekfodamy.response.BaseResponse
 import com.mobillium.simsekfodamy.utils.PreferencesManager
 import com.mobillium.simsekfodamy.utils.Result
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import retrofit2.HttpException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -110,11 +106,4 @@ class DefaultUserRepository @Inject constructor(
             Result.Error(e)
         }
     }
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-interface LoginModules {
-    @Binds
-    fun provideUserRepository(repository: DefaultUserRepository): UserRepository
 }

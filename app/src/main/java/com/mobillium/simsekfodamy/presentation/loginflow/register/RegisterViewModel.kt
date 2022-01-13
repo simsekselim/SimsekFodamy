@@ -45,15 +45,15 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
         }
     }
 
-    fun validateUsername(): Boolean {
+    private fun validateUsername(): Boolean {
         return username.value!!.isNotBlank()
     }
 
-    fun validatePassword(): Boolean {
+    private fun validatePassword(): Boolean {
         return return password.value!!.length > 6
     }
 
-    fun validateMail(): Boolean {
+    private fun validateMail(): Boolean {
         return email.value!!.isNotBlank()
     }
     fun toLogin() {
@@ -61,20 +61,4 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
     }
 }
 
-/*when (
-         val response =
-             repository.register(
-                 username.value.toString(),
-                 email.value.toString(),
-                 password.value.toString()
-             )
-     ) {
-         is Result.Success -> {
-             navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
-         }
-         is Result.Error -> {
-             response.exception.handleHttpException()
-         }
-     }
 
-      */

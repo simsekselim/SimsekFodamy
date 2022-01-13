@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.model.User
-import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
-import com.mobillium.simsekfodamy.utils.ActionLiveData
-import com.mobillium.simsekfodamy.utils.Constants
 import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
 import com.mobillium.simsekfodamy.utils.PreferencesManager
 import com.mobillium.simsekfodamy.utils.Result
@@ -17,14 +14,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val recipeRepository: RecipeRepository,
     private val userRepository: UserRepository,
     private val preferences: PreferencesManager
 
 ) : BaseViewModel() {
 
     val user = MutableLiveData<User>()
-    val navigateLogin = ActionLiveData()
+
     init {
         fetchUser()
     }
@@ -39,6 +35,7 @@ class ProfileViewModel @Inject constructor(
             }
         }
     }
+
     fun logout() {
 
         viewModelScope.launch {
@@ -49,7 +46,7 @@ class ProfileViewModel @Inject constructor(
                     is Result.Error -> println("Error")
                 }
             } else {
-                navigateLogin.call()
+                navigate(ProfileFragmentDirections.actionProfileFragmentToFragmentLogin())
             }
         }
     }

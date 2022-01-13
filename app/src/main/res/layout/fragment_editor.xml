@@ -28,6 +28,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_recipes"
                 android:layout_width="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
                 android:layout_height="match_parent" />
         </androidx.core.widget.NestedScrollView>
 

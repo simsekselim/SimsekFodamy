@@ -2,7 +2,6 @@ package com.mobillium.simsekfodamy.presentation.images
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
@@ -35,9 +34,5 @@ class ImageSliderFragment() :
         val imageAdapter = ImageAdapter(ImageList(populatedImages).images)
         binding.viewPagerImages.adapter = imageAdapter
         binding.indicator.setViewPager2(binding.viewPagerImages)
-
-        binding.buttonExit.setOnClickListener {
-            viewModel.exit()
-        }
     }
 }

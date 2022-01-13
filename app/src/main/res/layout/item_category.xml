@@ -6,38 +6,38 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_category"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_margin="16dp"
+        android:layout_width="@dimen/size_xx_normal"
+        android:layout_height="@dimen/size_xx_normal"
+        android:layout_margin="@dimen/margin_normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/profile" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_category_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_normal"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="@dimen/small_text"
         app:layout_constraintBottom_toBottomOf="@id/image_category"
         app:layout_constraintStart_toEndOf="@+id/image_category"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Ana Yemekler" />
+        tools:text="@string/main_food" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_category_see_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Tümünü Gör"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:layout_marginEnd="@dimen/margin_normal"
+        android:text="@string/see_all"
         android:textAllCaps="true"
         android:textColor="@color/red"
-        android:textSize="16sp"
+        android:textSize="@dimen/small_text"
         app:layout_constraintBottom_toBottomOf="@id/image_category"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,8 +45,8 @@
     <View
         android:id="@+id/view_line"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="@dimen/size_xx_small"
+        android:layout_marginTop="@dimen/margin_normal"
         android:background="@color/line"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/image_category" />
@@ -62,7 +62,7 @@
 
     <View
         android:id="@+id/seperator"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="@dimen/margin_normal"
         android:background="@color/second_white"
         app:layout_constraintEnd_toEndOf="parent"

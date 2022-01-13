@@ -4,8 +4,8 @@ import androidx.lifecycle.viewModelScope
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
-import com.mobillium.simsekfodamy.utils.ActionLiveData
 import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
+import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT_ERROR
 import com.mobillium.simsekfodamy.utils.PreferencesManager
 import com.mobillium.simsekfodamy.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,13 +16,10 @@ import javax.inject.Inject
 class HomeViewModel
 @Inject
 constructor(
-    private val recipeRepository: RecipeRepository,
     private val user: UserRepository,
     private val preferences: PreferencesManager
 
 ) : BaseViewModel() {
-
-    val navigateLogin = ActionLiveData()
 
     fun logout() {
 
@@ -31,12 +28,11 @@ constructor(
                 when (user.logout()) {
                     is Result.Success -> showMessage(LOGGED_OUT)
 
-                    is Result.Error -> println("Error")
+                    is Result.Error -> showMessage(LOGGED_OUT_ERROR)
                 }
             } else {
-                navigateLogin.call()
+                navigate(HomeFragmentDirections.actionHomeFragmentToFragmentLogin())
             }
         }
     }
-    suspend fun getToken() = preferences.token
 }

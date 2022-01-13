@@ -3,7 +3,6 @@ package com.mobillium.simsekfodamy.presentation.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.handleHttpException
 import com.mobillium.simsekfodamy.model.Comment
@@ -11,13 +10,11 @@ import com.mobillium.simsekfodamy.model.ImageList
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.repository.RecipeRepository
 import com.mobillium.simsekfodamy.repository.UserRepository
-import com.mobillium.simsekfodamy.utils.ActionLiveData
 import com.mobillium.simsekfodamy.utils.PreferencesManager
 import com.mobillium.simsekfodamy.utils.Result
+import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,12 +26,11 @@ class RecipeDetailViewModel @Inject constructor(
     state: SavedStateHandle
 ) : BaseViewModel() {
 
-    //    private val recipeLiveData = state.getLiveData<Recipe>("recipe")
+
     val recipe = MutableLiveData<Recipe>()
     val comment = MutableLiveData<Comment>()
-    val recipeId: Int = state.get("recipeId") ?: 0
-    private val _recipeDetailViewEvent = Channel<RecipeDetailViewEvent>()
-    val event = _recipeDetailViewEvent.receiveAsFlow()
+    val recipeId: Int = state.get(RECIPE_ID) ?: 0
+    val event = SingleLiveEvent<RecipeDetailViewEvent>()
 
     init {
         getRecipeById()
@@ -50,7 +46,6 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
     fun toImageSlider() {
-        println("toImageSlider")
         navigate(
             RecipeDetailFragmentDirections.actionRecipeDetailFragmentToImageSliderFragment(
                 ImageList(recipe.value?.images!!)
@@ -60,16 +55,14 @@ class RecipeDetailViewModel @Inject constructor(
 
     fun getRecipeById() {
         viewModelScope.launch {
-            val response = recipeRepository.getRecipeByID(recipeId)
-            when (response) {
+            when (val response = recipeRepository.getRecipeByID(recipeId)) {
                 is Result.Success -> {
 
-                    _recipeDetailViewEvent.send(RecipeDetailViewEvent.RecipeGot(response.response))
+                    event.postValue(RecipeDetailViewEvent.RecipeGot(response.response))
                     recipe.value = response.response
                 }
                 is Result.Error -> {
                     showMessage(response.exception.handleHttpException())
-                    println("Error")
                 }
             }
         }
@@ -77,15 +70,13 @@ class RecipeDetailViewModel @Inject constructor(
 
     fun getFirstComment() {
         viewModelScope.launch {
-            val response = recipeRepository.getFirstComment(recipeId)
-            when (response) {
+            when (val response = recipeRepository.getFirstComment(recipeId)) {
                 is Result.Success -> {
 
                     comment.value = response.response
                 }
                 is Result.Error -> {
-                    _recipeDetailViewEvent.send(RecipeDetailViewEvent.FirstComment(null))
-                    println("Error")
+                    event.postValue(RecipeDetailViewEvent.FirstComment(null))
                 }
             }
         }
@@ -100,35 +91,21 @@ class RecipeDetailViewModel @Inject constructor(
                 if (recipe.value?.user?.is_following!!)
                     navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToBottomSheetFragment())
                 else
-                    followUser(recipe?.value?.user?.id!!)
-            }
-        }
-    }
-
-    fun onClickAddComment() {
-        viewModelScope.launch {
-            if (preferences.token.first().isBlank()) {
-                navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToLoginWarningDialog())
-            } else {
-                navigate(
-                    RecipeDetailFragmentDirections.actionRecipeDetailFragmentToCommentsFragment(
-                        recipe.value!!.id
-                    )
-                )
+                    followUser(recipe.value?.user?.id!!)
             }
         }
     }
 
     fun onClickLike() = viewModelScope.launch {
-        if (preferences.token.first().isBlank())
-            navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToLoginWarningDialog())
-        else if (recipe.value!!.is_liked)
-            dislikeRecipe()
-        else
-            likeRecipe()
+        when {
+            preferences.token.first()
+                .isBlank() -> navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToLoginWarningDialog())
+            recipe.value!!.is_liked -> dislikeRecipe()
+            else -> likeRecipe()
+        }
     }
 
-    fun followUser(id: Int) = viewModelScope.launch {
+    private fun followUser(id: Int) = viewModelScope.launch {
         when (val response = user.followUser(id)) {
             is Result.Success -> {
                 getRecipeById()
@@ -143,7 +120,6 @@ class RecipeDetailViewModel @Inject constructor(
         when (val response = user.unfollowUser(recipe.value!!.user.id)) {
             is Result.Success -> {
                 getRecipeById()
-
             }
             is Result.Error -> {
                 response.exception.handleHttpException()
@@ -179,5 +155,10 @@ class RecipeDetailViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    companion object {
+        const val RECIPE_ID = "recipeId"
+
     }
 }

@@ -27,9 +27,8 @@ constructor(
         lastData()
     }
 
-    fun lastData() {
+    private fun lastData() {
         viewModelScope.launch {
-
             recipeRepository.getLastAddedRecipes().cachedIn(viewModelScope).collect {
                 recipes.value = it
             }

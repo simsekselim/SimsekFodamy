@@ -5,13 +5,11 @@ import com.mobillium.simsekfodamy.model.Comment
 import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.response.BaseResponse
 import com.mobillium.simsekfodamy.utils.Constants
-import okhttp3.Response
 import retrofit2.http.*
 
 interface RecipeService {
 
-    // Path : This annotation implies that the passed parameter will be swapped in the endpoint path
-    // Query : This annotation represents any query key value pair to be sent along with the network request
+
 
     @GET(Constants.RECIPE)
     suspend fun getRecipe(
@@ -39,41 +37,41 @@ interface RecipeService {
         @Query("page") page: Int
     ): BaseResponse<List<Recipe>>
 
-    @GET("recipe/{recipe_id}")
+    @GET(Constants.RECIPE_ID)
     suspend fun getRecipeById(
         @Path("recipe_id") recipeId: Int
     ): Recipe
 
-    @GET("recipe/{recipe_id}/comment")
+    @GET(Constants.RECIPE_COMMENTS)
     suspend fun getRecipeComments(
         @Path("recipe_id") recipeId: Int,
         @Query("page") page: Int
     ): BaseResponse<List<Comment>>
 
-    @POST("recipe/{recipe_id}/comment")
+    @POST(Constants.SEND_COMMENTS)
     suspend fun sendComment(
         @Path("recipe_id") recipeId: Int,
         @Query("text") text: String
     ): Comment
 
-    @POST("recipe/{recipe_id}/like")
+    @POST(Constants.LIKE_RECIPE)
     suspend fun likeRecipe(
         @Path("recipe_id") recipeId: Int
     ): BaseResponse<Any>
 
-    @DELETE("recipe/{recipe_id}/like")
+    @DELETE(Constants.DISLIKE_RECIPE)
     suspend fun dislikeRecipe(
         @Path("recipe_id") recipeId: Int
     ): BaseResponse<Any>
 
-    @PUT("recipe/{recipe_id}/comment/{comment_id}")
+    @PUT(Constants.EDIT_COMMENTS)
     suspend fun editRecipeComments(
         @Path("recipe_id") recipeID: Int,
         @Path("comment_id") commentID: Int,
         @Query("text") text: String
     ): BaseResponse<Any>
 
-    @DELETE("recipe/{recipe_id}/comment/{comment_id}")
+    @DELETE(Constants.DELETE_COMMENTS)
     suspend fun deleteRecipeComments(
         @Path("recipe_id") recipeID: Int,
         @Path("comment_id") commentID: Int

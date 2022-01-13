@@ -138,7 +138,14 @@
     <fragment
         android:id="@+id/loginWarningDialog"
         android:name="com.mobillium.simsekfodamy.presentation.dialog.LoginWarningDialog"
-        android:label="LoginWarningDialog" />
+        android:label="LoginWarningDialog" >
+        <action
+            android:id="@+id/action_loginWarningDialog_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_loginWarningDialog_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
     <dialog
         android:id="@+id/bottomSheetFragment"
         android:name="com.mobillium.simsekfodamy.presentation.bottom.BottomSheetFragment"
@@ -146,7 +153,7 @@
         tools:layout="@layout/fragment_bottom_sheet" />
     <fragment
         android:id="@+id/setCommentFragment"
-        android:name="com.mobillium.simsekfodamy.presentation.commentflow.setcomment.SetCommentFragment"
+        android:name="com.mobillium.simsekfodamy.presentation.commentflow.editcomment.EditCommentFragment"
         android:label="SetCommentFragment" >
         <argument
             android:name="commentId"

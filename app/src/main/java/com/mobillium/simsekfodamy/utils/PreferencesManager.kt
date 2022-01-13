@@ -23,7 +23,7 @@ class PreferencesManager @Inject constructor(val context: Context) {
     }
 
     suspend fun first(): Boolean {
-        // first operator to get a single value and stop collection from the flow.
+
         return context.dataStore.data.map { it[isFirstAttach] ?: true }.first()
     }
 
@@ -51,12 +51,12 @@ class PreferencesManager @Inject constructor(val context: Context) {
         }
     }
     suspend fun getUser(): Int {
-        // first operator to get a single value and stop collection from the flow.
+
         return context.dataStore.data.map { it[user] ?: 0 }.first()
     }
 
     suspend fun getToken(): String {
-        // first operator to get a single value and stop collection from the flow.
+
         return context.dataStore.data.map { it[userToken] ?: "" }.first()
     }
 }

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <data>
@@ -20,64 +18,65 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/margin_normal"
         android:background="@color/white">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_user"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:profileLoader="@{comment.user.image.url}"
-            android:layout_margin="16dp"
+            android:layout_width="@dimen/comment_image_size"
+            android:layout_height="@dimen/comment_image_size"
+            android:layout_margin="@dimen/margin_normal"
             android:src="@drawable/profile"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:profileLoader="@{comment.user.image.url}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@{comment.user.username}"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text"
             app:layout_constraintStart_toEndOf="@id/image_user"
-            app:layout_constraintTop_toTopOf="@id/image_user"
-            android:text="@{comment.user.username}" />
+            app:layout_constraintTop_toTopOf="@id/image_user" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_user_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:recipeCount="@{comment.user.recipe_count}"
-            app:followerCount="@{comment.user.following_count}"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:text="@string/recipe_follower"
             android:textColor="@color/gray"
-            android:textSize="18sp"
+            android:textSize="@dimen/text"
+            app:followerCount="@{comment.user.following_count}"
             app:layout_constraintStart_toEndOf="@id/image_user"
             app:layout_constraintTop_toBottomOf="@id/text_user_name"
-            android:text="3 Tarif 0 Takipçi" />
+            app:recipeCount="@{comment.user.recipe_count}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_comment_difference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@{comment.difference}"
             android:textColor="@color/gray"
-            android:textSize="16sp"
+            android:textSize="@dimen/small_text"
             app:layout_constraintStart_toStartOf="@id/image_user"
-            app:layout_constraintTop_toBottomOf="@id/image_user"
-            android:text="@{comment.difference}" />
+            app:layout_constraintTop_toBottomOf="@id/image_user" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_comment_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="@dimen/padding_normal"
+            android:text="@{comment.text}"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_comment_difference"
-            android:text="@{comment.text}" />
+            app:layout_constraintTop_toBottomOf="@id/text_comment_difference" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
