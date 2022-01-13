@@ -4,18 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.recipe.images.ImageSliderFragment">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mobillium.simsekfodamy.presentation.images.ImageSliderViewModel" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/dark">
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_exit"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_margin="16dp"
+            android:layout_width="@dimen/size_normal"
+            android:layout_height="@dimen/size_normal"
+            android:layout_margin="@dimen/margin_normal"
             android:background="@android:color/transparent"
+            android:onClick="@{()->viewModel.exit()}"
             android:scaleType="center"
             android:src="@drawable/cross"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +34,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_images"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
+            android:layout_height="@dimen/pager_height"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -36,12 +44,12 @@
             android:id="@+id/indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/margin_normal"
             app:dotsColor="@color/white"
-            app:dotsSize="16dp"
-            app:dotsSpacing="6dp"
+            app:dotsSize="@dimen/size_normal"
+            app:dotsSpacing="@dimen/size_x_small"
             app:dotsStrokeColor="@color/white"
-            app:dotsStrokeWidth="2dp"
+            app:dotsStrokeWidth="@dimen/size_xx_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_pager_images"

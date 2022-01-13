@@ -35,12 +35,11 @@ class MainActivity : AppCompatActivity() {
                     R.id.commentsFragment -> bottomNavigationView.isVisible = false
                     R.id.imageSliderFragment -> bottomNavigationView.isVisible = false
                     R.id.setCommentFragment -> bottomNavigationView.isVisible = false
+                    R.id.loginWarningDialog -> bottomNavigationView.isVisible = false
 
                     else -> { bottomNavigationView.isVisible = true }
                 }
             }
         }
     }
-
-
 }

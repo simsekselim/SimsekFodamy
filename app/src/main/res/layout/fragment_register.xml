@@ -18,13 +18,13 @@
         android:layout_height="match_parent"
         android:gravity="center">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Üye Ol"
-            android:textSize="20dp"
+            android:layout_marginTop="@dimen/login_margin"
+            android:text="@string/register"
+            android:textSize="@dimen/text"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,61 +32,61 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/login_margin"
+            android:layout_marginEnd="@dimen/margin_normal"
             android:orientation="vertical"
-            android:padding="10dp"
+            android:padding="@dimen/padding_small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3">
 
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/margin_small"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle"
-                android:drawableLeft="@drawable/user"
+                android:drawableStart="@drawable/user"
                 android:ems="10"
-                android:hint="User Name"
+                android:hint="@string/user_name"
                 android:inputType="textPersonName"
                 android:padding="16dp"
                 android:text="@={viewModel.username}" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/user_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle"
-                android:drawableLeft="@drawable/mail"
+                android:drawableStart="@drawable/mail"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textPersonName"
                 android:padding="16dp"
                 android:text="@={viewModel.email}" />
 
-            <EditText
+            <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/user_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/rectangle"
-                android:drawableLeft="@drawable/password"
+                android:drawableStart="@drawable/password"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="16dp"
                 android:text="@={viewModel.password}" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                 android:fontFamily="@font/nunito_bold"
                 android:enabled="@{viewModel.validation}"
                 android:onClick="@{()->viewModel.onClickRegister()}"
-                android:text="Üye Ol"
+                android:text="@string/register"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="16sp" />
@@ -108,18 +108,16 @@
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
             android:gravity="bottom"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hesabın mı Var?"
+                android:text="@string/have_acc"
                 android:onClick="@{()->viewModel.toLogin()}"
                 android:clickable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -127,13 +125,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:focusable="true" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:onClick="@{()->viewModel.toLogin()}"
-                android:text="Giriş Yap"
+                android:text="@string/login"
                 android:textColor="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

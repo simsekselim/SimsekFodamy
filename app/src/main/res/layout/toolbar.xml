@@ -16,10 +16,10 @@
         android:background="@color/red">
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_fodamy"
-            android:layout_width="110dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/toolbar_width"
+            android:layout_height="@dimen/toolbar_height"
             android:layout_gravity="center"
             android:src="@drawable/fodamy"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,26 +27,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_fodamy"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/fodamy"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/small_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_back"
             android:layout_width="@dimen/margin_normal"
             android:layout_height="@dimen/margin_normal"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="@dimen/margin_x_normal"
             android:clickable="true"
+            android:focusable="true"
             android:onClick="@{()->baseViewModel.popBackStack()}"
             android:src="@drawable/back"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +55,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/white" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,13 +68,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_logout"
             android:layout_width="@dimen/margin_normal"
             android:layout_height="@dimen/margin_normal"
             android:layout_gravity="end"
-            android:layout_marginRight="20dp"
+            android:layout_marginEnd="@dimen/margin_x_normal"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/logout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

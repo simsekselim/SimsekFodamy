@@ -9,13 +9,18 @@
         android:label="FavoritesFragment">
         <action
             android:id="@+id/action_favoritesFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
-        <argument
-            android:name="categoryId"
-            app:argType="integer" />
+            app:destination="@id/categoryFragment">
+            <argument
+                android:name="categoryId"
+                app:argType="integer" />
+        </action>
         <action
             android:id="@+id/action_favoritesFragment_to_recipeDetailFragment"
-            app:destination="@id/recipeDetailFragment" />
+            app:destination="@id/recipeDetailFragment">
+            <argument
+                android:name="recipeId"
+                app:argType="integer"/>
+        </action>
 
         <action
             android:id="@+id/action_favoritesFragment_to_fragmentLogin"

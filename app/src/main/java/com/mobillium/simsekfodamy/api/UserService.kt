@@ -8,39 +8,39 @@ import retrofit2.http.*
 
 interface UserService {
     @FormUrlEncoded
-    @POST("${Constants.LOGIN_URL}")
+    @POST(Constants.LOGIN_URL)
     suspend fun login(
         @Field("username") username: String,
         @Field("password") password: String,
     ): LoginResponse
 
     @FormUrlEncoded
-    @POST("${Constants.REGISTER_URL}")
+    @POST(Constants.REGISTER_URL)
     suspend fun register(
         @Field("username") username: String,
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
 
-    @POST("auth/forgot")
+    @POST(Constants.FORGOT_URL)
     suspend fun forgotPassword(
         @Query("email") email: String
     ): Any
 
-    @POST("auth/logout")
+    @POST(Constants.LOGOUT_URL)
     suspend fun logout(): BaseResponse<Any>
 
-    @GET("user/{user_id}")
+    @GET(Constants.USER)
     suspend fun getUser(
         @Path("user_id") userId: Int
     ): User
 
-    @POST("user/{followedId}/following")
+    @POST(Constants.FOLLOW_USER)
     suspend fun followUser(
         @Path("followedId") followedId: Int
     ): BaseResponse<Any>
 
-    @DELETE("user/{followedId}/following")
+    @DELETE(Constants.UNFOLLOW_USER)
     suspend fun unfollowUser(
         @Path("followedId") followedId: Int
     ): BaseResponse<Any>

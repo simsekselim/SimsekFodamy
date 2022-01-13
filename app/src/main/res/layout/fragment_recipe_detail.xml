@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.recipe.detail.RecipeDetailFragment"
-    android:background="@color/second_white">
+    android:background="@color/second_white"
+    tools:context=".ui.recipe.detail.RecipeDetailFragment">
 
     <data>
 
@@ -22,11 +22,9 @@
         android:layout_height="match_parent">
 
 
-
-
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -41,13 +39,11 @@
                     android:id="@+id/toolbar"
                     layout="@layout/toolbar"
                     android:layout_width="match_parent"
-                    app:baseViewModel = "@{viewModel}"
                     android:layout_height="?attr/actionBarSize"
+                    app:baseViewModel="@{viewModel}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,8 +52,8 @@
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/image_recipe"
-                        android:layout_width="0dp"
-                        android:layout_height="375dp"
+                        android:layout_width="@dimen/zero"
+                        android:layout_height="@dimen/detail_height"
                         android:scaleType="fitXY"
                         app:imageLoader="@{recipe.images.get(0).url}"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -68,19 +64,19 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image_editor_choice_icon_background"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_margin="8dp"
+                        android:layout_width="@dimen/margin_large"
+                        android:layout_height="@dimen/margin_large"
+                        android:layout_margin="@dimen/margin_small"
                         android:src="@color/white"
                         app:layout_constraintEnd_toEndOf="@id/image_recipe"
                         app:layout_constraintTop_toTopOf="@id/image_recipe" />
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/image_editor_choice_icon"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_margin="8dp"
-                        android:padding="4dp"
+                        android:layout_width="@dimen/margin_large"
+                        android:layout_height="@dimen/margin_large"
+                        android:layout_margin="@dimen/margin_small"
+                        android:padding="@dimen/padding_x_small"
                         android:src="@drawable/editors"
                         app:layout_constraintEnd_toEndOf="@id/image_recipe"
                         app:layout_constraintTop_toTopOf="@id/image_recipe" />
@@ -96,64 +92,64 @@
                         android:id="@+id/text_recipe_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_margin="@dimen/margin_small"
                         android:fontFamily="@font/nunito_bold"
                         android:text="@{recipe.title}"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/special_text"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Makarna Tarifi" />
+                        tools:text="@string/pasta_recipe" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_recipe_category"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_margin="@dimen/margin_small"
                         android:fontFamily="@font/nunito_semibold"
                         android:text="@{recipe.category.name}"
                         android:textColor="@color/line"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/special_text"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/text_recipe_name"
-                        tools:text="Hamur İşi" />
+                        tools:text="@string/pasta" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_recipe_difference"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
+                        android:layout_margin="@dimen/margin_normal"
                         android:text="@{recipe.difference}"
                         android:textColor="@color/line"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/small_text"
                         app:layout_constraintBottom_toBottomOf="@id/view_bottom_line_recipe_name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:text="4 ay önce" />
+                        tools:text="@string/month" />
 
                     <View
                         android:id="@+id/view_bottom_line_recipe_name"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="@dimen/size_xx_small"
+                        android:layout_marginTop="@dimen/margin_small"
                         android:background="@color/line"
                         app:layout_constraintBottom_toTopOf="@id/constraint_comment_button"
                         app:layout_constraintTop_toBottomOf="@id/text_recipe_category" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraint_comment_button"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/view_constraint_buttons_line"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/view_bottom_line_recipe_name">
 
-                        <ImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/image_comments_icon"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_margin="16dp"
+                            android:layout_width="@dimen/size_large"
+                            android:layout_height="@dimen/size_large"
+                            android:layout_margin="@dimen/margin_normal"
                             android:onClick="@{()->viewModel.toComment(recipe.id)}"
                             android:scaleType="fitCenter"
                             android:src="@drawable/comment"
@@ -166,23 +162,23 @@
                             android:id="@+id/text_comment_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
+                            android:layout_margin="@dimen/margin_small"
                             android:fontFamily="@font/nunito_semibold"
                             android:textColor="@color/line"
-                            android:textSize="18sp"
+                            android:textSize="@dimen/special_text"
                             app:commentCount="@{recipe.comment_count}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/image_comments_icon"
-                            tools:text="1 Yorum" />
+                            tools:text="@string/tools_comment" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <View
                         android:id="@+id/view_constraint_buttons_line"
-                        android:layout_width="1dp"
-                        android:layout_height="0dp"
+                        android:layout_width="@dimen/size_xx_small"
+                        android:layout_height="@dimen/zero"
                         android:background="@color/line"
                         app:layout_constraintBottom_toBottomOf="@id/constraint_like_button"
                         app:layout_constraintEnd_toStartOf="@id/constraint_like_button"
@@ -191,18 +187,20 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraint_like_button"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/view_constraint_buttons_line"
                         app:layout_constraintTop_toBottomOf="@id/view_bottom_line_recipe_name">
 
-                        <ImageView
+                        <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/image_like_icon"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_margin="16dp"
+                            likeStyle="@{viewModel.recipe.is_liked}"
+                            android:layout_width="@dimen/size_large"
+                            android:layout_height="@dimen/size_large"
+                            android:layout_margin="@dimen/margin_normal"
+                            android:onClick="@{()->viewModel.onClickLike()}"
                             android:scaleType="fitCenter"
                             android:src="@drawable/heart"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -214,15 +212,15 @@
                             android:id="@+id/text_like_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="8dp"
+                            android:layout_margin="@dimen/margin_small"
                             android:textColor="@color/line"
-                            android:textSize="18sp"
+                            android:textSize="@dimen/special_text"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/image_like_icon"
                             app:likeCount="@{recipe.like_count}"
-                            tools:text="1 Beğenme" />
+                            tools:text="@string/tools_like" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -230,25 +228,25 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:background="@color/white">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image_user"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_margin="16dp"
-                        app:profileLoader="@{recipe.user.image.url}"
+                        android:layout_width="@dimen/dimension"
+                        android:layout_height="@dimen/dimension"
+                        android:layout_margin="@dimen/margin_normal"
                         android:src="@drawable/profile"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:profileLoader="@{recipe.user.image.url}" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="@dimen/margin_small"
                         android:fontFamily="@font/nunito_bold"
                         android:text="@{recipe.user.username}"
                         android:textColor="@color/black"
@@ -261,24 +259,26 @@
                         android:id="@+id/text_user_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="@dimen/margin_small"
                         android:fontFamily="@font/nunito_semibold"
                         android:textColor="@color/line"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/special_text"
                         app:followerCount="@{recipe.user.followed_count}"
                         app:layout_constraintStart_toEndOf="@id/image_user"
                         app:layout_constraintTop_toBottomOf="@id/text_user_name"
                         app:recipeCount="@{recipe.user.recipe_count}"
-                        tools:text="3 Tarif 0 Takipçi" />
+                        tools:text="@string/recipe_follower" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/button_user_follow"
+                        buttonStyle="@{recipe.user.is_following}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginEnd="@dimen/margin_normal"
                         android:background="@drawable/button"
-                        android:paddingStart="32dp"
-                        android:paddingEnd="32dp"
+                        android:onClick="@{()->viewModel.onClickFollowButton()}"
+                        android:paddingStart="@dimen/padding_large"
+                        android:paddingEnd="@dimen/padding_large"
                         android:text="@string/follow_user"
                         android:textAllCaps="false"
                         android:textColor="@color/red"
@@ -290,14 +290,14 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:background="@color/white">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_ingredients_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="32dp"
+                        android:layout_margin="@dimen/margin_large"
                         android:fontFamily="@font/nunito_bold"
                         android:text="@string/ingredients"
                         android:textColor="@color/black"
@@ -308,21 +308,21 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image_ingredients_frame"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_width="@dimen/size_large"
+                        android:layout_height="@dimen/size_large"
+                        android:layout_marginEnd="@dimen/margin_normal"
                         android:src="@color/white"
                         app:civ_border_color="@color/line"
-                        app:civ_border_width="2dp"
+                        app:civ_border_width="@dimen/border_width"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_ingredients"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="16dp"
-                        android:padding="8dp"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/size_large"
+                        android:layout_height="@dimen/size_large"
+                        android:layout_marginEnd="@dimen/margin_normal"
+                        android:padding="@dimen/padding_small"
                         android:scaleType="centerCrop"
                         android:src="@drawable/fork"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_ingredients"
@@ -343,7 +343,7 @@
                     <View
                         android:id="@+id/view_bottom_line_ingredients"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/size_xx_small"
                         android:background="@color/line"
                         app:layout_constraintBottom_toTopOf="@id/text_ingredients_data"
                         app:layout_constraintTop_toBottomOf="@id/text_ingredients_title" />
@@ -354,10 +354,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_bold"
-                        android:padding="32dp"
+                        android:padding="@dimen/padding_large"
                         android:text="@{recipe.ingredients}"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/special_text"
                         app:layout_constraintTop_toBottomOf="@id/view_bottom_line_ingredients" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -365,39 +365,39 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:background="@color/white">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_directions_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="32dp"
+                        android:layout_margin="@dimen/margin_large"
                         android:fontFamily="@font/nunito_bold"
                         android:text="@string/directions"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_directions"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/image_directions_frame"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_width="@dimen/size_large"
+                        android:layout_height="@dimen/size_large"
+                        android:layout_marginEnd="@dimen/margin_normal"
                         android:src="@color/white"
                         app:civ_border_color="@color/line"
-                        app:civ_border_width="2dp"
+                        app:civ_border_width="@dimen/border_width"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_directions"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_marginEnd="16dp"
-                        android:padding="8dp"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/size_large"
+                        android:layout_height="@dimen/size_large"
+                        android:layout_marginEnd="@dimen/margin_normal"
+                        android:padding="@dimen/padding_small"
                         android:scaleType="centerCrop"
                         android:src="@drawable/clock"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_directions"
@@ -429,10 +429,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_bold"
-                        android:padding="32dp"
+                        android:padding="@dimen/padding_large"
                         android:text="@{recipe.directions}"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/special_text"
                         app:layout_constraintTop_toBottomOf="@id/view_bottom_line_directions" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -440,18 +440,18 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:background="@color/white">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/text_comments_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="32dp"
+                        android:layout_margin="@dimen/margin_large"
                         android:fontFamily="@font/nunito_bold"
                         android:text="@string/comments"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text"
                         app:layout_constraintBottom_toTopOf="@id/view_bottom_line_comments"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -459,7 +459,7 @@
                     <View
                         android:id="@+id/view_bottom_line_comments"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/size_xx_small"
                         android:background="@color/line"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/text_comments_title" />
@@ -470,17 +470,17 @@
                     android:id="@+id/preview_commit"
                     layout="@layout/item_comment" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_add_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:onClick="@{()->viewModel.toComment(recipe.id)}"
+                    android:layout_margin="@dimen/margin_normal"
                     android:backgroundTint="@color/red"
-                    android:padding="16dp"
+                    android:onClick="@{()->viewModel.toComment(recipe.id)}"
+                    android:padding="@dimen/padding_normal"
                     android:text="@string/add_comment"
                     android:textAllCaps="false"
-                    android:textSize="22sp" />
+                    android:textSize="@dimen/text" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

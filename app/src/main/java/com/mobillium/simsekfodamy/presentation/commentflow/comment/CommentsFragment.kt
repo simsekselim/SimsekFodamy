@@ -6,19 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentCommentsBinding
 import com.mobillium.simsekfodamy.presentation.commentflow.comment.adapter.CommentsAdapter
-import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.Constants.COMMENT
 import com.mobillium.simsekfodamy.utils.showIme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CommentsFragment() :
@@ -27,10 +22,10 @@ class CommentsFragment() :
         CommentsViewModel::class.java
     ) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = CommentsAdapter()
+        viewModel.comments()
 
         adapter.itemClicked = {
 
@@ -42,44 +37,34 @@ class CommentsFragment() :
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = COMMENT
 
-
-
-
         setFragmentResultListener("action") { requestKey, bundle ->
-            if (bundle.getBoolean("set", false)) {
+            when {
+                bundle.getBoolean("set", false) -> {
 
-                viewModel.toEdit()
-
-            } else if (bundle.getBoolean("delete", false)) {
-
-                viewModel.deleteComment()
-
-            } else if(bundle.getBoolean("refresh",false)){
-                lifecycleScope.launch {
-                    adapter.refresh()
-
-
+                    viewModel.toEdit()
                 }
+                bundle.getBoolean("delete", false) -> {
 
-
+                    viewModel.deleteComment()
+                }
+                bundle.getBoolean("refresh", false) -> {
+                    adapter.refresh()
+                }
             }
         }
 
 
-        val linearLayoutManager = LinearLayoutManager(requireContext())
 
         (activity as AppCompatActivity).showIme()
         binding.comment.requestFocus()
 
         binding.apply {
-            recycler.layoutManager = linearLayoutManager
             recycler.setHasFixedSize(false)
             recycler.adapter = adapter
         }
 
-        viewModel.comments.observe(viewLifecycleOwner) {
+        viewModel.recipeComment.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
-
         }
 
         binding.share.setOnClickListener {
@@ -88,7 +73,7 @@ class CommentsFragment() :
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.event.collect {
+            viewModel.event.observe(viewLifecycleOwner, {
                 when (it) {
                     CommentsViewEvent.SendCommentSuccess -> {
                         adapter.refresh()
@@ -96,10 +81,7 @@ class CommentsFragment() :
                     }
                     CommentsViewEvent.DeleteCommentSuccess -> adapter.refresh()
                 }
-            }
+            })
         }
     }
 }
-
-
-

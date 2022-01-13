@@ -12,9 +12,13 @@ class ImageSliderViewModel @Inject constructor(
     private val state: SavedStateHandle
 ) : BaseViewModel() {
 
-    val images = MutableLiveData(state.get<ImageList>("images"))
+    val images = MutableLiveData(state.get<ImageList>(IMAGES))
 
-    fun exit(){
+    fun exit() {
         popBackStack()
+    }
+    companion object {
+        const val IMAGES = "images"
+
     }
 }

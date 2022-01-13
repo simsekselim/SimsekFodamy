@@ -12,10 +12,6 @@ import com.mobillium.simsekfodamy.utils.CategoryPagingFactory
 import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.RecipePagingFactory
 import com.mobillium.simsekfodamy.utils.Result
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -38,7 +34,7 @@ interface RecipeRepository {
         comment: Int,
         text: String
     ): Result<BaseResponse<Any>>
-    suspend fun deleteRecipeComments(recipeId: Int,comment: Int) :Result<BaseResponse<Any>>
+    suspend fun deleteRecipeComments(recipeId: Int, comment: Int): Result<BaseResponse<Any>>
 }
 
 @Singleton
@@ -151,7 +147,6 @@ class DefaultRecipeRepository @Inject constructor(
                 recipeService,
                 recipeId
             )
-
         }
     ).flow
 
@@ -200,11 +195,4 @@ class DefaultRecipeRepository @Inject constructor(
             Result.Error(e)
         }
     }
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-interface RecipeModules {
-    @Binds
-    fun provideRecipeRepository(repository: DefaultRecipeRepository): RecipeRepository
 }

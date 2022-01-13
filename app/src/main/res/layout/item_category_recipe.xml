@@ -8,11 +8,11 @@
     android:background="@android:color/transparent">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="256dp"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="8dp"
+        android:layout_width="@dimen/category_card_width"
+        android:layout_height="@dimen/category_card_height"
+        android:layout_margin="@dimen/margin_normal"
+        app:cardCornerRadius="@dimen/small_radius"
+        app:cardElevation="@dimen/small_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,10 +26,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_category_recipe"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/zero"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toTopOf="@id/text_category_recipe_name"
                 app:layout_constraintTop_toTopOf="parent"
@@ -40,56 +40,56 @@
                 android:id="@+id/image_user_profile"
                 android:layout_width="@dimen/image_size"
                 android:layout_height="@dimen/image_size"
-                android:layout_margin="8dp"
-                android:elevation="4dp"
+                android:layout_margin="@dimen/margin_small"
+                android:elevation="@dimen/elevation"
                 app:civ_border_color="@color/red"
-                app:civ_border_width="2dp"
+                app:civ_border_width="@dimen/border"
                 app:layout_constraintStart_toStartOf="@id/image_category_recipe"
                 app:layout_constraintTop_toTopOf="@id/image_category_recipe"
                 tools:src="@tools:sample/avatars" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="@dimen/margin_large"
                 android:background="@drawable/item_category_recipe"
                 android:gravity="center_vertical|center_horizontal"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="2dp"
+                android:paddingStart="@dimen/padding_small"
+                android:paddingEnd="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_x_small"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/small_text"
                 app:layout_constraintBottom_toBottomOf="@id/image_user_profile"
                 app:layout_constraintStart_toStartOf="@id/image_category_recipe"
                 app:layout_constraintTop_toTopOf="@id/image_user_profile"
-                tools:text="aslanmsalih" />
+                tools:text="@string/lion" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_category_recipe_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/small_text"
                 app:layout_constraintBottom_toTopOf="@+id/text_category_recipe_info"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_category_recipe"
-                tools:text="Köfte Tarifi" />
+                tools:text="@string/meet_recipe" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_category_recipe_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
                 android:textColor="@color/line"
-                android:textSize="16sp"
+                android:textSize="@dimen/small_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:text="0 Yorum 0 Beğeni" />
+                tools:text="@string/comment_like" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

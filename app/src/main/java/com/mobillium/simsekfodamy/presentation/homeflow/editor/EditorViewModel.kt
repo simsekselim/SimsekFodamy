@@ -27,15 +27,13 @@ constructor(
         editorData()
     }
 
-    fun editorData() {
+    private fun editorData() {
 
         viewModelScope.launch {
 
             recipeRepository.getEditorChoiceRecipes().cachedIn(viewModelScope).collect {
                 recipes.value = it
-
             }
-
         }
     }
     fun editor(recipeId: Int) {

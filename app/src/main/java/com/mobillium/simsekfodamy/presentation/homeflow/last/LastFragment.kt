@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentLastBinding
@@ -18,7 +17,6 @@ class LastFragment :
         LastViewModel::class.java
     ) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = RecipeAdapter()
@@ -26,10 +24,7 @@ class LastFragment :
             viewModel.detail(it.id)
         }
 
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-
         binding.apply {
-            recyclerRecipes.layoutManager = linearLayoutManager
             recyclerRecipes.setHasFixedSize(false)
             recyclerRecipes.adapter = adapter
         }

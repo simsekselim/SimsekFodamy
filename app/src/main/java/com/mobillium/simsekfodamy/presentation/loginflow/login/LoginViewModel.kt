@@ -18,20 +18,15 @@ constructor(
     private val repository: UserRepository
 ) : BaseViewModel() {
 
-    val username = MutableLiveData("salihaga")
-    val password = MutableLiveData("fodamy48+")
+    val username = MutableLiveData(USERNAME)
+    val password = MutableLiveData(PASSWORD)
     val validation = MediatorLiveData<Boolean>().apply {
         addSource(username) { value = validateUsername() }
         addSource(password) { value = validatePassword() }
     }
 
     fun onClickLogin() = viewModelScope.launch {
-    /*    if (username.value.isNullOrBlank() || password.value.isNullOrBlank()) {
-            showMessage(FILL_REQUIRED_FIELDS)
-            return@launch
-        }
 
-     */
         when (
             val response =
                 repository.login(username.value.toString(), password.value.toString())
@@ -56,11 +51,16 @@ constructor(
             navigate(LoginFragmentDirections.actionFragmentLoginToFragmentRegister())
         }
     }
-    fun validateUsername(): Boolean {
+    private fun validateUsername(): Boolean {
         return username.value!!.isNotBlank()
     }
 
-    fun validatePassword(): Boolean {
-        return return password.value!!.isNotBlank()
+    private fun validatePassword(): Boolean {
+        return password.value!!.isNotBlank()
+    }
+    companion object {
+        const val USERNAME = "salihaga"
+        const val PASSWORD = "fodamy48+"
+
     }
 }

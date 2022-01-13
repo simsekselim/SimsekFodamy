@@ -33,7 +33,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero"
             android:background="@color/red"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,81 +94,81 @@
                 android:weightSum="3">
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/liked"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
+                        android:paddingTop="@dimen/padding_small"
                         android:text="@{Integer.toString(profile.likes_count)}"
                         android:textColor="@color/red"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text"
                         android:textStyle="bold"
                         tools:text="100" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_follower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/follower"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/follower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
                         android:text="@{Integer.toString(profile.followed_count)}"
                         android:textColor="@color/red"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text"
                         android:textStyle="bold"
                         tools:text="100" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="@dimen/zero"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_followed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/follow"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/text" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/followed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
+                        android:paddingTop="@dimen/padding_small"
                         android:text="@{Integer.toString(profile.following_count)}"
                         android:textColor="@color/red"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/text"
                         android:textStyle="bold"
                         tools:text="100" />
 

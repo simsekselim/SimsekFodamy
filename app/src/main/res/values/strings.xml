@@ -39,6 +39,37 @@
     <string name="set">Düzenle</string>
     <string name="delete">Sil</string>
     <string name="save">Kaydet</string>
+    <string name="forget_the_password">Şifrenizi mi Unuttunuz?</string>
+    <string name="password">Password</string>
+    <string name="user_name">User Name</string>
+    <string name="have_not_acc">Hesabın mı yok?</string>
+    <string name="register">Üye Ol</string>
+    <string name="reset_password">Şifre Sıfırlama</string>
+    <string name="email">Email</string>
+    <string name="reset">Sıfırla</string>
+    <string name="have_acc">Hesabın mı Var?</string>
+    <string name="need_to_login">Giriş yapmanız gereklidir.</string>
+    <string name="write_something">Bir şey yaz...</string>
+    <string name="share">Share</string>
+    <string name="main_food">Ana Yemekler</string>
+    <string name="meet_recipe">Köfte Tarifi</string>
+    <string name="lion">aslanmsalih</string>
+    <string name="comment_like">0 Yorum 0 Beğeni</string>
+    <string name="recipe_follower">3 Tarif 0 Takipçi</string>
+    <string name="title_text">Title Text</string>
+    <string name="about_topic">About Topic</string>
+    <string name="pasta_recipe">Makarna Tarifi</string>
+    <string name="pasta">Hamur İşi</string>
+    <string name="month">4 ay önce</string>
+    <string name="tools_comment">1 Yorum</string>
+    <string name="tools_like">1 Beğenme</string>
+
+    //Intro
+    <string name="description">Fodamy is the best place to find your favourite recipes in all around the world. </string>
+    <string name="title_one">Welcome to Fodamy Network!</string>
+    <string name="title_two">Finding recipes were not that easy.</string>
+    <string name="title_three">Add new recipe.</string>
+    <string name="title_four">Share recipe with others.</string>
 
 
 </resources>

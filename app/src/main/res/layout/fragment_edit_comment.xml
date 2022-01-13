@@ -5,15 +5,17 @@
 
     <data>
 
+
+
         <variable
             name="viewModel"
-            type="com.mobillium.simsekfodamy.presentation.commentflow.setcomment.SetCommentViewModel" />
+            type="com.mobillium.simsekfodamy.presentation.commentflow.editcomment.EditCommentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.commentflow.setcomment.SetCommentFragment">
+        tools:context=".presentation.commentflow.editcomment.EditCommentFragment">
 
         <include
             android:id="@+id/toolbar"
@@ -35,9 +37,9 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="@dimen/edit_button_width"
+            android:layout_height="@dimen/edit_button_height"
+            android:layout_marginBottom="@dimen/margin_x_small"
             android:background="@color/red"
             android:onClick="@{()->viewModel.onClickSave()}"
             android:text="@string/save"

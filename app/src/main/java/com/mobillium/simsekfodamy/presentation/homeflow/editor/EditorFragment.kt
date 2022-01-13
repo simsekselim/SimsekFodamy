@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentEditorBinding
-import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,7 +17,6 @@ class EditorFragment :
         EditorViewModel::class.java
     ) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -28,10 +25,7 @@ class EditorFragment :
             viewModel.editor(it.id)
         }
 
-        val linearLayoutManager = LinearLayoutManager(requireContext())
-
         binding.apply {
-            recyclerRecipes.layoutManager = linearLayoutManager
             recyclerRecipes.setHasFixedSize(false)
             recyclerRecipes.adapter = adapter
         }
@@ -44,6 +38,4 @@ class EditorFragment :
             binding.progressBar.isVisible = loadState.source.refresh is LoadState.Loading
         }
     }
-
-
 }

@@ -1,19 +1,16 @@
 package com.mobillium.simsekfodamy.base
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.BR
-import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.utils.snackbar
 
 abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(
@@ -21,21 +18,8 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
     private val viewModelType: Class<TViewModel>
 ) : Fragment() {
 
-    /*   @Suppress("UNCHECKED_CAST")
-       val viewModelClass: Class<TViewModel>
-           get() = findGenericSuperclass<BaseFragment<TViewModel, TBinding>>()
-               ?.actualTypeArguments
-               ?.getOrNull(1) as? Class<TViewModel>
-               ?: throw IllegalStateException("viewModelClass does not equal Class<VM>")
-
-     */
-
-
     protected lateinit var viewModel: TViewModel
     protected lateinit var binding: TBinding
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +31,6 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
 
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
@@ -71,7 +53,6 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
                 snackbar(event.message)
             is BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
-
         }
     }
 }

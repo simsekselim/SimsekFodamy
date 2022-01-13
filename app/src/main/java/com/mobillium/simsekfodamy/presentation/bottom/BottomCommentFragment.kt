@@ -2,7 +2,6 @@ package com.mobillium.simsekfodamy.presentation.bottom
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +12,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.databinding.FragmentBottomCommentBinding
-import com.mobillium.simsekfodamy.databinding.FragmentBottomSheetBinding
-import com.mobillium.simsekfodamy.databinding.FragmentCommentsBinding
-
 
 class BottomCommentFragment : BottomSheetDialogFragment() {
     var binding: FragmentBottomCommentBinding? = null
@@ -34,18 +30,17 @@ class BottomCommentFragment : BottomSheetDialogFragment() {
 
     private fun delete() {
         setFragmentResult(
-            "action", bundleOf("delete" to true)
+            ACTION, bundleOf(DELETE to true)
         )
         findNavController().popBackStack()
     }
 
     private fun set() {
         setFragmentResult(
-            "action", bundleOf("set" to true)
+            ACTION, bundleOf(SET to true)
         )
         findNavController().popBackStack()
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,9 +52,12 @@ class BottomCommentFragment : BottomSheetDialogFragment() {
         }
         binding?.delete?.setOnClickListener {
             delete()
-
         }
-
+    }
+    companion object{
+        const val ACTION = "action"
+        const val DELETE = "delete"
+        const val SET = "set"
 
     }
 }

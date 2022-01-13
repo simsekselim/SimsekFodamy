@@ -2,9 +2,7 @@ package com.mobillium.simsekfodamy.presentation.profile
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentProfileBinding
@@ -19,8 +17,6 @@ class ProfileFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
         binding.toolbar.ivBack.isVisible = false
         binding.toolbar.tvBack.isVisible = false
         binding.login.isVisible = false
@@ -32,10 +28,5 @@ class ProfileFragment :
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()
         }
-
-        viewModel.navigateLogin.observe(viewLifecycleOwner, {
-            val navigateLogin = ProfileFragmentDirections.actionProfileFragmentToFragmentLogin()
-            findNavController().navigate(navigateLogin)
-        })
     }
 }
