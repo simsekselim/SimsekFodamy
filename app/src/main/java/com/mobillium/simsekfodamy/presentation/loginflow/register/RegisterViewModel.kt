@@ -16,46 +16,37 @@ class RegisterViewModel
 @Inject
 constructor(private val repository: UserRepository) : BaseViewModel() {
 
-    val username = MutableLiveData("")
-    val password = MutableLiveData("")
-    val email = MutableLiveData("")
+    val username = MutableLiveData<String>()
+    val password = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
     val validation = MediatorLiveData<Boolean>().apply {
-        addSource(username) { value = validateUsername() }
-        addSource(password) { value = validatePassword() }
-        addSource(email) { value = validateMail() }
+        addSource(username) { value = validate() }
+        addSource(password) { value = validate() }
+        addSource(email) { value = validate() }
     }
 
     fun onClickRegister() = viewModelScope.launch {
-        if (validation.value == true) {
-            when (
-                val response =
-                    repository.register(
-                        username.value.toString(),
-                        email.value.toString(),
-                        password.value.toString()
-                    )
-            ) {
-                is Result.Success -> {
-                    navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
-                }
-                is Result.Error -> {
-                    response.exception.handleHttpException()
-                }
+        when (
+            val response =
+                repository.register(
+                    username.value.toString(),
+                    email.value.toString(),
+                    password.value.toString()
+                )
+        ) {
+            is Result.Success -> {
+                navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
+            }
+            is Result.Error -> {
+                response.exception.handleHttpException()
             }
         }
     }
 
-    private fun validateUsername(): Boolean {
-        return username.value!!.isNotBlank()
+    private fun validate(): Boolean {
+        return !username.value.isNullOrBlank() && !password.value.isNullOrBlank() && password.value!!.length > 6 && !email.value.isNullOrBlank()
     }
 
-    private fun validatePassword(): Boolean {
-        return return password.value!!.length > 6
-    }
-
-    private fun validateMail(): Boolean {
-        return email.value!!.isNotBlank()
-    }
     fun toLogin() {
         navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
     }

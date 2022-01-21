@@ -21,8 +21,8 @@ constructor(
     val username = MutableLiveData(USERNAME)
     val password = MutableLiveData(PASSWORD)
     val validation = MediatorLiveData<Boolean>().apply {
-        addSource(username) { value = validateUsername() }
-        addSource(password) { value = validatePassword() }
+        addSource(username) { value = validate() }
+        addSource(password) { value = validate() }
     }
 
     fun onClickLogin() = viewModelScope.launch {
@@ -51,13 +51,10 @@ constructor(
             navigate(LoginFragmentDirections.actionFragmentLoginToFragmentRegister())
         }
     }
-    private fun validateUsername(): Boolean {
-        return username.value!!.isNotBlank()
+    private fun validate(): Boolean {
+        return !username.value.isNullOrBlank() && !password.value.isNullOrBlank() && password.value!!.length > 6
     }
 
-    private fun validatePassword(): Boolean {
-        return password.value!!.isNotBlank()
-    }
     companion object {
         const val USERNAME = "salihaga"
         const val PASSWORD = "fodamy48+"

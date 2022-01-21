@@ -34,4 +34,7 @@ object Constants {
     const val LOGGED_OUT_ERROR = "Çıkış Yapılırken Sorun Oluştu"
     const val COMMENT = "YORUMLAR"
     const val DELETED = "Silindi"
+    const val USER_NAME_FIELD = "Kullanıcı Adı Boş Bırakılamaz."
+    const val EMAIL_FIELD = "Email Boş Bırakılamaz."
+    const val PASSWORD_FIELD = "Şifre Boş Bırakılamaz."
 }

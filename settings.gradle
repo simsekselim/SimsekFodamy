@@ -9,3 +9,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SimsekFodamy"
 include ':app'
+include ':data'
+include ':domain'
