@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".presentation.commentflow.editcomment.EditCommentFragment">
 
         <include
@@ -32,6 +33,7 @@
             android:id="@+id/comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:background="@null"
             android:text="@={viewModel.editableComment}"
             app:layout_constraintEnd_toEndOf="parent"

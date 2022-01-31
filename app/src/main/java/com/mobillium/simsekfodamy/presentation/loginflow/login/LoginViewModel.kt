@@ -25,19 +25,25 @@ constructor(
         addSource(password) { value = validate() }
     }
 
-    fun onClickLogin() = viewModelScope.launch {
+    fun onClickLogin(){
+        val username = username.value.toString()
+        val password = password.value.toString()
 
-        when (
-            val response =
-                repository.login(username.value.toString(), password.value.toString())
-        ) {
-            is Result.Success -> {
-                navigate(LoginFragmentDirections.actionFragmentLoginToHome())
-            }
-            is Result.Error -> {
-                response.exception.handleHttpException()
-            }
+        if(validation.value == true){
+            sendRequest(
+                loading = false,
+                request = {repository.login(username,password)},
+                success = {
+                    toHome()
+                }
+            )
         }
+
+
+    }
+
+    private fun toHome(){
+        navigate(LoginFragmentDirections.actionFragmentLoginToHome())
     }
 
     fun toForget() {

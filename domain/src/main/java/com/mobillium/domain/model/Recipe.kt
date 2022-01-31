@@ -9,7 +9,7 @@ data class Recipe(
     val difference: String,
     val directions: String,
     val id: Int,
-    val images: List<Image>,
+    val images: List<com.mobillium.domain.model.Image>,
     val ingredients: String,
     val is_editor_choice: Boolean,
     val is_favorited: Boolean,

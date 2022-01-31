@@ -4,5 +4,5 @@ data class CommentResponse(
     val id: Int,
     val text: String,
     val difference: String,
-    val user: User
+    val user: UserResponse
 )

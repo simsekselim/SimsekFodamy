@@ -27,7 +27,7 @@ object Versions {
     const val gson = "2.8.9"
     const val pagingVersion = "3.1.0"
     const val okHttpVersion = "5.0.0-alpha.2"
-    const val navVersion = "2.4.0-rc01"
+    const val navVersion = "2.4.0"
     const val supportDesignVersion = "1.5.0"
     const val constraintLayoutVersion = "2.1.3"
     const val circularImageViewVersion = "3.1.0"

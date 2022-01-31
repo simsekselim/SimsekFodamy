@@ -1,8 +1,8 @@
 package com.mobillium.domain.model
 
-data class BaseResponse<T>(
+
+data class Common(
     val code: String,
     val message: String,
-    val data: T,
-    val pagination: Pagination
+    val error: String
 )

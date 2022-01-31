@@ -105,13 +105,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/liked"
-                        android:textSize="@dimen/text" />
+                        android:textSize="@dimen/small_text" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/like"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_small"
+                        android:layout_marginTop="@dimen/margin_normal"
                         android:text="@{Integer.toString(profile.likes_count)}"
                         android:textColor="@color/red"
                         android:textSize="@dimen/text"
@@ -132,13 +132,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/follower"
-                        android:textSize="@dimen/text" />
+                        android:textSize="@dimen/small_text" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/follower"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
+                        android:layout_marginTop="@dimen/margin_normal"
                         android:text="@{Integer.toString(profile.followed_count)}"
                         android:textColor="@color/red"
                         android:textSize="@dimen/text"
@@ -158,14 +158,15 @@
                         android:id="@+id/tv_followed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="@string/follow"
-                        android:textSize="@dimen/text" />
+                        android:textSize="@dimen/small_text" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/followed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_small"
+                        android:layout_marginTop="@dimen/margin_normal"
                         android:text="@{Integer.toString(profile.following_count)}"
                         android:textColor="@color/red"
                         android:textSize="@dimen/text"

@@ -68,6 +68,7 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
     fun getFirstComment() {
+
         viewModelScope.launch {
             when (val response = recipeRepository.getFirstComment(recipeId)) {
                 is Result.Success -> {
