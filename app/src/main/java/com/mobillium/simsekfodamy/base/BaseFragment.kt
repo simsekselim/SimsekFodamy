@@ -1,16 +1,19 @@
 package com.mobillium.simsekfodamy.base
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.BR
+import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.utils.snackbar
 
 abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(
@@ -20,6 +23,8 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
 
     protected lateinit var viewModel: TViewModel
     protected lateinit var binding: TBinding
+
+    private var dialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +36,11 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        dialog = Dialog(requireActivity())
+        dialog!!.setCancelable(false)
+        dialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog!!.setContentView(R.layout.loading)
+        dialog!!.window!!.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.viewModel, viewModel)
@@ -40,9 +49,9 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.baseEvent.observe(viewLifecycleOwner, {
+        viewModel.baseEvent.observe(viewLifecycleOwner) {
             onViewEvent(it)
-        })
+        }
     }
 
     private fun onViewEvent(event: BaseViewEvent) {
@@ -50,9 +59,12 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
             is BaseViewEvent.NavigateTo ->
                 findNavController().navigate(event.directions)
             is BaseViewEvent.ShowMessage ->
-                snackbar(event.message)
+                snackbar(event.message.toString())
             is BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
+            is BaseViewEvent.ShowLoading -> {
+                if(event.isShow) dialog?.show() else dialog?.dismiss()
+            }
         }
     }
 }

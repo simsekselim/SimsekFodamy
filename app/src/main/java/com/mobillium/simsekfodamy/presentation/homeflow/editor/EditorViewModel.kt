@@ -9,6 +9,7 @@ import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.homeflow.home.HomeFragmentDirections
 import com.mobillium.simsekfodamy.repository.RecipeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,7 +29,12 @@ constructor(
     }
 
     private fun editorData() {
+    sendRequest(
+        request = { recipeRepository.getEditorChoiceRecipes() },
+        success = {
 
+        }
+    )
         viewModelScope.launch {
 
             recipeRepository.getEditorChoiceRecipes().cachedIn(viewModelScope).collect {

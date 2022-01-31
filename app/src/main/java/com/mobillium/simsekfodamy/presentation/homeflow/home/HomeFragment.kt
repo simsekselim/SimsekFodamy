@@ -18,27 +18,21 @@ class HomeFragment :
         R.layout.fragment_home,
         HomeViewModel::class.java
     ) {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        requireActivity().theme.applyStyle(R.style.Theme_SimsekFodamy, true)
 
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
         binding.pager.adapter = pagerAdapter
+        binding.toolbar.ivBack.isVisible = false
+        binding.toolbar.tvBack.isVisible = false
         TabLayoutMediator(binding.layout, binding.pager) { tab, position ->
-            binding.toolbar.ivBack.isVisible = false
-            binding.toolbar.tvBack.isVisible = false
 
             when (position) {
                 0 -> {
                     tab.text = getString(R.string.editor_choose)
+
+
                 }
                 1 -> {
                     tab.text = getText(R.string.last_add)

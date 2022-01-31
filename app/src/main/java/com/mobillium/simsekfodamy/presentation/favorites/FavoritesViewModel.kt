@@ -39,11 +39,13 @@ class FavoritesViewModel @Inject constructor(
 
     fun logout() = viewModelScope.launch {
         if (preferences.isLogin()) {
-            when (user.logout()) {
-                is Result.Success -> showMessage(LOGGED_OUT)
-
-                is Result.Error -> showMessage(LOGGED_OUT_ERROR)
-            }
+            sendRequest(
+                loading = true,
+                request = {user.logout()},
+                success = {
+                    showMessage(LOGGED_OUT)
+                }
+            )
         } else {
             navigate(FavoritesFragmentDirections.actionFavoritesFragmentToFragmentLogin())
         }

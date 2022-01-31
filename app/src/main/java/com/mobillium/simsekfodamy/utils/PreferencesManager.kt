@@ -1,5 +1,6 @@
 package com.mobillium.simsekfodamy.utils
 
+
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
@@ -8,7 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
+
+@Singleton
 class PreferencesManager @Inject constructor(val context: Context) {
     companion object {
         val Context.dataStore: DataStore<Preferences> by preferencesDataStore("fodamyApp")

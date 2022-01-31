@@ -1,13 +1,16 @@
 package com.mobillium.data.response
 
+
+
+
 data class RecipeResponse(
-    val categoryResponse: CategoryResponse,
+    val category: CategoryResponse,
     val comment_count: Int,
     val definition: String,
     val difference: String,
     val directions: String,
     val id: Int,
-    val images: List<Image>,
+    val images: List<ImageResponse>,
     val ingredients: String,
     val is_approved: Boolean,
     val is_editor_choice: Boolean,
@@ -17,10 +20,10 @@ data class RecipeResponse(
     val language: String,
     val like_count: Int,
     val number_of_favorite_count: Int,
-    val number_of_personResponse: NumberOfPersonResponse,
-    val time_of_recipeResponse: TimeOfRecipeResponse,
+    val number_of_person: NumberOfPersonResponse,
+    val time_of_recipe: TimeOfRecipeResponse,
     val title: String,
-    val user: User,
+    val user: UserResponse,
     val view_count: Int,
     val youtube_url: String
 )

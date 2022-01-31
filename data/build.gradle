@@ -13,6 +13,7 @@ dependencies {
     api TestLibraries.androidTestImplementation
     api TestLibraries.espressoCore
 
+
     //Retrofit
     api Libraries.retrofit
 
@@ -23,6 +24,14 @@ dependencies {
     //OkHttp
     api Libraries.okHttp
     api Libraries.logInterceptor
+
+    //Dagger Hilt
+    api Libraries.daggerHilt
+    api Libraries.daggerAnnotations
+
+
+    //DataStore
+    api Libraries.dataStore
 
     //Paging
     api Libraries.paging

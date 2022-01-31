@@ -1,10 +1,18 @@
 package com.mobillium.simsekfodamy.base
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
+import com.mobillium.data.exceptions.Authentication
+import com.mobillium.data.exceptions.BaseException
+import com.mobillium.data.exceptions.GettingEmptyListItem
+import com.mobillium.data.exceptions.SimpleHttpException
+import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 abstract class BaseViewModel : ViewModel() {
 
@@ -20,7 +28,66 @@ abstract class BaseViewModel : ViewModel() {
         }
     }
 
+    fun backTo() {
+        baseEvent.value = BaseViewEvent.NavigateBack
+    }
+
     fun showMessage(message: String) = viewModelScope.launch {
         baseEvent.postValue(BaseViewEvent.ShowMessage(message))
     }
+
+    private fun showMessage(@StringRes message: Int) = viewModelScope.launch {
+        baseEvent.postValue(BaseViewEvent.ShowMessage(message))
+    }
+
+    private fun showDialog() = viewModelScope.launch {
+        baseEvent.postValue(BaseViewEvent.ShowLoading(true))
+    }
+
+    private fun dismissDialog() = viewModelScope.launch {
+        baseEvent.postValue(BaseViewEvent.ShowLoading(false))
+    }
+
+    fun <T : Any?> sendRequest(
+        loading: Boolean = true,
+        closeLoading: Boolean = true,
+        request: suspend () -> T,
+        success: ((T) -> Unit)? = null,
+        error: ((Exception) -> Unit)? = null,
+        complete: (() -> Unit)? = null,
+    ): Job {
+        return viewModelScope.launch {
+            if (loading) {
+                showDialog()
+            }
+            try {
+                val result = request.invoke()
+                success?.invoke(result)
+            } catch (exception: Exception) {
+                dismissDialog()
+                if (error != null) {
+                    error.invoke(exception)
+                } else {
+                    handleException(exception)
+                }
+            }
+            if (loading && closeLoading) {
+                dismissDialog()
+            }
+            complete?.invoke()
+        }
+    }
+
+    private fun handleException(ex: Exception) {
+        when (ex) {
+            is Authentication -> showMessage(R.string.try_again)
+            is IOException -> showMessage(R.string.check_internet)
+            is GettingEmptyListItem -> showMessage(R.string.no_comment)
+            is SimpleHttpException -> ex.friendlyMessage?.let { showMessage(it) }
+            is BaseException -> showMessage(ex.exMessage)
+        }
+    }
+
+
 }
+

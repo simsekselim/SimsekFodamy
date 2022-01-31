@@ -1,11 +1,14 @@
 package com.mobillium.data.response
 
-data class Image(
+import com.mobillium.domain.model.Image
+
+data class ImageResponse(
     val width: Int,
     val height: Int,
     val key: String,
     val order: Int,
     val url: String
 )
+
 
 data class ImageList(val images: List<Image>)

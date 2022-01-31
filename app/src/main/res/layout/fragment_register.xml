@@ -3,8 +3,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.login.LoginFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".ui.login.LoginFragment">
 
     <data>
 
@@ -22,6 +22,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginTop="@dimen/login_margin"
             android:text="@string/register"
             android:textSize="@dimen/text"
@@ -56,7 +57,9 @@
                 android:hint="@string/user_name"
                 android:inputType="textPersonName"
                 android:padding="16dp"
-                android:text="@={viewModel.username}" />
+                android:text="@={viewModel.username}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/user_mail"
@@ -70,7 +73,9 @@
                 android:hint="@string/email"
                 android:inputType="textPersonName"
                 android:padding="16dp"
-                android:text="@={viewModel.email}" />
+                android:text="@={viewModel.email}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/user_password"
@@ -84,7 +89,9 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:padding="16dp"
-                android:text="@={viewModel.password}" />
+                android:text="@={viewModel.password}"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/register"
@@ -93,8 +100,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/primary_button"
-                android:fontFamily="@font/nunito_bold"
                 android:enabled="@{viewModel.validation}"
+                android:fontFamily="@font/nunito_bold"
                 android:onClick="@{()->viewModel.onClickRegister()}"
                 android:text="@string/register"
                 android:textAllCaps="false"
@@ -109,34 +116,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="bottom"
+            android:layout_marginBottom="@dimen/margin_x_small"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/have_acc"
-                android:onClick="@{()->viewModel.toLogin()}"
                 android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{()->viewModel.toLogin()}"
+                android:text="@string/have_acc"
+                android:textColor="@color/gray"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:focusable="true" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:focusable="true"
                 android:onClick="@{()->viewModel.toLogin()}"
                 android:text="@string/login"
                 android:textColor="@color/red"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:focusable="true" />
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </LinearLayout>

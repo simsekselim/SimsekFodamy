@@ -1,8 +1,9 @@
 package com.mobillium.data.api
 
 import com.mobillium.data.response.BaseResponse
+import com.mobillium.data.response.CommonResponse
 import com.mobillium.data.response.LoginResponse
-import com.mobillium.data.response.User
+import com.mobillium.data.response.UserResponse
 import com.mobillium.domain.utils.Constants
 import retrofit2.http.*
 
@@ -25,23 +26,23 @@ interface UserService {
     @POST(Constants.FORGOT_URL)
     suspend fun forgotPassword(
         @Query("email") email: String
-    ): Any
+    ): LoginResponse
 
     @POST(Constants.LOGOUT_URL)
-    suspend fun logout(): BaseResponse<Any>
+    suspend fun logout(): CommonResponse
 
     @GET(Constants.USER)
     suspend fun getUser(
         @Path("user_id") userId: Int
-    ): User
+    ): UserResponse
 
     @POST(Constants.FOLLOW_USER)
     suspend fun followUser(
         @Path("followedId") followedId: Int
-    ): BaseResponse<Any>
+    ): CommonResponse
 
     @DELETE(Constants.UNFOLLOW_USER)
     suspend fun unfollowUser(
         @Path("followedId") followedId: Int
-    ): BaseResponse<Any>
+    ): CommonResponse
 }

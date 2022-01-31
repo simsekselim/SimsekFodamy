@@ -63,6 +63,9 @@
     <string name="month">4 ay önce</string>
     <string name="tools_comment">1 Yorum</string>
     <string name="tools_like">1 Beğenme</string>
+    <string name="try_again">Giriş Yapmayı Yeniden Deneyin</string>
+    <string name="no_comment">Yorum Bulunmamaktadır</string>
+    <string name="check_internet">Bağlantınızı Kontrol Edin</string>
 
     //Intro
     <string name="description">Fodamy is the best place to find your favourite recipes in all around the world. </string>
