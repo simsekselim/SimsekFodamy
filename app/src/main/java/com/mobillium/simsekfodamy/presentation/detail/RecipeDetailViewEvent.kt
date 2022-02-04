@@ -1,7 +1,8 @@
 package com.mobillium.simsekfodamy.presentation.detail
 
-import com.mobillium.simsekfodamy.model.Comment
-import com.mobillium.simsekfodamy.model.Recipe
+import com.mobillium.domain.model.Comment
+import com.mobillium.domain.model.Recipe
+
 
 sealed class RecipeDetailViewEvent {
     data class FirstComment(val comment: Comment?) : RecipeDetailViewEvent()

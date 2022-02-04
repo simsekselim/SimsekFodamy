@@ -1,5 +1,9 @@
 package com.mobillium.domain.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class User(
     val followed_count: Int,
     val following_count: Int,
@@ -12,4 +16,4 @@ data class User(
     val name: String,
     val username: String
 
-)
+):Parcelable

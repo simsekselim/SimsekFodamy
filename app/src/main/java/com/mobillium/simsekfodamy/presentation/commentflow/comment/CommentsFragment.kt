@@ -70,7 +70,7 @@ class CommentsFragment() :
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.event.observe(viewLifecycleOwner, {
+            viewModel.event.observe(viewLifecycleOwner) {
                 when (it) {
                     CommentsViewEvent.SendCommentSuccess -> {
                         adapter.refresh()
@@ -78,7 +78,7 @@ class CommentsFragment() :
                     }
                     CommentsViewEvent.DeleteCommentSuccess -> adapter.refresh()
                 }
-            })
+            }
         }
     }
 }

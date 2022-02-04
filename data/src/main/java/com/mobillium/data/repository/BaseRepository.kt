@@ -17,7 +17,6 @@ abstract class BaseRepository {
     private fun parseException(ex: Exception): Exception {
 
         return when (ex) {
-            // cast HttpException here.
             is HttpException -> {
                 when (ex.response()?.code()) {
                     CODE_UNAUTHORIZIED -> Unauthorized()

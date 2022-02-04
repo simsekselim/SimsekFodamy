@@ -2,15 +2,15 @@ package com.mobillium.simsekfodamy.utils
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.mobillium.simsekfodamy.api.RecipeService
-import com.mobillium.simsekfodamy.model.Recipe
+import com.mobillium.domain.model.Recipe
+import com.mobillium.domain.repository.RecipeRepository
 import retrofit2.HttpException
 import java.io.IOException
 
 class RecipePagingFactory(
-    private val api: RecipeService,
+    private val recipeRepository: RecipeRepository,
     private val key: String,
-    private val categoryId: Int
+    private val categoryId: Int?
 ) : PagingSource<Int, Recipe>() {
     companion object {
         const val STARTING_PAGE_INDEX = 1
@@ -25,19 +25,19 @@ class RecipePagingFactory(
             val response =
                 when (key) {
                     GET_LAST -> {
-                        api.getLastAddedRecipes(position)
+                        recipeRepository.getLastAddedRecipes(position)
                     }
                     GET_EDITOR_CHOICE -> {
-                        api.getEditorChoiceRecipes(position)
+                        recipeRepository.getEditorChoiceRecipes(position)
                     }
                     GET_CATEGORY_RECIPES -> {
-                        api.getCategoryRecipes(categoryId, position)
+                        recipeRepository.getCategoryRecipes(categoryId!!, position)
                     }
                     else -> {
-                        api.getLastAddedRecipes(position)
+                        recipeRepository.getLastAddedRecipes(position)
                     }
                 }
-            val recipes = response.data
+            val recipes = response ?: emptyList()
             LoadResult.Page(
                 data = recipes,
                 prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,

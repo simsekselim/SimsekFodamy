@@ -40,7 +40,7 @@ class DefaultRecipeRepository @Inject constructor(
                 it.toDomainModel()
             }
                 .filter {
-                    it.recipes.isNotEmpty()
+                    it.recipes!!.isNotEmpty()
                 }
         }
 

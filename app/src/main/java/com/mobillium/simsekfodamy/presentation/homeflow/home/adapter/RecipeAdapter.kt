@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.mobillium.domain.model.Recipe
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.databinding.ItemRecipeBinding
-import com.mobillium.simsekfodamy.model.Recipe
 import com.squareup.picasso.Picasso
 
 class RecipeAdapter() :
@@ -55,7 +55,7 @@ class RecipeAdapter() :
 
                 if (recipe.user.image != null)
                     Picasso.get()
-                        .load(recipe.user.image.url)
+                        .load(recipe.user.image!!.url)
                         .placeholder(R.drawable.user)
                         .into(ivProfilePicture)
 
@@ -71,10 +71,9 @@ class RecipeAdapter() :
                         recipe.like_count
                     )
 
-                if (recipe.images[0].url != null)
-                    Picasso.get()
-                        .load(recipe.images[0].url)
-                        .into(ivRecipe)
+                Picasso.get()
+                    .load(recipe.images[0].url)
+                    .into(ivRecipe)
 
                 ivMadal.visibility =
                     if (recipe.is_editor_choice) View.VISIBLE else View.GONE

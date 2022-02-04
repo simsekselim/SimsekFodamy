@@ -5,10 +5,10 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
+import com.mobillium.domain.model.Comment
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentRecipeDetailBinding
-import com.mobillium.simsekfodamy.model.Comment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,23 +31,22 @@ class RecipeDetailFragment() :
             }
         }
 
-        viewModel.recipe.observe(viewLifecycleOwner, { recipe ->
+        viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
             binding.toolbar.tvFodamy.text = recipe.title
             binding.recipe = recipe
             binding.imageRecipe.setOnClickListener {
                 viewModel.toImageSlider()
             }
-        })
+        }
 
-        viewModel.comment.observe(viewLifecycleOwner, { comment ->
+        viewModel.comment.observe(viewLifecycleOwner) { comment ->
             binding.previewCommit.comment = comment
-        })
+        }
 
-        viewModel.getRecipeById()
-        viewModel.getFirstComment()
+
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.event.observe(viewLifecycleOwner, {
+            viewModel.event.observe(viewLifecycleOwner) {
                 when (it) {
                     is RecipeDetailViewEvent.FirstComment -> {
                         if (it.comment != null) {
@@ -58,7 +57,7 @@ class RecipeDetailFragment() :
                     }
                     else -> {}
                 }
-            })
+            }
         }
     }
 

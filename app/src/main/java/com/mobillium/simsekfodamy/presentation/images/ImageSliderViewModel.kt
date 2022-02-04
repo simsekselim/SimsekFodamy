@@ -2,8 +2,8 @@ package com.mobillium.simsekfodamy.presentation.images
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import com.mobillium.domain.model.ImageList
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.model.ImageList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mobillium.domain.model.Recipe
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.databinding.ItemCategoryRecipeBinding
-import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import com.squareup.picasso.Picasso
 
@@ -58,7 +58,7 @@ class CategoryRecipeAdapter(private val listener: RecipeAdapter.OnItemClickListe
 
                 if (recipe.user.image != null)
                     Picasso.get()
-                        .load(recipe.user.image.url)
+                        .load(recipe.user.image!!.url)
                         .placeholder(R.drawable.user)
                         .into(imageUserProfile)
                 else

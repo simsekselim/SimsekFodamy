@@ -8,7 +8,7 @@
 
         <variable
             name="profile"
-            type="com.mobillium.simsekfodamy.model.User" />
+            type="com.mobillium.domain.model.User" />
 
         <variable
             name="viewModel"

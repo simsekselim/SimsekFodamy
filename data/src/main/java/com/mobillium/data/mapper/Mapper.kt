@@ -13,7 +13,6 @@ fun RecipeResponse.toDomainModel(): Recipe =
         ingredients = this.ingredients,
         directions = this.directions,
         difference = this.difference,
-        is_favorited = this.is_favorited,
         is_editor_choice = this.is_editor_choice,
         is_liked = this.is_liked,
         like_count = this.like_count,
@@ -65,8 +64,8 @@ fun CategoryResponse.toDomainModel(): Category =
     Category(
         id = this.id,
         name = this.name ?: "",
-        image = image.toDomainModel(),
-        recipes = recipes.map {
+        image = image?.toDomainModel(),
+        recipes = recipes?.map {
             it.toDomainModel()
         }
 

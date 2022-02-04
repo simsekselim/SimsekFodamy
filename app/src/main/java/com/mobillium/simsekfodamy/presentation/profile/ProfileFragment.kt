@@ -21,9 +21,9 @@ class ProfileFragment :
         binding.toolbar.tvBack.isVisible = false
         binding.login.isVisible = false
 
-        viewModel.user.observe(viewLifecycleOwner, { user ->
+        viewModel.user.observe(viewLifecycleOwner) { user ->
             binding.profile = user
-        })
+        }
 
         binding.toolbar.ivLogout.setOnClickListener {
             viewModel.logout()

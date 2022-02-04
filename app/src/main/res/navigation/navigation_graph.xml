@@ -114,7 +114,7 @@
         android:label="ImageSliderFragment">
         <argument
             android:name="image"
-            app:argType="com.mobillium.simsekfodamy.model.ImageList" />
+            app:argType="com.mobillium.domain.model.ImageList" />
         <action
             android:id="@+id/action_imageSliderFragment_to_recipeDetailFragment"
             app:destination="@id/recipeDetailFragment" />

@@ -30,14 +30,14 @@ class EditCommentFragment() : BaseFragment<EditCommentViewModel, FragmentEditCom
         binding.comment.requestFocus()
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.event.observe(viewLifecycleOwner, {
+            viewModel.event.observe(viewLifecycleOwner) {
                 when (it) {
                     EditCommentViewEvent.EditCommentSuccess -> {
                         setFragmentResult(ACTION, bundleOf(REFRESH to true))
                         viewModel.popBackStack()
                     }
                 }
-            })
+            }
         }
     }
 

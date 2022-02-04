@@ -3,11 +3,11 @@ package com.mobillium.simsekfodamy.presentation.images
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.navArgs
+import com.mobillium.domain.model.Image
+import com.mobillium.domain.model.ImageList
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentImageSliderBinding
-import com.mobillium.simsekfodamy.model.Image
-import com.mobillium.simsekfodamy.model.ImageList
 import com.mobillium.simsekfodamy.presentation.images.adapter.ImageAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

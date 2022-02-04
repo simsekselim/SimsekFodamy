@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
+import com.mobillium.domain.model.Category
+import com.mobillium.domain.model.Recipe
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentFavoritesBinding
-import com.mobillium.simsekfodamy.model.Category
-import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.favorites.adapter.CategoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
