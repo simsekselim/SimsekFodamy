@@ -6,10 +6,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mobillium.domain.model.Category
+import com.mobillium.domain.model.Recipe
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.databinding.ItemCategoryBinding
-import com.mobillium.simsekfodamy.model.Category
-import com.mobillium.simsekfodamy.model.Recipe
 import com.mobillium.simsekfodamy.presentation.homeflow.home.adapter.RecipeAdapter
 import com.squareup.picasso.Picasso
 
@@ -41,7 +41,7 @@ class CategoryAdapter(private val listener: OnItemClickListener) :
 
                 if (category.image != null)
                     Picasso.get()
-                        .load(category.image.url)
+                        .load(category.image!!.url)
                         .into(imageCategory)
                 else
                     imageCategory.setImageResource(R.drawable.fork)
@@ -50,7 +50,7 @@ class CategoryAdapter(private val listener: OnItemClickListener) :
                     listener.onSeeAllClick(category)
                 }
             }
-            setRecyclerView(category.recipes)
+            category.recipes?.let { setRecyclerView(it) }
         }
 
         private fun setRecyclerView(recipes: List<Recipe>) {

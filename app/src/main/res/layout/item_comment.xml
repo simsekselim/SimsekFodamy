@@ -11,7 +11,7 @@
 
         <variable
             name="comment"
-            type="com.mobillium.simsekfodamy.model.Comment" />
+            type="com.mobillium.domain.model.Comment" />
 
     </data>
 

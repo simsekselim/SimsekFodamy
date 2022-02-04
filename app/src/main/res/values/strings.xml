@@ -74,5 +74,7 @@
     <string name="title_three">Add new recipe.</string>
     <string name="title_four">Share recipe with others.</string>
 
+    <string name="comment_add">Yorum Eklendi.</string>
+
 
 </resources>

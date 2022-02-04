@@ -12,7 +12,7 @@ buildscript {
         classpath Paths.daggerHiltPluginPath
         classpath Paths.navigationPluginPath
         classpath Paths.ktlintPluginPath
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10'
+
 
 
     }

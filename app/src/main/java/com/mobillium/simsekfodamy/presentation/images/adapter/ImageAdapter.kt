@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.mobillium.domain.model.Image
 import com.mobillium.simsekfodamy.R
-import com.mobillium.simsekfodamy.model.Image
 import com.squareup.picasso.Picasso
 
 class ImageAdapter(

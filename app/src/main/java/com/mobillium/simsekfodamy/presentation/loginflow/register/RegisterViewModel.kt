@@ -3,10 +3,8 @@ package com.mobillium.simsekfodamy.presentation.loginflow.register
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.mobillium.domain.repository.UserRepository
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.handleHttpException
-import com.mobillium.simsekfodamy.repository.UserRepository
-import com.mobillium.simsekfodamy.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,23 +23,23 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
         addSource(email) { value = validate() }
     }
 
-    fun onClickRegister() = viewModelScope.launch {
-        when (
-            val response =
-                repository.register(
-                    username.value.toString(),
-                    email.value.toString(),
-                    password.value.toString()
-                )
-        ) {
-            is Result.Success -> {
-                navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
+    fun onClickRegister() {
+        val username = username.value.toString()
+        val email = email.value.toString()
+        val password = password.value.toString()
+        if(validation.value == true)
+        sendRequest(
+            request = {repository.register(username,email,password)},
+            success = {
+                showMessage(SUCCESS)
+                toLogin()
+
             }
-            is Result.Error -> {
-                response.exception.handleHttpException()
-            }
-        }
+        )
+
     }
+
+
 
     private fun validate(): Boolean {
         return !username.value.isNullOrBlank() && !password.value.isNullOrBlank() && password.value!!.length > 6 && !email.value.isNullOrBlank()
@@ -49,5 +47,9 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
 
     fun toLogin() {
         navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
+    }
+
+    companion object{
+        const val SUCCESS = "Kayıt İşlemi Tamamlanmıştır."
     }
 }

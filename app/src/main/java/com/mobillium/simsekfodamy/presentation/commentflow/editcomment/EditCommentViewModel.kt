@@ -3,11 +3,9 @@ package com.mobillium.simsekfodamy.presentation.commentflow.editcomment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.mobillium.data.utils.PreferencesManager
+import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.handleHttpException
-import com.mobillium.simsekfodamy.repository.RecipeRepository
-import com.mobillium.simsekfodamy.utils.PreferencesManager
-import com.mobillium.simsekfodamy.utils.Result
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -29,22 +27,18 @@ class EditCommentViewModel @Inject constructor(
     val editableComment = MutableLiveData<String>(commentText)
 
     fun onClickSave() = viewModelScope.launch {
-        when (
-            val response =
+        sendRequest(
+            request = {
                 repository.editRecipeComments(
                     recipeId,
                     commentId,
                     editableComment.value.toString()
                 )
-        ) {
-            is Result.Success -> {
-                event.postValue(EditCommentViewEvent.EditCommentSuccess)
+            },
+            success = {
+                event.value = EditCommentViewEvent.EditCommentSuccess
             }
-
-            is Result.Error -> {
-                showMessage(response.exception.handleHttpException())
-            }
-        }
+        )
     }
 
     companion object {

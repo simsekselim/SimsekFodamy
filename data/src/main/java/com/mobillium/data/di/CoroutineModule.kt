@@ -11,7 +11,7 @@ import kotlinx.coroutines.SupervisorJob
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-/*
+
 @Module
 @InstallIn(SingletonComponent::class)
 object CoroutineModule {
@@ -36,4 +36,3 @@ annotation class IODispatcher
 @Qualifier
 annotation class ApplicationScope
 
- */

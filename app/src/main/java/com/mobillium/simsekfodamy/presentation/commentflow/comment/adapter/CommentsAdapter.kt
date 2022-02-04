@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.mobillium.domain.model.Comment
 import com.mobillium.simsekfodamy.databinding.ItemCommentBinding
-import com.mobillium.simsekfodamy.model.Comment
 
 class CommentsAdapter :
     PagingDataAdapter<Comment, CommentsAdapter.CommentViewHolder>(COMMENT_COMPARATOR) {

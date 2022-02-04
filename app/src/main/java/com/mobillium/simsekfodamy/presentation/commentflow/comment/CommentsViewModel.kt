@@ -1,15 +1,16 @@
 package com.mobillium.simsekfodamy.presentation.commentflow.comment
 
 import androidx.lifecycle.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.mobillium.data.utils.PreferencesManager
+import com.mobillium.domain.model.Comment
+import com.mobillium.domain.repository.RecipeRepository
+import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.handleHttpException
-import com.mobillium.simsekfodamy.model.Comment
-import com.mobillium.simsekfodamy.repository.RecipeRepository
-import com.mobillium.simsekfodamy.utils.Constants.DELETED
-import com.mobillium.simsekfodamy.utils.PreferencesManager
-import com.mobillium.simsekfodamy.utils.Result
+import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -33,23 +34,37 @@ class CommentsViewModel @Inject constructor(
     private val recipeId = stateHandle.get<Int>(RECIPE_COMMENT_ID) ?: 0
 
     fun comments() = viewModelScope.launch {
-        repository.getRecipeComments(recipeId).cachedIn(viewModelScope).collect {
-            recipeComment.value = it
-        }
+        sendRequest(
+            request = {
+                Pager(
+                    config = pageConfig,
+                    pagingSourceFactory = { CommentPagingFactory(repository, recipeId) }
+                ).flow
+            },
+            success = {
+                viewModelScope.launch {
+                    it.cachedIn(viewModelScope).collect {
+                        recipeComment.value = it
+                    }
+                }
+            }
+        )
     }
 
     fun sendComment() = viewModelScope.launch {
         if (preferences.getToken().isBlank()) {
             navigate(CommentsFragmentDirections.actionCommentsFragmentToLoginWarningDialog())
         } else {
-            when (val response = repository.sendComment(recipeId, commentText.value.toString())) {
-                is Result.Success -> {
-                    event.postValue(CommentsViewEvent.SendCommentSuccess)
+            sendRequest(
+                request = {
+                    repository.sendComment(recipeId, commentText.value.toString())
+                },
+                success = {
+                    commentText.value = ""
+                    showMessage(R.string.comment_add)
+
                 }
-                is Result.Error -> {
-                    showMessage(response.exception.handleHttpException())
-                }
-            }
+            )
         }
     }
 
@@ -63,15 +78,12 @@ class CommentsViewModel @Inject constructor(
     }
 
     fun deleteComment() = viewModelScope.launch {
-        when (val response = repository.deleteRecipeComments(recipeId, comment.value?.id!!)) {
-            is Result.Success -> {
-                event.postValue(CommentsViewEvent.DeleteCommentSuccess)
-                showMessage(DELETED)
+        sendRequest(
+            request = { repository.deleteRecipeComments(recipeId, comment.value?.id!!) },
+            success = {
+                event.value = CommentsViewEvent.DeleteCommentSuccess
             }
-            is Result.Error -> {
-                showMessage(response.exception.handleHttpException())
-            }
-        }
+        )
     }
 
     fun toEdit() = viewModelScope.launch {
@@ -85,7 +97,13 @@ class CommentsViewModel @Inject constructor(
             )
         )
     }
+
     companion object {
+        private val pageConfig = PagingConfig(
+            pageSize = 24,
+            maxSize = 100,
+            enablePlaceholders = false
+        )
         const val RECIPE_ID = "recipeId"
         const val RECIPE_COMMENT_ID = "recipeCommentId"
     }

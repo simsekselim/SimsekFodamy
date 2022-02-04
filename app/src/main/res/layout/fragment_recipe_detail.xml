@@ -10,7 +10,7 @@
 
         <variable
             name="recipe"
-            type="com.mobillium.simsekfodamy.model.Recipe" />
+            type="com.mobillium.domain.model.Recipe" />
 
         <variable
             name="viewModel"
