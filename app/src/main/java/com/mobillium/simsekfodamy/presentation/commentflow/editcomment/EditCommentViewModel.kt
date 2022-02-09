@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.repository.RecipeRepository
+import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,9 +25,9 @@ class EditCommentViewModel @Inject constructor(
     private val commentId = stateHandle.get<Int>(COMMENT_ID) ?: 0
     private val commentText = stateHandle.get<String>(COMMENT_TEXT) ?: ""
 
-    val editableComment = MutableLiveData<String>(commentText)
+    val editableComment = MutableLiveData(commentText)
 
-    fun onClickSave() = viewModelScope.launch {
+    fun onClickSave() =
         sendRequest(
             request = {
                 repository.editRecipeComments(
@@ -36,10 +37,10 @@ class EditCommentViewModel @Inject constructor(
                 )
             },
             success = {
-                event.value = EditCommentViewEvent.EditCommentSuccess
+                popBackStack(R.id.commentsFragment)
             }
         )
-    }
+
 
     companion object {
         const val RECIPE_ID = "recipeId"

@@ -1,5 +1,8 @@
 package com.mobillium.simsekfodamy.base
 
+import android.os.Bundle
+import androidx.annotation.CallSuper
+import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,27 +12,33 @@ import com.mobillium.data.exceptions.BaseException
 import com.mobillium.data.exceptions.GettingEmptyListItem
 import com.mobillium.data.exceptions.SimpleHttpException
 import com.mobillium.simsekfodamy.R
+import com.mobillium.simsekfodamy.utils.FetchExtras
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), FetchExtras {
+
+    @CallSuper
+    override fun fetchExtras(extras: Bundle) {
+
+    }
 
     val baseEvent = SingleLiveEvent<BaseViewEvent>()
 
-    fun navigate(directions: NavDirections) = viewModelScope.launch {
+    fun navigate(directions: NavDirections) =
         baseEvent.postValue(BaseViewEvent.NavigateTo(directions))
+
+
+    fun popBackStack(@IdRes id: Int? = null) {
+            baseEvent.postValue(BaseViewEvent.NavigateBack(id))
     }
 
-    fun popBackStack() {
-        viewModelScope.launch {
-            baseEvent.postValue(BaseViewEvent.NavigateBack)
-        }
-    }
+    fun deneme() = popBackStack()
 
-    fun backTo() {
-        baseEvent.value = BaseViewEvent.NavigateBack
+    fun setExtras(key: String, value: Any) {
+        baseEvent.postValue(BaseViewEvent.Extras(key, value))
     }
 
     fun showMessage(message: String) = viewModelScope.launch {

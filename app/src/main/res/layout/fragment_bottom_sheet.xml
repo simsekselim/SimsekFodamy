@@ -4,19 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.mobillium.simsekfodamy.presentation.bottom.unfollow.BottomSheetViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.bottom.BottomSheetFragment">
+        tools:context=".presentation.bottom.unfollow.BottomSheetFragment">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/unfollow"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
+            android:onClick="@{()->viewModel.unfollowClick()}"
             android:layout_marginHorizontal="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_x_small"
             android:background="@drawable/bottom"
@@ -34,6 +37,7 @@
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
+            android:onClick="@{()->viewModel.deneme()}"
             android:layout_marginHorizontal="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_x_small"
             android:background="@drawable/bottom"

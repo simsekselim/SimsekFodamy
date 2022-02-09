@@ -1,5 +1,6 @@
 package com.mobillium.simsekfodamy.presentation.detail
 
+import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
@@ -26,10 +27,14 @@ class RecipeDetailViewModel @Inject constructor(
 
     val recipe = MutableLiveData<Recipe>()
     val comment = MutableLiveData<Comment>()
-    val recipeId: Int = state.get(RECIPE_ID) ?: 0
+    var recipeId: Int ?= null
     val event = SingleLiveEvent<RecipeDetailViewEvent>()
 
-    init {
+
+
+    override fun fetchExtras(extras: Bundle) {
+        super.fetchExtras(extras)
+        recipeId = RecipeDetailFragmentArgs.fromBundle(extras).recipeId
         getRecipe()
         getFirstComment()
     }
@@ -53,7 +58,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     private fun getRecipe() {
             sendRequest(
-                request = {recipeRepository.getRecipe(recipeId)},
+                request = {recipeRepository.getRecipe(recipeId!!)},
                 success = {
                     event.value = RecipeDetailViewEvent.RecipeGot(it)
                     recipe.value = it
@@ -64,7 +69,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     private fun getFirstComment() {
         sendRequest(
-            request = {recipeRepository.getFirstComment(recipeId)},
+            request = {recipeRepository.getFirstComment(recipeId!!)},
             success = {
                 comment.value = it
             }
@@ -116,7 +121,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     private fun likeRecipe() {
         sendRequest(
-            request = {recipeRepository.likeRecipe(recipeId)},
+            request = {recipeRepository.likeRecipe(recipeId!!)},
             success = {
                 showMessage(it.message)
                 getRecipe()
@@ -127,7 +132,7 @@ class RecipeDetailViewModel @Inject constructor(
 
     private fun dislikeRecipe() {
         sendRequest(
-            request = {recipeRepository.dislikeRecipe(recipeId)},
+            request = {recipeRepository.dislikeRecipe(recipeId!!)},
             success = {
                 showMessage(it.message)
                 getRecipe()

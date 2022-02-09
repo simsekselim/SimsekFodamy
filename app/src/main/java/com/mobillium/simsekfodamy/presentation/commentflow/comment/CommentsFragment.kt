@@ -28,29 +28,23 @@ class CommentsFragment() :
 
         adapter.itemClicked = {
 
-            viewModel.toBottomSheet()
-            viewModel.comment.value = it
+            viewModel.toBottomSheet(it)
+
         }
 
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = COMMENT
 
-        setFragmentResultListener("action") { requestKey, bundle ->
-            when {
-                bundle.getBoolean("set", false) -> {
-
-                    viewModel.toEdit()
-                }
-                bundle.getBoolean("delete", false) -> {
-
-                    viewModel.deleteComment()
-                }
-                bundle.getBoolean("refresh", false) -> {
-                    adapter.refresh()
-                }
+        setFragmentResultListener(ACTION) { _, bundle ->
+            if (bundle.get("delete") != null && bundle.get("delete") as Boolean) {
+                adapter.refresh()
             }
+
+
+
         }
+
 
         (activity as AppCompatActivity).showIme()
         binding.comment.requestFocus()
@@ -80,5 +74,11 @@ class CommentsFragment() :
                 }
             }
         }
+    }
+
+    companion object {
+        private const val ACTION = "action"
+        private const val DELETE = "delete"
+        private const val SET = "set"
     }
 }
