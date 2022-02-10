@@ -5,6 +5,7 @@ import com.mobillium.domain.model.Comment
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseViewModel
+import com.mobillium.simsekfodamy.utils.Constants.KEY_DELETE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -31,7 +32,7 @@ class BottomCommentViewModel @Inject constructor(
             request = { comment?.let { recipe.deleteRecipeComments(recipeId = recipeId, it.id) } },
             success = {
                 showMessage(R.string.delete)
-                setExtras(DELETE, true)
+                setExtras(KEY_DELETE, true)
                 popBackStack()
             }
         )
@@ -42,6 +43,6 @@ class BottomCommentViewModel @Inject constructor(
         private const val COMMENT = "comment"
         private const val RECIPE_ID = "recipeId"
         private const val SET = "set"
-        private const val DELETE = "delete"
+
     }
 }

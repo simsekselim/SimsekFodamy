@@ -20,6 +20,7 @@ import com.mobillium.simsekfodamy.BR
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
+import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
 import com.mobillium.simsekfodamy.utils.snackbar
 
 abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(
@@ -69,11 +70,12 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
                 findNavController().navigate(event.directions)
             is BaseViewEvent.ShowMessage ->
                 snackbar(event.message.toString())
-            is BaseViewEvent.Extras ->
+            is BaseViewEvent.Extras -> {
                 setFragmentResult(
-                    ACTION,
+                    DIALOG_ACTION,
                     bundleOf(event.key to event.value)
                 )
+            }
             is BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
             is BaseViewEvent.ShowLoading -> {
@@ -81,7 +83,5 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
             }
         }
     }
-    companion object{
-        private const val ACTION = "action"
-    }
+
 }

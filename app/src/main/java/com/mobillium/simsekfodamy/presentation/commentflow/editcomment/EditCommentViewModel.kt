@@ -29,6 +29,7 @@ class EditCommentViewModel @Inject constructor(
 
     fun onClickSave() =
         sendRequest(
+            loading = false,
             request = {
                 repository.editRecipeComments(
                     recipeId,
@@ -37,7 +38,7 @@ class EditCommentViewModel @Inject constructor(
                 )
             },
             success = {
-                popBackStack(R.id.commentsFragment)
+                popBackStack()
             }
         )
 

@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.BR
 import com.mobillium.simsekfodamy.R
+import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
 import com.mobillium.simsekfodamy.utils.FetchExtras
 import com.mobillium.simsekfodamy.utils.snackbar
 
@@ -71,15 +74,15 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
                 findNavController().navigate(event.directions)
             is BaseViewEvent.ShowMessage ->
                 snackbar(event.message.toString())
-            is BaseViewEvent.NavigateBack -> if (event.destination != null){
-                findNavController().popBackStack(event.destination,false)
-            }else{
+            is BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
-            }
-
             is BaseViewEvent.ShowLoading -> {
                 if (event.isShow) dialog?.show() else dialog?.dismiss()
             }
+            is BaseViewEvent.Extras -> setFragmentResult(
+                DIALOG_ACTION,
+                bundleOf(event.key to event.value)
+            )
         }
     }
 }

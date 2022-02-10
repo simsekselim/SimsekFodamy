@@ -37,7 +37,7 @@
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:textAllCaps="true"
-            android:onClick="@{()->viewModel.deneme()}"
+            android:onClick="@{()->viewModel.popBackStack()}"
             android:layout_marginHorizontal="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_x_small"
             android:background="@drawable/bottom"

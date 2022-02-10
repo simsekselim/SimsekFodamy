@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.databinding.FragmentBottomCommentBinding
 import com.mobillium.simsekfodamy.presentation.bottom.base.BottomBaseFragment
+import com.mobillium.simsekfodamy.presentation.commentflow.comment.adapter.CommentsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,6 +21,7 @@ class BottomCommentFragment : BottomBaseFragment<BottomCommentViewModel,Fragment
     R.layout.fragment_bottom_comment,
     BottomCommentViewModel::class.java
 ) {
+
 //    var binding: FragmentBottomCommentBinding? = null
 //
 //    override fun onCreateView(

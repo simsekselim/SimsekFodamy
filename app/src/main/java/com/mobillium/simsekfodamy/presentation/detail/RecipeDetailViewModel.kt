@@ -1,6 +1,7 @@
 package com.mobillium.simsekfodamy.presentation.detail
 
 import android.os.Bundle
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
@@ -24,8 +25,8 @@ class RecipeDetailViewModel @Inject constructor(
     val preferences: PreferencesManager,
     private val state: SavedStateHandle
 ) : BaseViewModel() {
-
-    val recipe = MutableLiveData<Recipe>()
+    private val _recipe: MutableLiveData<Recipe> = MutableLiveData()
+    val recipe: LiveData<Recipe> get() = _recipe
     val comment = MutableLiveData<Comment>()
     var recipeId: Int ?= null
     val event = SingleLiveEvent<RecipeDetailViewEvent>()
@@ -61,7 +62,7 @@ class RecipeDetailViewModel @Inject constructor(
                 request = {recipeRepository.getRecipe(recipeId!!)},
                 success = {
                     event.value = RecipeDetailViewEvent.RecipeGot(it)
-                    recipe.value = it
+                    _recipe.value = it
                 }
             )
 

@@ -56,7 +56,7 @@
             android:layout_marginHorizontal="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_x_small"
             android:textStyle="bold"
-            android:onClick="@{()->viewModel.deneme()}"
+            android:onClick="@{()->viewModel.popBackStack()}"
             android:background="@drawable/bottom"
             android:backgroundTint="@color/white"
             android:text="@string/cancel"

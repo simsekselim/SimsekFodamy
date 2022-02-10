@@ -31,31 +31,30 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
         baseEvent.postValue(BaseViewEvent.NavigateTo(directions))
 
 
-    fun popBackStack(@IdRes id: Int? = null) {
-            baseEvent.postValue(BaseViewEvent.NavigateBack(id))
+    fun popBackStack() {
+            baseEvent.postValue(BaseViewEvent.NavigateBack)
     }
 
-    fun deneme() = popBackStack()
 
     fun setExtras(key: String, value: Any) {
         baseEvent.postValue(BaseViewEvent.Extras(key, value))
     }
 
-    fun showMessage(message: String) = viewModelScope.launch {
+    fun showMessage(message: String) =
         baseEvent.postValue(BaseViewEvent.ShowMessage(message))
-    }
 
-    fun showMessage(@StringRes message: Int) = viewModelScope.launch {
+
+    fun showMessage(@StringRes message: Int) =
         baseEvent.postValue(BaseViewEvent.ShowMessage(message))
-    }
 
-    private fun showDialog() = viewModelScope.launch {
+
+    private fun showDialog() =
         baseEvent.postValue(BaseViewEvent.ShowLoading(true))
-    }
 
-    private fun dismissDialog() = viewModelScope.launch {
+
+    private fun dismissDialog() =
         baseEvent.postValue(BaseViewEvent.ShowLoading(false))
-    }
+
 
     fun <T : Any?> sendRequest(
         loading: Boolean = true,

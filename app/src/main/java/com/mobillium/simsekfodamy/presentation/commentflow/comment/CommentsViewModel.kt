@@ -10,6 +10,7 @@ import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.Comment
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.R
+import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
@@ -32,7 +33,7 @@ class CommentsViewModel @Inject constructor(
     val commentText = MutableLiveData("")
 
 
-    private var recipeId : Int ?= null
+    private var recipeId: Int? = null
 
     override fun fetchExtras(extras: Bundle) {
         super.fetchExtras(extras)
@@ -63,10 +64,12 @@ class CommentsViewModel @Inject constructor(
             navigate(CommentsFragmentDirections.actionCommentsFragmentToLoginWarningDialog())
         } else {
             sendRequest(
+                loading = false,
                 request = {
                     repository.sendComment(recipeId!!, commentText.value.toString())
                 },
                 success = {
+                    event.value = CommentsViewEvent.SendCommentSuccess
                     commentText.value = ""
                     showMessage(R.string.comment_add)
 
@@ -88,8 +91,6 @@ class CommentsViewModel @Inject constructor(
             }
         }
     }
-
-
 
 
     companion object {

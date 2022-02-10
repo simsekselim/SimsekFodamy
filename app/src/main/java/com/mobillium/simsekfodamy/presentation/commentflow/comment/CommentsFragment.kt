@@ -5,12 +5,13 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentCommentsBinding
 import com.mobillium.simsekfodamy.presentation.commentflow.comment.adapter.CommentsAdapter
 import com.mobillium.simsekfodamy.utils.Constants.COMMENT
+import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
+import com.mobillium.simsekfodamy.utils.Constants.KEY_DELETE
 import com.mobillium.simsekfodamy.utils.showIme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,11 +37,11 @@ class CommentsFragment() :
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = COMMENT
 
-        setFragmentResultListener(ACTION) { _, bundle ->
-            if (bundle.get("delete") != null && bundle.get("delete") as Boolean) {
+       childFragmentManager.setFragmentResultListener(DIALOG_ACTION,this){ _, bundle ->
+            val resultDelete = bundle.get(KEY_DELETE)
+            if (resultDelete != null && resultDelete as Boolean) {
                 adapter.refresh()
             }
-
 
 
         }
@@ -63,22 +64,19 @@ class CommentsFragment() :
             requireView().clearFocus()
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.event.observe(viewLifecycleOwner) {
-                when (it) {
-                    CommentsViewEvent.SendCommentSuccess -> {
-                        adapter.refresh()
-                        viewModel.commentText.value = ""
-                    }
-                    CommentsViewEvent.DeleteCommentSuccess -> adapter.refresh()
+
+        viewModel.event.observe(viewLifecycleOwner) {
+            when (it) {
+                CommentsViewEvent.SendCommentSuccess -> {
+                    adapter.refresh()
+                    viewModel.commentText.value = ""
                 }
+                CommentsViewEvent.DeleteCommentSuccess -> adapter.refresh()
             }
         }
     }
 
     companion object {
-        private const val ACTION = "action"
-        private const val DELETE = "delete"
         private const val SET = "set"
     }
 }
