@@ -5,14 +5,16 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.lifecycleScope
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentCommentsBinding
 import com.mobillium.simsekfodamy.presentation.commentflow.comment.adapter.CommentsAdapter
 import com.mobillium.simsekfodamy.utils.Constants.COMMENT
+import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
+import com.mobillium.simsekfodamy.utils.Constants.KEY_DELETE
 import com.mobillium.simsekfodamy.utils.showIme
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class CommentsFragment() :
@@ -28,29 +30,23 @@ class CommentsFragment() :
 
         adapter.itemClicked = {
 
-            viewModel.toBottomSheet()
-            viewModel.comment.value = it
+            viewModel.toBottomSheet(it)
+
         }
 
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = COMMENT
 
-        setFragmentResultListener("action") { requestKey, bundle ->
-            when {
-                bundle.getBoolean("set", false) -> {
-
-                    viewModel.toEdit()
-                }
-                bundle.getBoolean("delete", false) -> {
-
-                    viewModel.deleteComment()
-                }
-                bundle.getBoolean("refresh", false) -> {
-                    adapter.refresh()
-                }
+       setFragmentResultListener(DIALOG_ACTION){ _, bundle ->
+            val resultDelete = bundle.get(KEY_DELETE)
+            if (resultDelete != null && resultDelete as Boolean) {
+                adapter.refresh()
             }
+
+
         }
+
 
         (activity as AppCompatActivity).showIme()
         binding.comment.requestFocus()
@@ -69,16 +65,19 @@ class CommentsFragment() :
             requireView().clearFocus()
         }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.event.observe(viewLifecycleOwner) {
-                when (it) {
-                    CommentsViewEvent.SendCommentSuccess -> {
-                        adapter.refresh()
-                        viewModel.commentText.value = ""
-                    }
-                    CommentsViewEvent.DeleteCommentSuccess -> adapter.refresh()
+
+        viewModel.event.observe(viewLifecycleOwner) {
+            when (it) {
+                CommentsViewEvent.SendCommentSuccess -> {
+                    adapter.refresh()
+                    viewModel.commentText.value = ""
                 }
+                CommentsViewEvent.DeleteCommentSuccess -> adapter.refresh()
             }
         }
+    }
+
+    companion object {
+        private const val SET = "set"
     }
 }

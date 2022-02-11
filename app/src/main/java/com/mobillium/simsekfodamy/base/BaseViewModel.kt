@@ -1,5 +1,8 @@
 package com.mobillium.simsekfodamy.base
 
+import android.os.Bundle
+import androidx.annotation.CallSuper
+import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,44 +12,49 @@ import com.mobillium.data.exceptions.BaseException
 import com.mobillium.data.exceptions.GettingEmptyListItem
 import com.mobillium.data.exceptions.SimpleHttpException
 import com.mobillium.simsekfodamy.R
+import com.mobillium.simsekfodamy.utils.FetchExtras
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), FetchExtras {
+
+    @CallSuper
+    override fun fetchExtras(extras: Bundle) {
+
+    }
 
     val baseEvent = SingleLiveEvent<BaseViewEvent>()
 
-    fun navigate(directions: NavDirections) = viewModelScope.launch {
+    fun navigate(directions: NavDirections) =
         baseEvent.postValue(BaseViewEvent.NavigateTo(directions))
-    }
+
 
     fun popBackStack() {
-        viewModelScope.launch {
-            baseEvent.postValue(BaseViewEvent.NavigateBack)
-        }
-    }
-
-    fun backTo() {
         baseEvent.value = BaseViewEvent.NavigateBack
     }
 
-    fun showMessage(message: String) = viewModelScope.launch {
-        baseEvent.postValue(BaseViewEvent.ShowMessage(message))
+
+    fun setExtras(key: String, value: Any) {
+        baseEvent.value = BaseViewEvent.Extras(key, value)
     }
 
-    fun showMessage(@StringRes message: Int) = viewModelScope.launch {
+    fun showMessage(message: String) =
         baseEvent.postValue(BaseViewEvent.ShowMessage(message))
-    }
 
-    private fun showDialog() = viewModelScope.launch {
+
+    fun showMessage(@StringRes message: Int) =
+        baseEvent.postValue(BaseViewEvent.ShowMessage(message))
+
+
+    private fun showDialog() =
         baseEvent.postValue(BaseViewEvent.ShowLoading(true))
-    }
 
-    private fun dismissDialog() = viewModelScope.launch {
+
+    private fun dismissDialog() =
         baseEvent.postValue(BaseViewEvent.ShowLoading(false))
-    }
+
 
     fun <T : Any?> sendRequest(
         loading: Boolean = true,

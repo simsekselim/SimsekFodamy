@@ -1,5 +1,6 @@
 package com.mobillium.simsekfodamy.presentation.commentflow.comment
 
+import android.os.Bundle
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -9,6 +10,7 @@ import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.Comment
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.R
+import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
@@ -29,16 +31,22 @@ class CommentsViewModel @Inject constructor(
     val recipeComment = MutableLiveData<PagingData<Comment>>()
 
     val commentText = MutableLiveData("")
-    val comment = MutableLiveData<Comment>()
-    val recipe = stateHandle.get<Int>(RECIPE_ID) ?: 0
-    private val recipeId = stateHandle.get<Int>(RECIPE_COMMENT_ID) ?: 0
+
+
+    private var recipeId: Int? = null
+
+    override fun fetchExtras(extras: Bundle) {
+        super.fetchExtras(extras)
+        recipeId = CommentsFragmentArgs.fromBundle(extras).recipeCommentId
+
+    }
 
     fun comments() = viewModelScope.launch {
         sendRequest(
             request = {
                 Pager(
                     config = pageConfig,
-                    pagingSourceFactory = { CommentPagingFactory(repository, recipeId) }
+                    pagingSourceFactory = { CommentPagingFactory(repository, recipeId!!) }
                 ).flow
             },
             success = {
@@ -56,10 +64,12 @@ class CommentsViewModel @Inject constructor(
             navigate(CommentsFragmentDirections.actionCommentsFragmentToLoginWarningDialog())
         } else {
             sendRequest(
+                loading = false,
                 request = {
-                    repository.sendComment(recipeId, commentText.value.toString())
+                    repository.sendComment(recipeId!!, commentText.value.toString())
                 },
                 success = {
+                    event.value = CommentsViewEvent.SendCommentSuccess
                     commentText.value = ""
                     showMessage(R.string.comment_add)
 
@@ -68,35 +78,20 @@ class CommentsViewModel @Inject constructor(
         }
     }
 
-    fun toBottomSheet() {
+    fun toBottomSheet(comment: Comment) {
         viewModelScope.launch {
             val userId = preferences.getUser()
-            if (comment.value?.user?.id == userId) {
-                navigate(CommentsFragmentDirections.actionCommentsFragmentToBottomCommentFragment())
+            if (comment.user.id == userId) {
+                navigate(
+                    CommentsFragmentDirections.actionCommentsFragmentToBottomCommentFragment(
+                        recipeId!!,
+                        comment
+                    )
+                )
             }
         }
     }
 
-    fun deleteComment() = viewModelScope.launch {
-        sendRequest(
-            request = { repository.deleteRecipeComments(recipeId, comment.value?.id!!) },
-            success = {
-                event.value = CommentsViewEvent.DeleteCommentSuccess
-            }
-        )
-    }
-
-    fun toEdit() = viewModelScope.launch {
-
-        navigate(
-            CommentsFragmentDirections.actionCommentsFragmentToSetCommentFragment(
-                comment.value?.id!!,
-                recipeId,
-                comment.value!!.text!!
-
-            )
-        )
-    }
 
     companion object {
         private val pageConfig = PagingConfig(
