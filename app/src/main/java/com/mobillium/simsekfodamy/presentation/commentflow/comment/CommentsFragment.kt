@@ -15,6 +15,7 @@ import com.mobillium.simsekfodamy.utils.Constants.KEY_DELETE
 import com.mobillium.simsekfodamy.utils.showIme
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class CommentsFragment() :
     BaseFragment<CommentsViewModel, FragmentCommentsBinding>(
@@ -37,7 +38,7 @@ class CommentsFragment() :
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = COMMENT
 
-       childFragmentManager.setFragmentResultListener(DIALOG_ACTION,this){ _, bundle ->
+       setFragmentResultListener(DIALOG_ACTION){ _, bundle ->
             val resultDelete = bundle.get(KEY_DELETE)
             if (resultDelete != null && resultDelete as Boolean) {
                 adapter.refresh()

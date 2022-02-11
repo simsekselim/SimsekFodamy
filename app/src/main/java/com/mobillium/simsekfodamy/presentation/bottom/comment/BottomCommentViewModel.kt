@@ -19,9 +19,9 @@ class BottomCommentViewModel @Inject constructor(
     fun edit() {
         navigate(
             BottomCommentFragmentDirections.actionBottomCommentFragmentToEditCommentFragment(
-                comment?.id ?:-1,
+                comment?.id ?: -1,
                 recipeId,
-                comment?.text ?:""
+                comment?.text ?: ""
             )
         )
     }

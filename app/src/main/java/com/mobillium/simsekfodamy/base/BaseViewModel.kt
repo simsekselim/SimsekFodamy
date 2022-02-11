@@ -32,12 +32,12 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
 
 
     fun popBackStack() {
-            baseEvent.postValue(BaseViewEvent.NavigateBack)
+        baseEvent.value = BaseViewEvent.NavigateBack
     }
 
 
     fun setExtras(key: String, value: Any) {
-        baseEvent.postValue(BaseViewEvent.Extras(key, value))
+        baseEvent.value = BaseViewEvent.Extras(key, value)
     }
 
     fun showMessage(message: String) =

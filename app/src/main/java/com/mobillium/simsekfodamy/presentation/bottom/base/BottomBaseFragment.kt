@@ -39,30 +39,32 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
-        BottomSheetDialog(requireContext(),R.style.TransparentBottomSheetDialog)
+        BottomSheetDialog(requireContext(), R.style.TransparentBottomSheetDialog)
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        eventObserver()
         loadingDialog = Dialog(requireActivity())
         loadingDialog.setCancelable(false)
         loadingDialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)
         loadingDialog.setContentView(R.layout.loading)
-        loadingDialog.window!!.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
+        loadingDialog.window!!.statusBarColor =
+            ContextCompat.getColor(requireContext(), R.color.red)
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.viewModel, viewModel)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    fun eventObserver(){
         viewModel.baseEvent.observe(viewLifecycleOwner) {
             onViewEvent(it)
         }
     }
+
 
     private fun onViewEvent(event: BaseViewEvent) {
         when (event) {
@@ -70,16 +72,16 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
                 findNavController().navigate(event.directions)
             is BaseViewEvent.ShowMessage ->
                 snackbar(event.message.toString())
-            is BaseViewEvent.Extras -> {
+            is BaseViewEvent.Extras ->
                 setFragmentResult(
                     DIALOG_ACTION,
                     bundleOf(event.key to event.value)
                 )
-            }
-            is BaseViewEvent.NavigateBack ->
+
+            BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
             is BaseViewEvent.ShowLoading -> {
-                if(event.isShow) dialog?.show() else dialog?.dismiss()
+                if (event.isShow) dialog?.show() else dialog?.dismiss()
             }
         }
     }
