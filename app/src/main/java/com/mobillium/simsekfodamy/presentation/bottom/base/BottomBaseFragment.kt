@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
@@ -21,12 +22,13 @@ import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
+import com.mobillium.simsekfodamy.utils.FetchExtras
 import com.mobillium.simsekfodamy.utils.snackbar
 
 abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(
     @LayoutRes private val layoutResId: Int,
     private val viewModelType: Class<TViewModel>
-) : BottomSheetDialogFragment() {
+) : BottomSheetDialogFragment(), FetchExtras {
 
     protected lateinit var viewModel: TViewModel
     protected lateinit var binding: TBinding
@@ -36,6 +38,9 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(viewModelType)
+        arguments?.let {
+            fetchExtras(it)
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
@@ -59,7 +64,7 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
         return binding.root
     }
 
-    fun eventObserver(){
+    fun eventObserver() {
         viewModel.baseEvent.observe(viewLifecycleOwner) {
             onViewEvent(it)
         }
@@ -84,6 +89,11 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
                 if (event.isShow) dialog?.show() else dialog?.dismiss()
             }
         }
+    }
+
+    @CallSuper
+    override fun fetchExtras(extras: Bundle) {
+        viewModel.fetchExtras(extras)
     }
 
 }

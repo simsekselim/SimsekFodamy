@@ -10,7 +10,6 @@ import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.Comment
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.R
-import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
@@ -54,7 +53,8 @@ class CommentsViewModel @Inject constructor(
                     it.cachedIn(viewModelScope).collect {
                         recipeComment.value = it
                     }
-                }
+
+                    }
             }
         )
     }

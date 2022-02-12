@@ -6,8 +6,6 @@ import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.User
 import com.mobillium.domain.repository.UserRepository
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
-import com.mobillium.simsekfodamy.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

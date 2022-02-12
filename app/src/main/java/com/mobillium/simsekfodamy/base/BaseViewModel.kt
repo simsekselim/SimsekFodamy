@@ -40,8 +40,10 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
         baseEvent.value = BaseViewEvent.Extras(key, value)
     }
 
-    fun showMessage(message: String) =
-        baseEvent.postValue(BaseViewEvent.ShowMessage(message))
+    fun showMessage(message: String) {
+        baseEvent.value = BaseViewEvent.ShowMessage(message)
+    }
+
 
 
     fun showMessage(@StringRes message: Int) =
