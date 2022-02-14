@@ -15,7 +15,6 @@ import com.mobillium.simsekfodamy.utils.Constants.KEY_DELETE
 import com.mobillium.simsekfodamy.utils.showIme
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class CommentsFragment() :
     BaseFragment<CommentsViewModel, FragmentCommentsBinding>(
@@ -31,22 +30,18 @@ class CommentsFragment() :
         adapter.itemClicked = {
 
             viewModel.toBottomSheet(it)
-
         }
 
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.isVisible = false
         binding.toolbar.tvFodamy.text = COMMENT
 
-       setFragmentResultListener(DIALOG_ACTION){ _, bundle ->
+        setFragmentResultListener(DIALOG_ACTION) { _, bundle ->
             val resultDelete = bundle.get(KEY_DELETE)
             if (resultDelete != null && resultDelete as Boolean) {
                 adapter.refresh()
             }
-
-
         }
-
 
         (activity as AppCompatActivity).showIme()
         binding.comment.requestFocus()
@@ -64,7 +59,6 @@ class CommentsFragment() :
             viewModel.sendComment()
             requireView().clearFocus()
         }
-
 
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {

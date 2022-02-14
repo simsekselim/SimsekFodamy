@@ -12,6 +12,7 @@
             name="recipe"
             type="com.mobillium.domain.model.Recipe" />
 
+
         <variable
             name="viewModel"
             type="com.mobillium.simsekfodamy.presentation.detail.RecipeDetailViewModel" />
@@ -196,13 +197,13 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/image_like_icon"
-                            likeStyle="@{viewModel.recipe.is_liked}"
                             android:layout_width="@dimen/size_large"
                             android:layout_height="@dimen/size_large"
                             android:layout_margin="@dimen/margin_normal"
                             android:onClick="@{()->viewModel.onClickLike()}"
                             android:scaleType="fitCenter"
                             android:src="@drawable/heart"
+                            android:tint="@{viewModel.recipe.is_liked ? @color/red : @color/black}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -271,17 +272,16 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/button_user_follow"
-                        buttonStyle="@{recipe.user.is_following}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_normal"
-                        android:background="@drawable/button"
+                        android:background="@{recipe.user.is_following ? @drawable/following : @drawable/button}"
                         android:onClick="@{()->viewModel.onClickFollowButton()}"
                         android:paddingStart="@dimen/padding_large"
                         android:paddingEnd="@dimen/padding_large"
-                        android:text="@string/follow_user"
+                        android:text="@{recipe.user.is_following ? @string/following : @string/follow_user}"
                         android:textAllCaps="false"
-                        android:textColor="@color/red"
+                        android:textColor="@{recipe.user.is_following ?@color/white : @color/red}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

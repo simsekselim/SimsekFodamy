@@ -1,6 +1,5 @@
 package com.mobillium.data.di
 
-import com.mobillium.data.BuildConfig
 import com.mobillium.data.api.RecipeService
 import com.mobillium.data.api.UserService
 import com.mobillium.data.utils.UserInterceptor
@@ -39,7 +38,6 @@ object ServiceModule {
 
     // Services
 
-
     @Provides
     @Singleton
     fun provideRecipeService(retrofit: Retrofit): RecipeService {
@@ -52,5 +50,3 @@ object ServiceModule {
         return retrofit.create(UserService::class.java)
     }
 }
-
-

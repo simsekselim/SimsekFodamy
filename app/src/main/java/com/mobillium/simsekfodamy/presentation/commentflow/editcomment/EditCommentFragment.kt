@@ -25,8 +25,6 @@ class EditCommentFragment() : BaseFragment<EditCommentViewModel, FragmentEditCom
         }
         (activity as AppCompatActivity).showIme()
         binding.comment.requestFocus()
-
-
     }
 
     companion object {

@@ -27,7 +27,7 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             val userId = preferences.getUser()
             sendRequest(
-                request =  {userRepository.getUser(userId)},
+                request = { userRepository.getUser(userId) },
                 success = {
                     user.value = it
                 }
@@ -36,18 +36,16 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun logout() = viewModelScope.launch {
-            if (preferences.isLogin()) {
-             sendRequest(
-                 loading = false,
-                 request = {userRepository.logout()},
-                 success = {
-                     showMessage(it.message)
-                 }
-             )
-            } else {
-                navigate(ProfileFragmentDirections.actionProfileFragmentToFragmentLogin())
-            }
+        if (preferences.isLogin()) {
+            sendRequest(
+                loading = false,
+                request = { userRepository.logout() },
+                success = {
+                    showMessage(it.message)
+                }
+            )
+        } else {
+            navigate(ProfileFragmentDirections.actionProfileFragmentToFragmentLogin())
         }
-
-
+    }
 }

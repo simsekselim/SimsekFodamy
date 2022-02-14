@@ -9,15 +9,13 @@ import com.mobillium.domain.model.Comment
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentRecipeDetailBinding
-import com.mobillium.simsekfodamy.presentation.bottom.unfollow.BottomSheetViewModel.Companion.UNFOLLOW
-import com.mobillium.simsekfodamy.utils.Constants
 import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RecipeDetailFragment() :
     BaseFragment<RecipeDetailViewModel, FragmentRecipeDetailBinding>
-        (
+    (
         R.layout.fragment_recipe_detail,
         RecipeDetailViewModel::class.java
     ) {
@@ -27,51 +25,47 @@ class RecipeDetailFragment() :
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.setImageResource(R.drawable.share)
 
-
-
         setFragmentResultListener(DIALOG_ACTION) { _, bundle ->
             if (bundle.get(UNFOLLOW) != null && bundle.get(UNFOLLOW) as Boolean) {
                 viewModel.getRecipeById()
             }
         }
-            viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
-                binding.toolbar.tvFodamy.text = recipe.title
-                binding.recipe = recipe
-                binding.imageRecipe.setOnClickListener {
-                    viewModel.toImageSlider()
-                }
+        viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
+            binding.toolbar.tvFodamy.text = recipe.title
+            binding.recipe = recipe
+            binding.imageRecipe.setOnClickListener {
+                viewModel.toImageSlider()
             }
+        }
 
-            viewModel.comment.observe(viewLifecycleOwner) { comment ->
-                binding.previewCommit.comment = comment
-            }
+        viewModel.comment.observe(viewLifecycleOwner) { comment ->
+            binding.previewCommit.comment = comment
+        }
 
-
-
-            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-                viewModel.event.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is RecipeDetailViewEvent.FirstComment -> {
-                            if (it.comment != null) {
-                                setFirstComment(it.comment)
-                            } else {
-                                setFirstComment(null)
-                            }
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            viewModel.event.observe(viewLifecycleOwner) {
+                when (it) {
+                    is RecipeDetailViewEvent.FirstComment -> {
+                        if (it.comment != null) {
+                            setFirstComment(it.comment)
+                        } else {
+                            setFirstComment(null)
                         }
-                        else -> {}
                     }
+                    else -> {}
                 }
             }
-        }
-
-        private fun setFirstComment(comment: Comment?) {
-            if (comment == null) {
-                binding.previewCommit.root.isVisible = false
-                binding.textCommentsTitle.text = getString(R.string.no_comments)
-            }
-        }
-        companion object {
-            const val REQUEST_UNFOLLOW = "request_unfollow"
-            const val UNFOLLOW = "unfollow"
         }
     }
+
+    private fun setFirstComment(comment: Comment?) {
+        if (comment == null) {
+            binding.previewCommit.root.isVisible = false
+            binding.textCommentsTitle.text = getString(R.string.no_comments)
+        }
+    }
+    companion object {
+        const val REQUEST_UNFOLLOW = "request_unfollow"
+        const val UNFOLLOW = "unfollow"
+    }
+}

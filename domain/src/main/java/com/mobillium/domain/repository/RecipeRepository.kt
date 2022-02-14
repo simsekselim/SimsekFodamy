@@ -1,12 +1,9 @@
 package com.mobillium.domain.repository
 
-import androidx.paging.PagingData
 import com.mobillium.domain.model.Category
 import com.mobillium.domain.model.Comment
 import com.mobillium.domain.model.Common
 import com.mobillium.domain.model.Recipe
-import kotlinx.coroutines.flow.Flow
-
 
 interface RecipeRepository {
     suspend fun getRecipe(id: Int): Recipe

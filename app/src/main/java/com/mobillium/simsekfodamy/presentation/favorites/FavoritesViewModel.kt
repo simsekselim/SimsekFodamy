@@ -37,7 +37,7 @@ class FavoritesViewModel @Inject constructor(
             request = {
                 Pager(
                     config = pageConfig,
-                    pagingSourceFactory = {CategoryPagingFactory(recipeRepository)}
+                    pagingSourceFactory = { CategoryPagingFactory(recipeRepository) }
                 ).flow
             },
             success = {
@@ -48,14 +48,13 @@ class FavoritesViewModel @Inject constructor(
                 }
             }
         )
-
     }
 
     fun logout() = viewModelScope.launch {
         if (preferences.isLogin()) {
             sendRequest(
                 loading = true,
-                request = {user.logout()},
+                request = { user.logout() },
                 success = {
                     showMessage(LOGGED_OUT)
                 }

@@ -42,7 +42,6 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         arguments?.let {
             fetchExtras(it)
         }
-
     }
 
     override fun onCreateView(

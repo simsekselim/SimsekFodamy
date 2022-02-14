@@ -1,8 +1,5 @@
 package com.mobillium.data.response
 
-
-
-
 data class RecipeResponse(
     val category: CategoryResponse,
     val comment_count: Int,

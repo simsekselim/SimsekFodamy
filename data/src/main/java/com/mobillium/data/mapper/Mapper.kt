@@ -1,9 +1,7 @@
 package com.mobillium.data.mapper
 
 import com.mobillium.data.response.*
-import com.mobillium.data.response.BaseResponse
 import com.mobillium.domain.model.*
-
 
 fun RecipeResponse.toDomainModel(): Recipe =
     Recipe(
@@ -32,7 +30,6 @@ fun ImageResponse.toDomainModel(): Image =
         height = this.height,
         url = this.url
     )
-
 
 fun UserResponse.toDomainModel(): User =
     User(

@@ -47,13 +47,12 @@ constructor(
             },
             success = {
                 viewModelScope.launch {
-                    it.cachedIn(viewModelScope).collect{
-                        recipes.value= it
+                    it.cachedIn(viewModelScope).collect {
+                        recipes.value = it
                     }
                 }
             }
         )
-
     }
     fun detail(recipeId: Int) {
         navigate(HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(recipeId))

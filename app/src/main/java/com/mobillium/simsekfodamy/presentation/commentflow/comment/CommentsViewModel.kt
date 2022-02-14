@@ -21,8 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CommentsViewModel @Inject constructor(
     private val repository: RecipeRepository,
-    val preferences: PreferencesManager,
-    stateHandle: SavedStateHandle
+    val preferences: PreferencesManager
 ) : BaseViewModel() {
 
     val event = SingleLiveEvent<CommentsViewEvent>()
@@ -31,13 +30,11 @@ class CommentsViewModel @Inject constructor(
 
     val commentText = MutableLiveData("")
 
-
     private var recipeId: Int? = null
 
     override fun fetchExtras(extras: Bundle) {
         super.fetchExtras(extras)
         recipeId = CommentsFragmentArgs.fromBundle(extras).recipeCommentId
-
     }
 
     fun comments() = viewModelScope.launch {
@@ -53,8 +50,7 @@ class CommentsViewModel @Inject constructor(
                     it.cachedIn(viewModelScope).collect {
                         recipeComment.value = it
                     }
-
-                    }
+                }
             }
         )
     }
@@ -72,7 +68,6 @@ class CommentsViewModel @Inject constructor(
                     event.value = CommentsViewEvent.SendCommentSuccess
                     commentText.value = ""
                     showMessage(R.string.comment_add)
-
                 }
             )
         }
@@ -91,7 +86,6 @@ class CommentsViewModel @Inject constructor(
             }
         }
     }
-
 
     companion object {
         private val pageConfig = PagingConfig(

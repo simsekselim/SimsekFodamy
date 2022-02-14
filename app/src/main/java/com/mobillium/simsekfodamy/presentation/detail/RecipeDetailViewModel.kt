@@ -3,7 +3,6 @@ package com.mobillium.simsekfodamy.presentation.detail
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.Comment
@@ -22,15 +21,13 @@ import javax.inject.Inject
 class RecipeDetailViewModel @Inject constructor(
     private val recipeRepository: RecipeRepository,
     private val user: UserRepository,
-    val preferences: PreferencesManager,
-    private val state: SavedStateHandle
+    val preferences: PreferencesManager
 ) : BaseViewModel() {
     private val _recipe: MutableLiveData<Recipe> = MutableLiveData()
     val recipe: LiveData<Recipe> get() = _recipe
     val comment = MutableLiveData<Comment>()
     var recipeId: Int? = null
     val event = SingleLiveEvent<RecipeDetailViewEvent>()
-
 
     override fun fetchExtras(extras: Bundle) {
         super.fetchExtras(extras)
@@ -55,7 +52,6 @@ class RecipeDetailViewModel @Inject constructor(
         )
     }
 
-
     fun getRecipeById() {
         sendRequest(
             request = { recipeRepository.getRecipe(recipeId!!) },
@@ -63,7 +59,6 @@ class RecipeDetailViewModel @Inject constructor(
                 _recipe.value = it
             }
         )
-
     }
 
     private fun getFirstComment() {
@@ -112,7 +107,6 @@ class RecipeDetailViewModel @Inject constructor(
         )
     }
 
-
     private fun likeRecipe() {
         sendRequest(
             request = { recipeRepository.likeRecipe(recipeId!!) },
@@ -121,7 +115,6 @@ class RecipeDetailViewModel @Inject constructor(
                 getRecipeById()
             }
         )
-
     }
 
     private fun dislikeRecipe() {
@@ -132,7 +125,6 @@ class RecipeDetailViewModel @Inject constructor(
                 getRecipeById()
             }
         )
-
     }
 
     companion object {

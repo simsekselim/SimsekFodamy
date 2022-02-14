@@ -25,19 +25,15 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
         val username = username.value.toString()
         val email = email.value.toString()
         val password = password.value.toString()
-        if(validation.value == true)
-        sendRequest(
-            request = {repository.register(username,email,password)},
-            success = {
-                showMessage(SUCCESS)
-                toLogin()
-
-            }
-        )
-
+        if (validation.value == true)
+            sendRequest(
+                request = { repository.register(username, email, password) },
+                success = {
+                    showMessage(SUCCESS)
+                    toLogin()
+                }
+            )
     }
-
-
 
     private fun validate(): Boolean {
         return !username.value.isNullOrBlank() && !password.value.isNullOrBlank() && password.value!!.length > 6 && !email.value.isNullOrBlank()
@@ -47,7 +43,7 @@ constructor(private val repository: UserRepository) : BaseViewModel() {
         navigate(RegisterFragmentDirections.actionFragmentRegisterToFragmentLogin())
     }
 
-    companion object{
+    companion object {
         const val SUCCESS = "Kayıt İşlemi Tamamlanmıştır."
     }
 }

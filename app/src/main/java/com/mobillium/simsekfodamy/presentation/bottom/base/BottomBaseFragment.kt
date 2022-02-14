@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -70,7 +69,6 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
         }
     }
 
-
     private fun onViewEvent(event: BaseViewEvent) {
         when (event) {
             is BaseViewEvent.NavigateTo ->
@@ -95,5 +93,4 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
     override fun fetchExtras(extras: Bundle) {
         viewModel.fetchExtras(extras)
     }
-
 }

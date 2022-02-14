@@ -7,4 +7,4 @@ import kotlinx.android.parcel.Parcelize
 class Login(
     var token: String,
     var user: User
-):Parcelable
+) : Parcelable

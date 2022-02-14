@@ -7,4 +7,4 @@ import kotlinx.android.parcel.Parcelize
 data class NumberOfPerson(
     val id: Int,
     val text: String
-):Parcelable
+) : Parcelable
