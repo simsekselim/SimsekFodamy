@@ -6,6 +6,8 @@ plugins {
     id(Plugins.navSafeArgsPlugin)
     id(Plugins.parcelizePlugin)
     id(Plugins.ktlintPlugin)
+    id(Plugins.googleService)
+    id(Plugins.firebasePlugin)
 }
 
 android {
@@ -56,6 +58,11 @@ dependencies {
 
     // Material Design
     implementation(Libraries.materialDesign)
+
+    // Firebase
+    implementation(platform(Libraries.firebaseBom))
+    implementation(Libraries.firebaseKtx)
+    implementation(Libraries.firebaseCrash)
 
     // Testing
     testImplementation(TestLibraries.jUnit)

@@ -3,6 +3,7 @@ package com.mobillium.simsekfodamy.base
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.annotation.StringRes
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
@@ -23,6 +24,7 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
     override fun fetchExtras(extras: Bundle) {
     }
 
+    val loading = MutableLiveData<Boolean>()
     val baseEvent = SingleLiveEvent<BaseViewEvent>()
 
     fun navigate(directions: NavDirections) =
@@ -43,11 +45,13 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
     fun showMessage(@StringRes message: Int) =
         baseEvent.postValue(BaseViewEvent.ShowMessage(message))
 
-    private fun showDialog() =
-        baseEvent.postValue(BaseViewEvent.ShowLoading(true))
+    private fun showDialog() {
+        loading.value = true
+    }
 
-    private fun dismissDialog() =
-        baseEvent.postValue(BaseViewEvent.ShowLoading(false))
+    private fun dismissDialog() {
+        loading.value = false
+    }
 
     fun <T : Any?> sendRequest(
         loading: Boolean = true,

@@ -10,4 +10,6 @@ object Plugins {
     const val navSafeArgsPlugin = "androidx.navigation.safeargs"
     const val parcelizePlugin = "kotlin-parcelize"
     const val ktlintPlugin = "org.jlleitschuh.gradle.ktlint"
+    const val googleService = "com.google.gms.google-services"
+    const val firebasePlugin = "com.google.firebase.crashlytics"
 }

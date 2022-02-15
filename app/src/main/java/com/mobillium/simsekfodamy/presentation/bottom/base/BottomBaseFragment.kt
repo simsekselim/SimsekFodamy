@@ -83,9 +83,6 @@ abstract class BottomBaseFragment<TViewModel : BaseViewModel, TBinding : ViewDat
 
             BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
-            is BaseViewEvent.ShowLoading -> {
-                if (event.isShow) dialog?.show() else dialog?.dismiss()
-            }
         }
     }
 

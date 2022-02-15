@@ -10,6 +10,8 @@ buildscript {
         classpath(Paths.daggerHiltPluginPath)
         classpath(Paths.navigationPluginPath)
         classpath(Paths.ktlintPluginPath)
+        classpath(Paths.fireBaseCrashAnalytics)
+        classpath(Paths.googleServicePath)
     }
 }
 

@@ -1,13 +1,11 @@
 package com.mobillium.simsekfodamy.base
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -16,7 +14,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mobillium.simsekfodamy.BR
-import com.mobillium.simsekfodamy.R
+import com.mobillium.simsekfodamy.presentation.MainActivity
 import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
 import com.mobillium.simsekfodamy.utils.FetchExtras
 import com.mobillium.simsekfodamy.utils.snackbar
@@ -28,8 +26,6 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
 
     protected lateinit var viewModel: TViewModel
     protected lateinit var binding: TBinding
-
-    private var dialog: Dialog? = null
 
     @CallSuper
     override fun fetchExtras(extras: Bundle) {
@@ -49,11 +45,13 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dialog = Dialog(requireActivity())
-        dialog!!.setCancelable(false)
-        dialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
-        dialog!!.setContentView(R.layout.loading)
-        dialog!!.window!!.statusBarColor = ContextCompat.getColor(requireContext(), R.color.red)
+        viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
+            val activity = (requireActivity() as MainActivity)
+            if (isLoading) {
+                activity.showDialog()
+            } else
+                activity.dismissDialog()
+        }
         binding = DataBindingUtil.inflate(inflater, layoutResId, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.setVariable(BR.viewModel, viewModel)
@@ -75,9 +73,6 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
                 snackbar(event.message.toString())
             is BaseViewEvent.NavigateBack ->
                 findNavController().popBackStack()
-            is BaseViewEvent.ShowLoading -> {
-                if (event.isShow) dialog?.show() else dialog?.dismiss()
-            }
             is BaseViewEvent.Extras -> setFragmentResult(
                 DIALOG_ACTION,
                 bundleOf(event.key to event.value)

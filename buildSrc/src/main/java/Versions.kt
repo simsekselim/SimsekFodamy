@@ -39,6 +39,9 @@ object Versions {
     const val indicatorVersion = "4.2"
     const val dataStoreVersion = "1.0.0"
     const val ktlint = "10.2.0"
+    const val fireBaseCrashAnalytics = "2.8.1"
+    const val firebaseBom = "29.1.0"
+    const val googleService = "4.3.10"
 
 
 }
