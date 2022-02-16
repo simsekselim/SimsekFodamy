@@ -1,9 +1,7 @@
 package com.mobillium.simsekfodamy.presentation.homeflow.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mobillium.simsekfodamy.R
@@ -19,7 +17,6 @@ class HomeFragment :
         HomeViewModel::class.java
     ) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
@@ -31,8 +28,6 @@ class HomeFragment :
             when (position) {
                 0 -> {
                     tab.text = getString(R.string.editor_choose)
-
-
                 }
                 1 -> {
                     tab.text = getText(R.string.last_add)

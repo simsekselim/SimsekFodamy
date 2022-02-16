@@ -1,39 +1,41 @@
 package com.mobillium.simsekfodamy.presentation.commentflow.editcomment
 
+import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
 import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.repository.RecipeRepository
-import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class EditCommentViewModel @Inject constructor(
     private val repository: RecipeRepository,
-    val preferences: PreferencesManager,
-    stateHandle: SavedStateHandle
+    val preferences: PreferencesManager
 ) : BaseViewModel() {
 
     val event = SingleLiveEvent<EditCommentViewEvent>()
 
-    private val recipeId = stateHandle.get<Int>(RECIPE_ID) ?: 0
-    private val commentId = stateHandle.get<Int>(COMMENT_ID) ?: 0
-    private val commentText = stateHandle.get<String>(COMMENT_TEXT) ?: ""
+    var recipeId: Int? = null
+    private var commentId: Int? = null
 
-    val editableComment = MutableLiveData(commentText)
+    val editableComment = MutableLiveData<String>()
+
+    override fun fetchExtras(extras: Bundle) {
+        super.fetchExtras(extras)
+        recipeId = EditCommentFragmentArgs.fromBundle(extras).recipeId
+        commentId = EditCommentFragmentArgs.fromBundle(extras).commentId
+        editableComment.value = EditCommentFragmentArgs.fromBundle(extras).commentText
+    }
 
     fun onClickSave() =
         sendRequest(
             loading = false,
             request = {
                 repository.editRecipeComments(
-                    recipeId,
-                    commentId,
+                    recipeId!!,
+                    commentId!!,
                     editableComment.value.toString()
                 )
             },
@@ -41,11 +43,4 @@ class EditCommentViewModel @Inject constructor(
                 popBackStack()
             }
         )
-
-
-    companion object {
-        const val RECIPE_ID = "recipeId"
-        const val COMMENT_ID = "commentId"
-        const val COMMENT_TEXT = "commentText"
-    }
 }

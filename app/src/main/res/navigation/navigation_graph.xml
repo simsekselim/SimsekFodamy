@@ -72,6 +72,7 @@
         <argument
             android:name="recipeId"
             app:argType="integer" />
+
         <action
             android:id="@+id/action_recipeDetailFragment_to_commentsFragment"
             app:destination="@id/commentsFragment" />
@@ -138,7 +139,7 @@
     <fragment
         android:id="@+id/loginWarningDialog"
         android:name="com.mobillium.simsekfodamy.presentation.dialog.LoginWarningDialog"
-        android:label="LoginWarningDialog" >
+        android:label="LoginWarningDialog">
         <action
             android:id="@+id/action_loginWarningDialog_to_home"
             app:destination="@id/home" />
@@ -150,11 +151,18 @@
         android:id="@+id/bottomSheetFragment"
         android:name="com.mobillium.simsekfodamy.presentation.bottom.unfollow.BottomSheetFragment"
         android:label="fragment_bottom_sheet"
-        tools:layout="@layout/fragment_bottom_sheet" />
+        tools:layout="@layout/fragment_bottom_sheet">
+        <action
+            android:id="@+id/action_bottomSheetFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </dialog>
     <fragment
         android:id="@+id/editCommentFragment"
         android:name="com.mobillium.simsekfodamy.presentation.commentflow.editcomment.EditCommentFragment"
-        android:label="EditCommentFragment" >
+        android:label="EditCommentFragment">
         <argument
             android:name="commentId"
             app:argType="integer" />
@@ -171,7 +179,7 @@
     <dialog
         android:id="@+id/bottomCommentFragment"
         android:name="com.mobillium.simsekfodamy.presentation.bottom.comment.BottomCommentFragment"
-        android:label="BottomCommentFragment" >
+        android:label="BottomCommentFragment">
         <argument
             android:name="recipeId"
             app:argType="integer" />

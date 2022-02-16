@@ -23,7 +23,7 @@ constructor(
         viewModelScope.launch {
             if (preferences.isLogin()) {
                 sendRequest(
-                    request = {user.logout()},
+                    request = { user.logout() },
                     success = {
                         showMessage(LOGGED_OUT)
                     }

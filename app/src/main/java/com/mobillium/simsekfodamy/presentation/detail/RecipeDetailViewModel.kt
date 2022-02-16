@@ -3,7 +3,6 @@ package com.mobillium.simsekfodamy.presentation.detail
 import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.Comment
@@ -22,21 +21,18 @@ import javax.inject.Inject
 class RecipeDetailViewModel @Inject constructor(
     private val recipeRepository: RecipeRepository,
     private val user: UserRepository,
-    val preferences: PreferencesManager,
-    private val state: SavedStateHandle
+    val preferences: PreferencesManager
 ) : BaseViewModel() {
     private val _recipe: MutableLiveData<Recipe> = MutableLiveData()
     val recipe: LiveData<Recipe> get() = _recipe
     val comment = MutableLiveData<Comment>()
-    var recipeId: Int ?= null
+    var recipeId: Int? = null
     val event = SingleLiveEvent<RecipeDetailViewEvent>()
-
-
 
     override fun fetchExtras(extras: Bundle) {
         super.fetchExtras(extras)
         recipeId = RecipeDetailFragmentArgs.fromBundle(extras).recipeId
-        getRecipe()
+        getRecipeById()
         getFirstComment()
     }
 
@@ -49,28 +45,25 @@ class RecipeDetailViewModel @Inject constructor(
     }
 
     fun toImageSlider() {
-       navigate(
-           RecipeDetailFragmentDirections.actionRecipeDetailFragmentToImageSliderFragment(
-               ImageList(recipe.value!!.images)
-           )
-       )
+        navigate(
+            RecipeDetailFragmentDirections.actionRecipeDetailFragmentToImageSliderFragment(
+                ImageList(recipe.value!!.images)
+            )
+        )
     }
 
-
-    private fun getRecipe() {
-            sendRequest(
-                request = {recipeRepository.getRecipe(recipeId!!)},
-                success = {
-                    event.value = RecipeDetailViewEvent.RecipeGot(it)
-                    _recipe.value = it
-                }
-            )
-
+    fun getRecipeById() {
+        sendRequest(
+            request = { recipeRepository.getRecipe(recipeId!!) },
+            success = {
+                _recipe.value = it
+            }
+        )
     }
 
     private fun getFirstComment() {
         sendRequest(
-            request = {recipeRepository.getFirstComment(recipeId!!)},
+            request = { recipeRepository.getFirstComment(recipeId!!) },
             success = {
                 comment.value = it
             }
@@ -84,7 +77,11 @@ class RecipeDetailViewModel @Inject constructor(
             } else {
 
                 if (recipe.value?.user?.is_following!!)
-                    navigate(RecipeDetailFragmentDirections.actionRecipeDetailFragmentToBottomSheetFragment())
+                    navigate(
+                        RecipeDetailFragmentDirections.actionRecipeDetailFragmentToBottomSheetFragment(
+                            recipe.value?.user?.id!!
+                        )
+                    )
                 else
                     followUser(recipe.value?.user?.id!!)
             }
@@ -102,44 +99,32 @@ class RecipeDetailViewModel @Inject constructor(
 
     private fun followUser(id: Int) {
         sendRequest(
-            request = {user.followUser(id)},
+            request = { user.followUser(id) },
             success = {
                 showMessage(it.message)
-                getRecipe()
-            }
-        )
-    }
-
-    fun unfollowUser() {
-        sendRequest(
-            request = {user.unfollowUser(recipe.value!!.user.id)},
-            success = {
-                showMessage(it.message)
-                getRecipe()
+                getRecipeById()
             }
         )
     }
 
     private fun likeRecipe() {
         sendRequest(
-            request = {recipeRepository.likeRecipe(recipeId!!)},
+            request = { recipeRepository.likeRecipe(recipeId!!) },
             success = {
                 showMessage(it.message)
-                getRecipe()
+                getRecipeById()
             }
         )
-
     }
 
     private fun dislikeRecipe() {
         sendRequest(
-            request = {recipeRepository.dislikeRecipe(recipeId!!)},
+            request = { recipeRepository.dislikeRecipe(recipeId!!) },
             success = {
                 showMessage(it.message)
-                getRecipe()
+                getRecipeById()
             }
         )
-
     }
 
     companion object {

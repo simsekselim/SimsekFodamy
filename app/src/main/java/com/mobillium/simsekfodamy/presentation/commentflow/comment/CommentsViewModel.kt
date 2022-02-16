@@ -10,7 +10,6 @@ import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.Comment
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.R
-import com.mobillium.simsekfodamy.base.BaseViewEvent
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
@@ -22,8 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CommentsViewModel @Inject constructor(
     private val repository: RecipeRepository,
-    val preferences: PreferencesManager,
-    stateHandle: SavedStateHandle
+    val preferences: PreferencesManager
 ) : BaseViewModel() {
 
     val event = SingleLiveEvent<CommentsViewEvent>()
@@ -32,13 +30,11 @@ class CommentsViewModel @Inject constructor(
 
     val commentText = MutableLiveData("")
 
-
     private var recipeId: Int? = null
 
     override fun fetchExtras(extras: Bundle) {
         super.fetchExtras(extras)
         recipeId = CommentsFragmentArgs.fromBundle(extras).recipeCommentId
-
     }
 
     fun comments() = viewModelScope.launch {
@@ -72,7 +68,6 @@ class CommentsViewModel @Inject constructor(
                     event.value = CommentsViewEvent.SendCommentSuccess
                     commentText.value = ""
                     showMessage(R.string.comment_add)
-
                 }
             )
         }
@@ -91,7 +86,6 @@ class CommentsViewModel @Inject constructor(
             }
         }
     }
-
 
     companion object {
         private val pageConfig = PagingConfig(

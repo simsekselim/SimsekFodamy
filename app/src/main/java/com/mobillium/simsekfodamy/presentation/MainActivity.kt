@@ -1,5 +1,6 @@
 package com.mobillium.simsekfodamy.presentation
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -15,13 +16,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private var dialog: Dialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
 
@@ -38,9 +41,29 @@ class MainActivity : AppCompatActivity() {
                     R.id.editCommentFragment -> bottomNavigationView.isVisible = false
                     R.id.loginWarningDialog -> bottomNavigationView.isVisible = false
 
-                    else -> { bottomNavigationView.isVisible = true }
+                    else -> {
+                        bottomNavigationView.isVisible = true
+                    }
                 }
             }
         }
+    }
+
+    private fun loading() {
+        dialog = Dialog(this)
+        dialog!!.setContentView(R.layout.loading)
+        dialog!!.setCancelable(true)
+        dialog!!.window!!.setBackgroundDrawableResource(android.R.color.transparent)
+    }
+
+    fun dismissDialog() {
+        dialog?.dismiss()
+    }
+
+    fun showDialog() {
+        if (dialog == null) {
+            loading()
+        }
+        dialog?.show()
     }
 }

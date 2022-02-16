@@ -1,6 +1,5 @@
 package com.mobillium.data.repository
 
-
 import com.mobillium.data.api.UserService
 import com.mobillium.data.mapper.toDomainModel
 import com.mobillium.data.utils.PreferencesManager
@@ -9,7 +8,6 @@ import com.mobillium.domain.model.User
 import com.mobillium.domain.repository.UserRepository
 import javax.inject.Inject
 import javax.inject.Singleton
-
 
 @Singleton
 class DefaultUserRepository @Inject constructor(
@@ -28,12 +26,10 @@ class DefaultUserRepository @Inject constructor(
             userService.register(username, email, password).toDomainModel()
         }
 
-
     override suspend fun forgotPassword(email: String): Unit =
         execute {
-           userService.forgotPassword(email).toDomainModel()
+            userService.forgotPassword(email).toDomainModel()
         }
-
 
     override suspend fun logout(): Common =
 
@@ -41,26 +37,20 @@ class DefaultUserRepository @Inject constructor(
             val response = userService.logout().toDomainModel()
             preferences.removeToken()
             response
-
         }
-
 
     override suspend fun getUser(id: Int): User =
         execute {
             userService.getUser(id).toDomainModel()
         }
 
-
     override suspend fun followUser(id: Int): Common =
         execute {
             userService.followUser(id).toDomainModel()
         }
 
-
     override suspend fun unfollowUser(id: Int): Common =
         execute {
             userService.unfollowUser(id).toDomainModel()
         }
-
-
 }

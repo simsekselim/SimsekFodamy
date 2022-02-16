@@ -10,5 +10,4 @@ data class ImageResponse(
     val url: String
 )
 
-
 data class ImageList(val images: List<Image>)

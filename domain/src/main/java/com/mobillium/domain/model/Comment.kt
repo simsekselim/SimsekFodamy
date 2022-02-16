@@ -9,4 +9,4 @@ data class Comment(
     val text: String,
     val difference: String,
     val user: User
-):Parcelable
+) : Parcelable

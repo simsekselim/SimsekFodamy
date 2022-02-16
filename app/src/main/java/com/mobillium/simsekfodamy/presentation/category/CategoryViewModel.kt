@@ -1,5 +1,6 @@
 package com.mobillium.simsekfodamy.presentation.category
 
+import android.os.Bundle
 import androidx.lifecycle.*
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -17,10 +18,14 @@ import javax.inject.Inject
 @HiltViewModel
 class CategoryViewModel @Inject constructor(
     private val repository: RecipeRepository,
-    stateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-    private val categoryId = stateHandle.get<Int>(CATEGORY_ID) ?: 0
+    private var categoryId: Int? = null
+
+    override fun fetchExtras(extras: Bundle) {
+        super.fetchExtras(extras)
+        categoryId = CategoryFragmentArgs.fromBundle(extras).categoryId
+    }
 
     val category = MutableLiveData<PagingData<Recipe>>()
 

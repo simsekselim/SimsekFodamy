@@ -23,24 +23,22 @@ constructor(
         addSource(password) { value = validate() }
     }
 
-    fun onClickLogin(){
+    fun onClickLogin() {
         val username = username.value.toString()
         val password = password.value.toString()
 
-        if(validation.value == true){
+        if (validation.value == true) {
             sendRequest(
                 loading = false,
-                request = {repository.login(username,password)},
+                request = { repository.login(username, password) },
                 success = {
                     toHome()
                 }
             )
         }
-
-
     }
 
-    private fun toHome(){
+    private fun toHome() {
         navigate(LoginFragmentDirections.actionFragmentLoginToHome())
     }
 

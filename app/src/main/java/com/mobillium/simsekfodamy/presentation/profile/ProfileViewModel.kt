@@ -6,8 +6,6 @@ import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.User
 import com.mobillium.domain.repository.UserRepository
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
-import com.mobillium.simsekfodamy.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,7 +27,7 @@ class ProfileViewModel @Inject constructor(
         viewModelScope.launch {
             val userId = preferences.getUser()
             sendRequest(
-                request =  {userRepository.getUser(userId)},
+                request = { userRepository.getUser(userId) },
                 success = {
                     user.value = it
                 }
@@ -38,18 +36,16 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun logout() = viewModelScope.launch {
-            if (preferences.isLogin()) {
-             sendRequest(
-                 loading = false,
-                 request = {userRepository.logout()},
-                 success = {
-                     showMessage(it.message)
-                 }
-             )
-            } else {
-                navigate(ProfileFragmentDirections.actionProfileFragmentToFragmentLogin())
-            }
+        if (preferences.isLogin()) {
+            sendRequest(
+                loading = false,
+                request = { userRepository.logout() },
+                success = {
+                    showMessage(it.message)
+                }
+            )
+        } else {
+            navigate(ProfileFragmentDirections.actionProfileFragmentToFragmentLogin())
         }
-
-
+    }
 }

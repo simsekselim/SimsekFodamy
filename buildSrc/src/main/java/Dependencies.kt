@@ -47,6 +47,9 @@ object Libraries {
    const val viewPager = "androidx.viewpager2:viewpager2:${Versions.pagerVersion}"
    const val indicator = "com.tbuonomo:dotsindicator:${Versions.indicatorVersion}"
    const val dataStore = "androidx.datastore:datastore-preferences:${Versions.dataStoreVersion}"
+   const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
+   const val firebaseKtx = "com.google.firebase:firebase-analytics-ktx"
+   const val firebaseCrash = "com.google.firebase:firebase-crashlytics-ktx"
 
 
 

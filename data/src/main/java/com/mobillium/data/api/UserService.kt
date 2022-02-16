@@ -1,6 +1,5 @@
 package com.mobillium.data.api
 
-import com.mobillium.data.response.BaseResponse
 import com.mobillium.data.response.CommonResponse
 import com.mobillium.data.response.LoginResponse
 import com.mobillium.data.response.UserResponse

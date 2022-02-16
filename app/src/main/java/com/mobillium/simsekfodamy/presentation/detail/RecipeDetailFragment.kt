@@ -9,6 +9,7 @@ import com.mobillium.domain.model.Comment
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseFragment
 import com.mobillium.simsekfodamy.databinding.FragmentRecipeDetailBinding
+import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,13 +25,11 @@ class RecipeDetailFragment() :
         binding.toolbar.ivFodamy.isVisible = false
         binding.toolbar.ivLogout.setImageResource(R.drawable.share)
 
-        setFragmentResultListener(REQUEST_UNFOLLOW) { requestKey, bundle ->
-            if (bundle.getBoolean(UNFOLLOW, false)) {
-
-                viewModel.unfollowUser()
+        setFragmentResultListener(DIALOG_ACTION) { _, bundle ->
+            if (bundle.get(UNFOLLOW) != null && bundle.get(UNFOLLOW) as Boolean) {
+                viewModel.getRecipeById()
             }
         }
-
         viewModel.recipe.observe(viewLifecycleOwner) { recipe ->
             binding.toolbar.tvFodamy.text = recipe.title
             binding.recipe = recipe
@@ -42,8 +41,6 @@ class RecipeDetailFragment() :
         viewModel.comment.observe(viewLifecycleOwner) { comment ->
             binding.previewCommit.comment = comment
         }
-
-
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.event.observe(viewLifecycleOwner) {

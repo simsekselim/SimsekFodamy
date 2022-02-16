@@ -1,23 +1,22 @@
 package com.mobillium.simsekfodamy.presentation.images
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
+import android.os.Bundle
 import com.mobillium.domain.model.ImageList
 import com.mobillium.simsekfodamy.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ImageSliderViewModel @Inject constructor(
-    private val state: SavedStateHandle
-) : BaseViewModel() {
+class ImageSliderViewModel @Inject constructor() : BaseViewModel() {
 
-    val images = MutableLiveData(state.get<ImageList>(IMAGES))
+    var images: ImageList? = null
+
+    override fun fetchExtras(extras: Bundle) {
+        super.fetchExtras(extras)
+        images = ImageSliderFragmentArgs.fromBundle(extras).image
+    }
 
     fun exit() {
         popBackStack()
-    }
-    companion object {
-        const val IMAGES = "images"
     }
 }

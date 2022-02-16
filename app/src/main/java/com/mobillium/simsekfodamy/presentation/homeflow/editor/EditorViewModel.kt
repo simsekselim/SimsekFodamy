@@ -31,28 +31,27 @@ constructor(
     }
 
     private fun editorData() {
-            sendRequest(
-                request = {
-                          Pager(
-                              config = pageConfig,
-                              pagingSourceFactory = {
-                                  RecipePagingFactory(
-                                      recipeRepository,
-                                      GET_EDITOR_CHOICE,
-                                      null
-                                  )
-                              }
-                          ).flow
-                },
-                success = {
-                    viewModelScope.launch {
-                        it.cachedIn(viewModelScope).collect{
-                            recipes.value= it
-                        }
+        sendRequest(
+            request = {
+                Pager(
+                    config = pageConfig,
+                    pagingSourceFactory = {
+                        RecipePagingFactory(
+                            recipeRepository,
+                            GET_EDITOR_CHOICE,
+                            null
+                        )
+                    }
+                ).flow
+            },
+            success = {
+                viewModelScope.launch {
+                    it.cachedIn(viewModelScope).collect {
+                        recipes.value = it
                     }
                 }
-            )
-
+            }
+        )
     }
     fun editor(recipeId: Int) {
         navigate(HomeFragmentDirections.actionHomeFragmentToRecipeDetailFragment(recipeId))

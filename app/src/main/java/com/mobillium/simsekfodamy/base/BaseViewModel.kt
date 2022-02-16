@@ -2,8 +2,8 @@ package com.mobillium.simsekfodamy.base
 
 import android.os.Bundle
 import androidx.annotation.CallSuper
-import androidx.annotation.IdRes
 import androidx.annotation.StringRes
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
@@ -22,39 +22,36 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
 
     @CallSuper
     override fun fetchExtras(extras: Bundle) {
-
     }
 
+    val loading = MutableLiveData<Boolean>()
     val baseEvent = SingleLiveEvent<BaseViewEvent>()
 
     fun navigate(directions: NavDirections) =
         baseEvent.postValue(BaseViewEvent.NavigateTo(directions))
 
-
     fun popBackStack() {
         baseEvent.value = BaseViewEvent.NavigateBack
     }
-
 
     fun setExtras(key: String, value: Any) {
         baseEvent.value = BaseViewEvent.Extras(key, value)
     }
 
-    fun showMessage(message: String) =
-        baseEvent.postValue(BaseViewEvent.ShowMessage(message))
-
+    fun showMessage(message: String) {
+        baseEvent.value = BaseViewEvent.ShowMessage(message)
+    }
 
     fun showMessage(@StringRes message: Int) =
         baseEvent.postValue(BaseViewEvent.ShowMessage(message))
 
+    private fun showDialog() {
+        loading.value = true
+    }
 
-    private fun showDialog() =
-        baseEvent.postValue(BaseViewEvent.ShowLoading(true))
-
-
-    private fun dismissDialog() =
-        baseEvent.postValue(BaseViewEvent.ShowLoading(false))
-
+    private fun dismissDialog() {
+        loading.value = false
+    }
 
     fun <T : Any?> sendRequest(
         loading: Boolean = true,
@@ -95,7 +92,4 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
             is BaseException -> showMessage(ex.exMessage)
         }
     }
-
-
 }
-

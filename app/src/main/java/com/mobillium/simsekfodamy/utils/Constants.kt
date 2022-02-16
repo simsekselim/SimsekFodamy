@@ -5,7 +5,7 @@ object Constants {
     // Base URL
     const val BASE_URL = "https://fodamy.mobillium.com/api/"
 
-    //Action
+    // Action
     const val DIALOG_ACTION = "Dialog_Action"
     const val KEY_DELETE = "Key_Delete"
 

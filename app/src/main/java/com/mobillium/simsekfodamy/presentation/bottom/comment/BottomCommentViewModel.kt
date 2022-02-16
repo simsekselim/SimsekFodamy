@@ -1,6 +1,6 @@
 package com.mobillium.simsekfodamy.presentation.bottom.comment
 
-import androidx.lifecycle.SavedStateHandle
+import android.os.Bundle
 import com.mobillium.domain.model.Comment
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.R
@@ -12,15 +12,20 @@ import javax.inject.Inject
 @HiltViewModel
 class BottomCommentViewModel @Inject constructor(
     private val recipe: RecipeRepository,
-    private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
-    private val comment: Comment? = savedStateHandle.get<Comment>(COMMENT)
-    private val recipeId = savedStateHandle.get<Int>(RECIPE_ID) ?: 1
+    var recipeId: Int? = null
+    var comment: Comment? = null
+
+    override fun fetchExtras(extras: Bundle) {
+        super.fetchExtras(extras)
+        comment = BottomCommentFragmentArgs.fromBundle(extras).comment
+        recipeId = BottomCommentFragmentArgs.fromBundle(extras).recipeId
+    }
     fun edit() {
         navigate(
             BottomCommentFragmentDirections.actionBottomCommentFragmentToEditCommentFragment(
                 comment?.id ?: -1,
-                recipeId,
+                recipeId!!,
                 comment?.text ?: ""
             )
         )
@@ -29,20 +34,12 @@ class BottomCommentViewModel @Inject constructor(
     fun delete() {
         sendRequest(
             loading = false,
-            request = { comment?.let { recipe.deleteRecipeComments(recipeId = recipeId, it.id) } },
+            request = { comment?.let { recipe.deleteRecipeComments(recipeId = recipeId!!, it.id) } },
             success = {
                 showMessage(R.string.delete)
                 setExtras(KEY_DELETE, true)
                 popBackStack()
             }
         )
-    }
-
-
-    companion object {
-        private const val COMMENT = "comment"
-        private const val RECIPE_ID = "recipeId"
-        private const val SET = "set"
-
     }
 }

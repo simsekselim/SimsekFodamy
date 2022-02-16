@@ -18,12 +18,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
 
-
     @Provides
     @Singleton
     fun providePreferencesManager(@ApplicationContext context: Context): PreferencesManager =
         PreferencesManager(context)
-
 
     @Module
     @InstallIn(SingletonComponent::class)

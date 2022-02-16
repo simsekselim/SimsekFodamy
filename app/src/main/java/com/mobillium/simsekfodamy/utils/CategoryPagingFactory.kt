@@ -2,7 +2,6 @@ package com.mobillium.simsekfodamy.utils
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.mobillium.data.api.RecipeService
 import com.mobillium.domain.model.Category
 import com.mobillium.domain.repository.RecipeRepository
 import retrofit2.HttpException
