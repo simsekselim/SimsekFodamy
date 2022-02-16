@@ -50,6 +50,7 @@
 
     //Login
     <dimen name="login_margin">50dp</dimen>
+    <dimen name="x_small_text">15sp</dimen>
     <dimen name="small_text">16sp</dimen>
     <dimen name="text">20sp</dimen>
     <dimen name="special_text">18sp</dimen>
