@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private var dialog: Dialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_SimsekFodamy)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -1,4 +1,4 @@
-package com.mobillium.data.response
+package com.mobillium.data.remote.response
 
 data class NumberOfPersonResponse(
     val id: Int,

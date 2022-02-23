@@ -4,7 +4,6 @@ import com.mobillium.data.api.RecipeService
 import com.mobillium.data.api.UserService
 import com.mobillium.data.utils.UserInterceptor
 import com.mobillium.domain.utils.Constants
-import com.mobillium.domain.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

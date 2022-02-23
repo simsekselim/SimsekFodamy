@@ -1,4 +1,4 @@
-package com.mobillium.data.response
+package com.mobillium.data.remote.response
 
 import com.mobillium.domain.model.Image
 

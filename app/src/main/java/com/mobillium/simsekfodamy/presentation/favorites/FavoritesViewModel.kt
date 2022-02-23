@@ -1,5 +1,6 @@
 package com.mobillium.simsekfodamy.presentation.favorites
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -16,7 +17,6 @@ import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,11 +26,14 @@ class FavoritesViewModel @Inject constructor(
     private val preferences: PreferencesManager
 ) : BaseViewModel() {
 
-    val category = MutableLiveData<PagingData<Category>>()
+    private val _category: MutableLiveData<PagingData<Category>> = MutableLiveData()
+    val category: LiveData<PagingData<Category>> get() = _category
 
     init {
         getRecipeCategory()
     }
+
+
 
     private fun getRecipeCategory() = viewModelScope.launch {
         sendRequest(
@@ -43,7 +46,7 @@ class FavoritesViewModel @Inject constructor(
             success = {
                 viewModelScope.launch {
                     it.cachedIn(viewModelScope).collect {
-                        category.value = it
+                        _category.value = it
                     }
                 }
             }
@@ -67,6 +70,7 @@ class FavoritesViewModel @Inject constructor(
     fun seeAll(categoryId: Int) {
         navigate(FavoritesFragmentDirections.actionFavoritesFragmentToCategoryFragment(categoryId))
     }
+
     fun onRecipeClick(recipeId: Int) {
         navigate(FavoritesFragmentDirections.actionFavoritesFragmentToRecipeDetailFragment(recipeId))
     }

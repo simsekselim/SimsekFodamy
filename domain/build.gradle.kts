@@ -67,9 +67,8 @@ dependencies {
     implementation(Libraries.daggerHilt)
     implementation(Libraries.daggerAnnotations)
 
-    // Paging
-    implementation(Libraries.paging)
-
     // DataStore
     implementation(Libraries.dataStore)
+
+
 }

@@ -1,8 +1,8 @@
 package com.mobillium.data.api
 
-import com.mobillium.data.response.CommonResponse
-import com.mobillium.data.response.LoginResponse
-import com.mobillium.data.response.UserResponse
+import com.mobillium.data.remote.response.CommonResponse
+import com.mobillium.data.remote.response.LoginResponse
+import com.mobillium.data.remote.response.UserResponse
 import com.mobillium.domain.utils.Constants
 import retrofit2.http.*
 

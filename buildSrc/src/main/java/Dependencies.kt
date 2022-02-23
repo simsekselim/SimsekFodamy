@@ -50,6 +50,9 @@ object Libraries {
    const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
    const val firebaseKtx = "com.google.firebase:firebase-analytics-ktx"
    const val firebaseCrash = "com.google.firebase:firebase-crashlytics-ktx"
+   const val room = "androidx.room:room-runtime:${Versions.room_version}"
+   const val roomAnnotation = "androidx.room:room-compiler:${Versions.room_version}"
+   const val roomPaging = "androidx.room:room-paging:${Versions.room_version}"
 
 
 

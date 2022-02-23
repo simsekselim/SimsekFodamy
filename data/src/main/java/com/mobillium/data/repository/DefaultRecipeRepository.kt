@@ -48,8 +48,10 @@ class DefaultRecipeRepository @Inject constructor(
         }
 
     override suspend fun getRecipeComments(recipeId: Int, page: Int): List<Comment> =
-        recipeService.getRecipeComments(recipeId, page).data.map {
-            it.toDomainModel()
+        execute{
+            recipeService.getRecipeComments(recipeId, page).data.map {
+                it.toDomainModel()
+            }
         }
 
     override suspend fun getFirstComment(recipeId: Int): Comment =

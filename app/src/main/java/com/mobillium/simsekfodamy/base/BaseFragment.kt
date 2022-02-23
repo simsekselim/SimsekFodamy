@@ -1,5 +1,6 @@
 package com.mobillium.simsekfodamy.base
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
 import com.mobillium.simsekfodamy.utils.FetchExtras
 import com.mobillium.simsekfodamy.utils.snackbar
 
+
 abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(
     @LayoutRes private val layoutResId: Int,
     private val viewModelType: Class<TViewModel>
@@ -27,18 +29,23 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
     protected lateinit var viewModel: TViewModel
     protected lateinit var binding: TBinding
 
-    @CallSuper
-    override fun fetchExtras(extras: Bundle) {
-        viewModel.fetchExtras(extras)
-    }
+    open val isSharedViewModel = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(viewModelType)
+        viewModel = ViewModelProvider(
+            if (isSharedViewModel) {
+                requireActivity()
+            } else {
+                this
+            }
+        )[viewModelType]
+
         arguments?.let {
             fetchExtras(it)
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,5 +85,10 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
                 bundleOf(event.key to event.value)
             )
         }
+    }
+
+    @CallSuper
+    override fun fetchExtras(extras: Bundle) {
+        viewModel.fetchExtras(extras)
     }
 }

@@ -1,6 +1,6 @@
 package com.mobillium.data.mapper
 
-import com.mobillium.data.response.*
+import com.mobillium.data.remote.response.*
 import com.mobillium.domain.model.*
 
 fun RecipeResponse.toDomainModel(): Recipe =

@@ -25,13 +25,11 @@ class CategoryViewModel @Inject constructor(
     override fun fetchExtras(extras: Bundle) {
         super.fetchExtras(extras)
         categoryId = CategoryFragmentArgs.fromBundle(extras).categoryId
-    }
-
-    val category = MutableLiveData<PagingData<Recipe>>()
-
-    init {
         getRecipes()
     }
+
+    private val _category: MutableLiveData<PagingData<Recipe>> = MutableLiveData()
+    val category: LiveData<PagingData<Recipe>> get() = _category
 
     private fun getRecipes() {
         sendRequest(
@@ -50,7 +48,7 @@ class CategoryViewModel @Inject constructor(
             success = {
                 viewModelScope.launch {
                     it.cachedIn(viewModelScope).collect {
-                        category.value = it
+                        _category.value = it
                     }
                 }
             }

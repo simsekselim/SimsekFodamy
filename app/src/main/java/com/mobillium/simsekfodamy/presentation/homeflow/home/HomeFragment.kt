@@ -17,6 +17,8 @@ class HomeFragment :
         HomeViewModel::class.java
     ) {
 
+    override val isSharedViewModel: Boolean = true
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val pagerAdapter = HomePagerAdapter(childFragmentManager, lifecycle)
