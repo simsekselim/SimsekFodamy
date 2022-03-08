@@ -126,8 +126,4 @@ class RecipeDetailViewModel @Inject constructor(
             }
         )
     }
-
-    companion object {
-        const val RECIPE_ID = "recipeId"
-    }
 }

@@ -55,6 +55,9 @@ dependencies {
     // Retrofit
     implementation(Libraries.retrofit)
 
+    // Paging 3
+    implementation(Libraries.paging)
+
     // Gson
     implementation(Libraries.gson)
     implementation(Libraries.gsonCon)
@@ -66,9 +69,6 @@ dependencies {
     // Dagger Hilt
     implementation(Libraries.daggerHilt)
     implementation(Libraries.daggerAnnotations)
-
-    // Paging
-    implementation(Libraries.paging)
 
     // DataStore
     implementation(Libraries.dataStore)

@@ -3,6 +3,7 @@ package com.mobillium.simsekfodamy.base
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.annotation.StringRes
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,11 +25,14 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
     override fun fetchExtras(extras: Bundle) {
     }
 
-    val loading = MutableLiveData<Boolean>()
+    private val _loading: MutableLiveData<Boolean> = MutableLiveData()
+    val loading: LiveData<Boolean> get() = _loading
+
     val baseEvent = SingleLiveEvent<BaseViewEvent>()
 
-    fun navigate(directions: NavDirections) =
-        baseEvent.postValue(BaseViewEvent.NavigateTo(directions))
+    fun navigate(directions: NavDirections) {
+        baseEvent.value = BaseViewEvent.NavigateTo(directions)
+    }
 
     fun popBackStack() {
         baseEvent.value = BaseViewEvent.NavigateBack
@@ -42,24 +46,23 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
         baseEvent.value = BaseViewEvent.ShowMessage(message)
     }
 
-    fun showMessage(@StringRes message: Int) =
-        baseEvent.postValue(BaseViewEvent.ShowMessage(message))
+    fun showMessage(@StringRes message: Int) {
+        baseEvent.value = BaseViewEvent.ShowMessage(message)
+    }
 
     private fun showDialog() {
-        loading.value = true
+        _loading.value = true
     }
 
     private fun dismissDialog() {
-        loading.value = false
+        _loading.value = false
     }
 
     fun <T : Any?> sendRequest(
         loading: Boolean = true,
-        closeLoading: Boolean = true,
         request: suspend () -> T,
         success: ((T) -> Unit)? = null,
-        error: ((Exception) -> Unit)? = null,
-        complete: (() -> Unit)? = null,
+        error: ((Exception) -> Unit)? = null
     ): Job {
         return viewModelScope.launch {
             if (loading) {
@@ -68,6 +71,7 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
             try {
                 val result = request.invoke()
                 success?.invoke(result)
+                dismissDialog()
             } catch (exception: Exception) {
                 dismissDialog()
                 if (error != null) {
@@ -76,10 +80,6 @@ abstract class BaseViewModel : ViewModel(), FetchExtras {
                     handleException(exception)
                 }
             }
-            if (loading && closeLoading) {
-                dismissDialog()
-            }
-            complete?.invoke()
         }
     }
 

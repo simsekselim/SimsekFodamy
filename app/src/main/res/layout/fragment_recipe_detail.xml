@@ -263,7 +263,7 @@
                         android:layout_marginStart="@dimen/margin_small"
                         android:fontFamily="@font/nunito_semibold"
                         android:textColor="@color/line"
-                        android:textSize="@dimen/special_text"
+                        android:textSize="@dimen/x_small_text"
                         app:followerCount="@{recipe.user.followed_count}"
                         app:layout_constraintStart_toEndOf="@id/image_user"
                         app:layout_constraintTop_toBottomOf="@id/text_user_name"

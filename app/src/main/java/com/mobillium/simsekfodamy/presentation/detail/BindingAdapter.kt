@@ -15,10 +15,11 @@ fun setImageLoader(iv: ImageView, url: String?) {
 
 @BindingAdapter("app:profileLoader")
 fun setProfileLoader(iv: ImageView, url: String?) {
-    Picasso.get()
-        .load(url)
-        .placeholder(R.drawable.profile)
-        .into(iv)
+    if(url?.isEmpty() == true){
+        iv.setImageResource(R.drawable.profile)
+    }else{
+        Picasso.get().load(url).into(iv)
+    }
 }
 
 @BindingAdapter("app:commentCount")

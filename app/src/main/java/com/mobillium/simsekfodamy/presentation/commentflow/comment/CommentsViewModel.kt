@@ -2,7 +2,6 @@ package com.mobillium.simsekfodamy.presentation.commentflow.comment
 
 import android.os.Bundle
 import androidx.lifecycle.*
-import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -11,7 +10,6 @@ import com.mobillium.domain.model.Comment
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.simsekfodamy.R
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.utils.CommentPagingFactory
 import com.mobillium.simsekfodamy.utils.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -30,7 +28,7 @@ class CommentsViewModel @Inject constructor(
 
     val commentText = MutableLiveData("")
 
-    private var recipeId: Int? = null
+    private var recipeId: Int = -1
 
     override fun fetchExtras(extras: Bundle) {
         super.fetchExtras(extras)
@@ -40,10 +38,7 @@ class CommentsViewModel @Inject constructor(
     fun comments() = viewModelScope.launch {
         sendRequest(
             request = {
-                Pager(
-                    config = pageConfig,
-                    pagingSourceFactory = { CommentPagingFactory(repository, recipeId!!) }
-                ).flow
+                repository.getRecipeCommentsPaging(recipeId)
             },
             success = {
                 viewModelScope.launch {

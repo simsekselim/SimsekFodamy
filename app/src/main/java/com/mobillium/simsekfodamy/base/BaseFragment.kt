@@ -27,14 +27,18 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
     protected lateinit var viewModel: TViewModel
     protected lateinit var binding: TBinding
 
-    @CallSuper
-    override fun fetchExtras(extras: Bundle) {
-        viewModel.fetchExtras(extras)
-    }
+    open val isSharedViewModel = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(viewModelType)
+        viewModel = ViewModelProvider(
+            if (isSharedViewModel) {
+                requireActivity()
+            } else {
+                this
+            }
+        )[viewModelType]
+
         arguments?.let {
             fetchExtras(it)
         }
@@ -78,5 +82,10 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
                 bundleOf(event.key to event.value)
             )
         }
+    }
+
+    @CallSuper
+    override fun fetchExtras(extras: Bundle) {
+        viewModel.fetchExtras(extras)
     }
 }

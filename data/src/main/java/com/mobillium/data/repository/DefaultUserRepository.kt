@@ -1,7 +1,8 @@
 package com.mobillium.data.repository
 
-import com.mobillium.data.api.UserService
+import com.mobillium.data.local.dao.UserDao
 import com.mobillium.data.mapper.toDomainModel
+import com.mobillium.data.remote.api.UserService
 import com.mobillium.data.utils.PreferencesManager
 import com.mobillium.domain.model.Common
 import com.mobillium.domain.model.User
@@ -12,6 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class DefaultUserRepository @Inject constructor(
     private val userService: UserService,
+    private val userDao: UserDao,
     private val preferences: PreferencesManager
 ) : UserRepository, BaseRepository() {
     override suspend fun login(username: String, password: String): Unit =

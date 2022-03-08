@@ -44,6 +44,12 @@ dependencies {
     implementation(TestLibraries.coreKtx)
     implementation(ArcComponentsLibs.appCompat)
 
+    // Room
+    implementation(Libraries.room)
+    implementation(Libraries.roomExtension)
+    implementation(Libraries.roomPaging)
+    kapt(Libraries.roomAnnotation)
+
     // Test
     implementation(Libraries.materialDesign)
     testImplementation(TestLibraries.jUnit)

@@ -71,6 +71,11 @@ dependencies {
     androidTestImplementation(TestLibraries.coreKtx)
     androidTestImplementation(TestLibraries.legacy)
 
+    // Room
+    implementation(Libraries.room)
+    implementation(Libraries.roomPaging)
+    annotationProcessor(Libraries.roomAnnotation)
+
     // Navigation
     implementation(Libraries.navFragment)
     implementation(Libraries.navUi)

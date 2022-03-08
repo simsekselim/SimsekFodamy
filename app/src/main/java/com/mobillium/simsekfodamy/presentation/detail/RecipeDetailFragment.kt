@@ -65,7 +65,6 @@ class RecipeDetailFragment() :
         }
     }
     companion object {
-        const val REQUEST_UNFOLLOW = "request_unfollow"
         const val UNFOLLOW = "unfollow"
     }
 }

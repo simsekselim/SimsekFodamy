@@ -42,6 +42,7 @@ object Versions {
     const val fireBaseCrashAnalytics = "2.8.1"
     const val firebaseBom = "29.1.0"
     const val googleService = "4.3.10"
+    const val room_version = "2.4.1"
 
 
 }
