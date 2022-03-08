@@ -53,14 +53,15 @@ class RecipeAdapter() :
                         recipe.user.followed_count
                     )
 
-                if (recipe.user.image != null)
+                if (recipe.user.image?.url?.isEmpty() == false) {
                     Picasso.get()
                         .load(recipe.user.image!!.url)
                         .placeholder(R.drawable.user)
                         .into(ivProfilePicture)
-
-                else
+                } else {
                     ivProfilePicture.setImageResource(R.drawable.profile)
+                }
+
 
                 tvTitle.text = recipe.title
                 tvSubtitle.text = recipe.category.name

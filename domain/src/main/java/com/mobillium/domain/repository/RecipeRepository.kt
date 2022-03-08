@@ -1,12 +1,18 @@
 package com.mobillium.domain.repository
 
+import androidx.paging.PagingData
 import com.mobillium.domain.model.Category
 import com.mobillium.domain.model.Comment
 import com.mobillium.domain.model.Common
 import com.mobillium.domain.model.Recipe
+import kotlinx.coroutines.flow.Flow
 
 interface RecipeRepository {
-    suspend fun getRecipe(id: Int): Recipe
+    suspend fun getEditorChoicePaging(): Flow<PagingData<Recipe>>
+    suspend fun getLastAddedPaging(): Flow<PagingData<Recipe>>
+    suspend fun getRecipeCommentsPaging(recipeId: Int): Flow<PagingData<Comment>>
+    suspend fun getCategoriesPaging(): Flow<PagingData<Category>>
+    suspend fun getRecipe(recipeId: Int): Recipe
     suspend fun getLastAddedRecipes(page: Int = 1): List<Recipe>
     suspend fun getEditorChoiceRecipes(page: Int = 1): List<Recipe>
     suspend fun getRecipeCategories(page: Int = 1): List<Category>

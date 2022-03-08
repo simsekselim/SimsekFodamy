@@ -6,7 +6,7 @@ import com.mobillium.domain.model.*
 fun RecipeResponse.toDomainModel(): Recipe =
     Recipe(
         id = this.id,
-        title = this.title ?: "",
+        title = this.title,
         definition = this.definition,
         ingredients = this.ingredients,
         directions = this.directions,

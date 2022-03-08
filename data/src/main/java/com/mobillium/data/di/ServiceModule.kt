@@ -1,7 +1,7 @@
 package com.mobillium.data.di
 
-import com.mobillium.data.api.RecipeService
-import com.mobillium.data.api.UserService
+import com.mobillium.data.remote.api.RecipeService
+import com.mobillium.data.remote.api.UserService
 import com.mobillium.data.utils.UserInterceptor
 import com.mobillium.domain.utils.Constants
 import dagger.Module

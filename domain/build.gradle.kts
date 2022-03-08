@@ -55,6 +55,9 @@ dependencies {
     // Retrofit
     implementation(Libraries.retrofit)
 
+    // Paging 3
+    implementation(Libraries.paging)
+
     // Gson
     implementation(Libraries.gson)
     implementation(Libraries.gsonCon)
@@ -69,6 +72,4 @@ dependencies {
 
     // DataStore
     implementation(Libraries.dataStore)
-
-
 }

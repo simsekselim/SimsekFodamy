@@ -46,8 +46,9 @@ dependencies {
 
     // Room
     implementation(Libraries.room)
+    implementation(Libraries.roomExtension)
     implementation(Libraries.roomPaging)
-    annotationProcessor(Libraries.roomAnnotation)
+    kapt(Libraries.roomAnnotation)
 
     // Test
     implementation(Libraries.materialDesign)

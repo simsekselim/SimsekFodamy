@@ -3,7 +3,6 @@ package com.mobillium.simsekfodamy.presentation.favorites
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -12,7 +11,6 @@ import com.mobillium.domain.model.Category
 import com.mobillium.domain.repository.RecipeRepository
 import com.mobillium.domain.repository.UserRepository
 import com.mobillium.simsekfodamy.base.BaseViewModel
-import com.mobillium.simsekfodamy.utils.CategoryPagingFactory
 import com.mobillium.simsekfodamy.utils.Constants.LOGGED_OUT
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -33,15 +31,10 @@ class FavoritesViewModel @Inject constructor(
         getRecipeCategory()
     }
 
-
-
     private fun getRecipeCategory() = viewModelScope.launch {
         sendRequest(
             request = {
-                Pager(
-                    config = pageConfig,
-                    pagingSourceFactory = { CategoryPagingFactory(recipeRepository) }
-                ).flow
+                recipeRepository.getCategoriesPaging()
             },
             success = {
                 viewModelScope.launch {

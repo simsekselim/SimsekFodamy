@@ -17,10 +17,10 @@ class FavoritesFragment() :
     BaseFragment<FavoritesViewModel, FragmentFavoritesBinding>(
         R.layout.fragment_favorites,
         FavoritesViewModel::class.java
-    ),CategoryAdapter.OnItemClickListener {
+    ),
+    CategoryAdapter.OnItemClickListener {
 
     override val isSharedViewModel: Boolean = true
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

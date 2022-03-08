@@ -56,18 +56,19 @@ class CategoryRecipeAdapter(private val listener: RecipeAdapter.OnItemClickListe
                     )
                 textUserName.text = recipe.user.username
 
-                if (recipe.user.image != null)
+                if (recipe.user.image?.url?.isEmpty() == false) {
                     Picasso.get()
                         .load(recipe.user.image!!.url)
                         .placeholder(R.drawable.user)
                         .into(imageUserProfile)
-                else
+                } else {
                     imageUserProfile.setImageResource(R.drawable.profile)
+                }
 
-                if (recipe.images != null)
-                    Picasso.get()
-                        .load(recipe.images[0].url)
-                        .into(imageCategoryRecipe)
+
+                Picasso.get()
+                    .load(recipe.images[0].url)
+                    .into(imageCategoryRecipe)
             }
         }
     }

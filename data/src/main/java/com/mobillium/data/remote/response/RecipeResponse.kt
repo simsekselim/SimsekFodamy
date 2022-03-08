@@ -19,7 +19,7 @@ data class RecipeResponse(
     val number_of_favorite_count: Int,
     val number_of_person: NumberOfPersonResponse,
     val time_of_recipe: TimeOfRecipeResponse,
-    val title: String?,
+    val title: String,
     val user: UserResponse,
     val view_count: Int?,
     val youtube_image: ImageResponse?,

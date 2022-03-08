@@ -1,4 +1,4 @@
-package com.mobillium.data.api
+package com.mobillium.data.remote.api
 
 import com.mobillium.data.remote.response.*
 import com.mobillium.domain.utils.Constants

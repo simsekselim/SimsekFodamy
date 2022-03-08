@@ -1,6 +1,5 @@
 package com.mobillium.simsekfodamy.base
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ import com.mobillium.simsekfodamy.presentation.MainActivity
 import com.mobillium.simsekfodamy.utils.Constants.DIALOG_ACTION
 import com.mobillium.simsekfodamy.utils.FetchExtras
 import com.mobillium.simsekfodamy.utils.snackbar
-
 
 abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBinding>(
     @LayoutRes private val layoutResId: Int,
@@ -45,7 +43,6 @@ abstract class BaseFragment<TViewModel : BaseViewModel, TBinding : ViewDataBindi
             fetchExtras(it)
         }
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

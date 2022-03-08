@@ -14,6 +14,22 @@ abstract class BaseRepository {
         }
     }
 
+    open suspend fun <T> fetchFromLocal(cached: suspend () -> T?): T? {
+        return try {
+            cached.invoke()
+        } catch (ex: Exception) {
+            throw parseException(ex)
+        }
+    }
+
+    open suspend fun saveToLocal(store: suspend () -> Unit) {
+        try {
+            store.invoke()
+        } catch (ex: Exception) {
+            throw parseException(ex)
+        }
+    }
+
     private fun parseException(ex: Exception): Exception {
 
         return when (ex) {

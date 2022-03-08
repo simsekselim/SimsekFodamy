@@ -23,7 +23,7 @@ class ProfileViewModel @Inject constructor(
         fetchUser()
     }
 
-    fun fetchUser() {
+    private fun fetchUser() {
         viewModelScope.launch {
             val userId = preferences.getUser()
             sendRequest(

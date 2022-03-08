@@ -39,7 +39,7 @@ class CategoryAdapter(private val listener: OnItemClickListener) :
             binding.apply {
                 textCategoryName.text = category.name
 
-                if (category.image != null)
+                if (category.image!!.url.isNotBlank())
                     Picasso.get()
                         .load(category.image!!.url)
                         .into(imageCategory)
